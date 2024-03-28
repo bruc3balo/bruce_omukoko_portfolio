@@ -1,5 +1,6 @@
 enum Routes {
-  splashScreen('/');
+  splashScreen('/'),
+  resume('/resume');
 
   const Routes(this.path);
   final String path;
