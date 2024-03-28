@@ -1,0 +1,23 @@
+flutter_native_splash:
+  
+  color: "#f5f5f5"
+  color_dark: "#111111"
+
+  # The image parameter allows you to specify an image used in the splash screen.  It must be a
+  # png file and should be sized for 4x pixel density.
+  image: assets/bruce.png
+  image_dark: assets/bruce.png
+
+  # The branding property allows you to specify an image used as branding in the splash screen.
+  # It must be a png file. It is supported for Android, iOS and the Web.  For Android 12,
+  # see the Android 12 section below.
+  #branding: assets/bruce.png
+
+  # To position the branding image at the bottom of the screen you can use bottom, bottomRight,
+  # and bottomLeft. The default values is bottom if not specified or specified something else.
+  #branding_mode: center
+  #branding_dark: assets/bruce.png
+
+  # web_image_mode can be one of the following modes: center, contain, stretch, and cover.
+  web: true
+  web_image_mode: center
