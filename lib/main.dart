@@ -1,3 +1,5 @@
+import 'package:bruce_omukoko_portfolio/pages/home.dart';
+import 'package:bruce_omukoko_portfolio/pages/publicatons.dart';
 import 'package:bruce_omukoko_portfolio/pages/resume.dart';
 import 'package:bruce_omukoko_portfolio/pages/splash_screen.dart';
 import 'package:bruce_omukoko_portfolio/routes/routes.dart';
@@ -17,10 +19,13 @@ class PortfolioApplication extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: MaterialApp(
-        initialRoute: Routes.resume.path,
+        debugShowCheckedModeBanner: false,
+        initialRoute: Routes.splashScreen.path,
         routes: {
           Routes.splashScreen.path: (context) => const SplashScreen(),
           Routes.resume.path: (context) => ResumeView(),
+          Routes.publications.path: (context) => const Publications(),
+          Routes.home.path: (context) => const HomePage(),
         },
       ),
     );
