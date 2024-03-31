@@ -32,52 +32,87 @@ class ContactMeDialog extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20.0),
       ),
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text("Contact Me"),
+      child: ConstrainedBox(
+        constraints: BoxConstraints(
+          maxWidth: 350,
+          minWidth: 300,
         ),
-        body: Center(
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Text(
-                  "Please drop a way i can get back to you as soon as i see it",
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Scaffold(
+            backgroundColor: Colors.transparent,
+            appBar: AppBar(
+              title: const Text("Contact Me"),
+              backgroundColor: Colors.transparent,
+            ),
+            body: Center(
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(
+                        "Feel free to drop me a message using the contact form below. I'll make sure to respond promptly upon receiving your message. Your feedback and inquiries are highly valued, and I look forward to hearing from you.",
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 200,
+                      child: DropDownMenuButton<ContactSubject>(
+                        isEquals: (a, b) => a == b,
+                        label: (i) => i.value,
+                        onSelect: (i) {},
+                        options: ContactSubject.values,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextFormField(
+                        decoration: const InputDecoration(
+                          labelText: "Message",
+                        ),
+                        validator: emailValidationErrorNotRequired,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: PhoneNumberTextField(
+                        onChanged: ({required code, required complete}) {},
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextFormField(
+                        decoration: const InputDecoration(
+                          labelText: "Email address",
+                        ),
+                        validator: emailValidationErrorNotRequired,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ElevatedButton(
+                        onPressed: () => Navigator.of(context).pop(),
+                        child: RotatedBox(
+                          quarterTurns: 0,
+                          child: Icon(Icons.send),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ElevatedButton(
+                        onPressed: () => Navigator.of(context).pop(),
+                        child: Icon(Icons.cancel),
+                      ),
+                    ),
+                  ],
                 ),
-                DropDownMenuButton<ContactSubject>(
-                  isEquals: (a, b) => a == b,
-                  label: (i) => i.value,
-                  onSelect: (i) {},
-                  options: ContactSubject.values,
-                ),
-                TextFormField(
-                  decoration: const InputDecoration(
-                    labelText: "Body",
-                  ),
-                  validator: emailValidationErrorNotRequired,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                ),
-                PhoneNumberTextField(
-                  onChanged: ({required code, required complete}) {},
-                ),
-                TextFormField(
-                  decoration: const InputDecoration(
-                    labelText: "Email address",
-                  ),
-                  validator: emailValidationErrorNotRequired,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                ),
-                ElevatedButton(
-                  onPressed: () => Navigator.of(context).pop(),
-                  child: RotatedBox(
-                    quarterTurns: 55,
-                    child: Icon(Icons.send),
-                  ),
-                ),
-                ElevatedButton(
-                  onPressed: () => Navigator.of(context).pop(),
-                  child: Icon(Icons.cancel),
-                ),
-              ],
+              ),
             ),
           ),
         ),
@@ -90,6 +125,7 @@ enum ContactSubject {
   consult("Consult"),
   job("Job"),
   contract("Contract"),
+  feedback("Feedback"),
   other("Other");
 
   final String value;

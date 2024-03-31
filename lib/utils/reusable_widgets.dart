@@ -96,7 +96,8 @@ class DropDownMenuButton<T> extends StatelessWidget {
             child: DropdownButton<T>(
               isExpanded: true,
               hint: Text(
-                  hint ?? "e.g ${options.isEmpty ? '' : label(options.first)}"),
+                hint ?? "e.g ${options.isEmpty ? '' : label(options.first)}",
+              ),
               value: value,
               alignment: Alignment.center,
               //style: itemStyle,

@@ -16,6 +16,7 @@ dependencies:
   share_plus: ^7.1.0
   webview_flutter_web: 
   phone_form_field: 
+  rive: ^0.13.1
 
 dev_dependencies:
   flutter_test:
