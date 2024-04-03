@@ -3,6 +3,7 @@ enum Routes {
   home('/home'),
   publications('/publications'),
   skills('/skills'),
+  projects('/projects'),
   resume('/resume');
 
   const Routes(this.path);

@@ -36,6 +36,12 @@ class HomePage extends StatelessWidget {
               ),
               title: const Text("Skills"),
             ),
+            ListTile(
+              onTap: () => Navigator.of(context).pushNamed(
+                Routes.projects.path,
+              ),
+              title: const Text("Projects"),
+            ),
           ],
         ),
       ),

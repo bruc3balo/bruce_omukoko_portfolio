@@ -249,7 +249,7 @@ class Skills extends StatelessWidget {
               brief: 'brief',
               startDate: DateTime(2017, DateTime.august),
               url: 'https://github.com',
-              abilities: [
+              abilities: const [
                 Ability(
                     name: 'Manage repositories',
                     brief: 'CRUD oprations on repositories',
@@ -284,7 +284,8 @@ class Skills extends StatelessWidget {
         ),
         SkillBoard(
           name: 'Mobile Development',
-          brief: "Mobile dev",
+          brief:
+              "Proficient in mobile development, encompassing both Android native and Flutter cross-platform development, with expertise in creating high-quality, user-friendly mobile applications for diverse platforms and devices.",
           technologies: [
             Technologies(
               name: 'Native Android',
@@ -292,17 +293,43 @@ class Skills extends StatelessWidget {
                   'I am a seasoned Android developer with over 5 years of industry experience, proficient in Java and XML layout. My primary focus lies in implementing robust and scalable mobile applications using the MVVM (Model-View-ViewModel) architecture pattern. By leveraging MVVM, I ensure clean separation of concerns, maintainability, and testability of codebases. I possess a deep understanding of Android lifecycle, UI/UX design principles, and performance optimization techniques. With a proven track record of delivering high-quality apps, I am committed to staying updated with the latest advancements in Android development to create cutting-edge solutions that meet the evolving needs of users.',
               url: 'https://developer.android.com',
               startDate: DateTime(2020, DateTime.may),
-              abilities: [
+              abilities: const [
                 Ability(
-                  name: 'Java Logic Programming',
-                  brief: 'Logic with java',
-                  url: 'https://www.java.com/en/download/help/whatis_java.html',
+                  name: 'Android SDK',
+                  brief:
+                      "Native Android tools for building sophisticated mobile applications, including lifecycle management, UI components, permissions handling, data persistence, reactive programming, ViewModel architecture, and modularization.",
+                  points: [
+                    "Proficient in managing Android app lifecycles, ensuring efficient resource utilization and seamless user experiences through lifecycle-aware components.",
+                    "Expertise in designing and implementing activities and fragments to create interactive user interfaces, facilitating smooth navigation and modular UI development",
+                    "Adept at managing necessary permissions in Android applications, ensuring compliance with security and privacy standards while providing seamless access to device resources",
+                    "Skilled in integrating Room Persistence Library to provide robust local data storage solutions, enabling efficient data access and management for offline functionality",
+                    "Proficient in utilizing LiveData observables to facilitate reactive UI updates, enabling real-time data synchronization and seamless interaction with user inputs.",
+                    "Experienced in implementing ViewModels to manage UI-related data in a lifecycle-conscious manner, promoting separation of concerns and facilitating UI state persistence",
+                    "Expertise in modularizing Android applications to enhance maintainability, scalability, and collaboration, facilitating code reuse and promoting a clean architecture design",
+                  ],
                 ),
+                Ability(
+                    name: 'Java Logic Programming',
+                    brief: 'Logic programming with java 8 and java 11',
+                    url:
+                        'https://www.java.com/en/download/help/whatis_java.html',
+                    points: [
+                      "Proficiency in utilizing Java's threading capabilities to implement asynchronous tasks and prevent UI blocking, ensuring smooth user experience",
+                      "Skill in designing and structuring data models tailored for mobile environments, facilitating efficient data management within the application",
+                      "Ability to implement background processing mechanisms in mobile applications to execute long-running tasks without disrupting the user interface",
+                      "Proficiency in implementing robust error handling mechanisms to identify, handle, and gracefully recover from errors encountered during application execution, enhancing application reliability and stability",
+                    ]),
                 Ability(
                   name: 'XML Layouts',
                   brief: 'Creating layouts with xml',
                   url:
                       'https://developer.android.com/develop/ui/views/layout/declaring-layout',
+                  points: [
+                    "Use databinding to seamlessly connect user interface components with data sources, improving code readability and reducing boilerplate code in Android development.",
+                    "Create bespoke UI components tailored to specific application requirements, enhancing user experience and interface design flexibility.",
+                    "Modularize UI components and enhance code reusability by dividing the user interface into independent, reusable sections in Android apps",
+                    "Design visually appealing and intuitive user interfaces following Google's Material Design guidelines, enhancing usability and consistency across Android apps."
+                  ],
                 ),
               ],
             ),
@@ -312,20 +339,180 @@ class Skills extends StatelessWidget {
               brief:
                   "I am a seasoned Flutter developer with a solid 3-year track record in the field. My expertise lies in leveraging Flutter's capabilities to ensure code reusability and deliver cross-platform functionality. By adhering to best practices and architectural patterns, I prioritize the development of maintainable and scalable applications. Additionally, I am dedicated to maintaining consistent frames per second (fps) across various devices, ensuring optimal performance and user experience. With a keen eye for detail and a passion for crafting high-quality software, I strive to push the boundaries of Flutter development and create polished, user-centric applications.",
               url: 'https://flutter.dev',
+              abilities: const [
+                Ability(
+                  name: 'Library Creation',
+                  brief:
+                      'Proficient in developing reusable code libraries in Flutter, promoting code efficiency and maintainability through modularization',
+                ),
+                Ability(
+                  name: 'Modularization',
+                  brief:
+                      'Expertise in modularizing Flutter applications to separate concerns, enhancing productivity and scalability by isolating and managing distinct app components',
+                ),
+                Ability(
+                  name: 'State Management',
+                  brief:
+                      'Skilled in implementing effective state management solutions in Flutter applications, employing appropriate tools and patterns to maintain clean and efficient codebases.',
+                ),
+                Ability(
+                  name: 'Background Tasks',
+                  brief:
+                      'Adept at executing background tasks in different isolates within Flutter apps, ensuring smooth performance and responsiveness while handling concurrent operations',
+                ),
+                Ability(
+                  name: 'Multi-platform Development',
+                  brief:
+                      'Experienced in building versatile applications across desktop, mobile, and web platforms using Flutter, incorporating essential functionality to meet diverse user needs and device capabilities',
+                ),
+              ],
             ),
           ],
         ),
         SkillBoard(
           name: 'Vector Graphics',
-          brief: 'todo',
+          brief:
+              'Proficient in creating vector graphics using Adobe Illustrator and animating them seamlessly using Rive, enhancing visual appeal and interactivity in digital designs.',
+          technologies: [
+            Technologies(
+              name: 'Rive',
+              brief:
+                  "Rive is a powerful design and animation tool used for creating interactive vector animations and illustrations for various digital platforms.",
+              startDate: DateTime(2022, DateTime.march),
+              url: 'https://rive.app',
+              abilities: const [
+                Ability(
+                  name: 'Animating vectors',
+                  brief:
+                      'Skilled in animating vector graphics, enhancing visual appeal and interactivity in digital designs for dynamic user experiences.',
+                ),
+                Ability(
+                  name: 'State animations',
+                  brief:
+                      "Skilled in implementing state animations using state machines, effectively managing and controlling application states to create dynamic and responsive user interfaces.",
+                ),
+              ],
+            ),
+            Technologies(
+              name: 'Adobe illustrator',
+              brief:
+                  "Adobe Illustrator is a versatile vector graphics editor used for creating scalable illustrations, logos, icons, and other graphical elements for print, web, and multimedia projects.",
+              startDate: DateTime(2022, DateTime.march),
+              url: 'https://www.adobe.com/products/illustrator.html',
+              abilities: const [
+                Ability(
+                  name: 'Character modelling',
+                  brief:
+                      "Proficient in character drawing using Adobe Illustrator, leveraging its powerful vector-based tools to create detailed and expressive characters for various digital media and design projects.",
+                ),
+              ],
+            ),
+          ],
         ),
         SkillBoard(
           name: 'Database administrations',
-          brief: 'todo',
+          brief:
+              "Proficient in database administration, encompassing tasks such as database installation, configuration, performance tuning, backup and recovery, security management, and troubleshooting, ensuring optimal functionality, reliability, and security of database systems.",
+          technologies: [
+            Technologies(
+              name: 'PostgreSQL',
+              brief:
+                  "PostgreSQL is a powerful open-source relational database management system known for its robustness, extensibility, and adherence to SQL standards, offering advanced features for data storage, retrieval, and management in various applications.",
+              startDate: DateTime(2021, DateTime.august),
+              url: 'https://www.postgresql.org',
+              abilities: const [
+                Ability(
+                  name: 'Roles and User Management',
+                  brief:
+                      "Proficient in PostgreSQL's role-based access control system, managing users, groups, and permissions to ensure secure data access and manipulation.",
+                ),
+                Ability(
+                  name: 'Extension Integration',
+                  brief:
+                      "Expertise in extending PostgreSQL functionality by integrating and configuring extensions, such as hashing functions, to enhance database capabilities.",
+                ),
+                Ability(
+                  name: 'Replication Setup',
+                  brief:
+                      "Skilled in setting up and configuring replication in PostgreSQL, enabling data redundancy and high availability for mission-critical applications.",
+                ),
+                Ability(
+                  name: 'Indexing',
+                  brief:
+                      'Adept at implementing indexing strategies in PostgreSQL to optimize query performance and accelerate data retrieval operations',
+                ),
+                Ability(
+                  name: 'Constraints Implementation',
+                  brief:
+                      'Experienced in enforcing data integrity through the implementation of constraints in PostgreSQL, ensuring that data adheres to specified rules and requirements',
+                ),
+                Ability(
+                  name: 'Check Constraints',
+                  brief:
+                      'Proficient in utilizing check constraints in PostgreSQL to enforce specific conditions on data values, ensuring data consistency and validity within the database',
+                ),
+                Ability(
+                  name: 'Sharding',
+                  brief:
+                      'Skilled in configuring and managing data sharing mechanisms within PostgreSQL databases, facilitating collaboration and data accessibility across teams or applications.',
+                ),
+              ],
+            ),
+            Technologies(
+              name: 'MySQL',
+              brief:
+                  "MySQL is a widely-used open-source relational database management system known for its reliability, performance, and ease of use, offering robust features for data storage, retrieval, and management in various applications.",
+              startDate: DateTime(2018, DateTime.may),
+              url: 'https://www.mysql.com',
+            ),
+            Technologies(
+              name: 'MongoDB',
+              brief:
+                  "MongoDB is a popular NoSQL database solution known for its flexibility, scalability, and high performance, offering document-oriented storage and flexible data models suitable for modern application development.",
+              startDate: DateTime(2021, DateTime.august),
+              url: 'https://www.mongodb.com',
+            ),
+          ],
         ),
         SkillBoard(
-          name: 'Model Visualization',
-          brief: 'todo',
+          name: 'UML visualization',
+          brief:
+              "Proficient in UML (Unified Modeling Language) visualization, utilizing industry-standard diagrams and notations to depict system architectures, design patterns, and software processes, facilitating clear communication and collaboration among project stakeholders.",
+          technologies: [
+            Technologies(
+              name: 'Visual Paradigm',
+              brief:
+                  "Visual Paradigm is a comprehensive modeling tool used for visualizing, designing, and documenting software systems and business processes, offering a wide range of UML diagrams, agile tools, and collaboration features.",
+              startDate: DateTime(
+                2020,
+                DateTime.january,
+              ),
+              url: 'https://www.visual-paradigm.com',
+              abilities: const [
+                Ability(
+                  name: 'Activity Diagrams',
+                  brief:
+                      "Proficient in activity diagrams, a type of UML diagram used to model workflows and business processes, facilitating clear visualization and analysis of system behaviors and interactions.",
+                  url:
+                      'https://www.visual-paradigm.com/tutorials/how-to-draw-activity-diagram-in-uml',
+                ),
+                Ability(
+                  name: 'Data Flow Diagram',
+                  brief:
+                      "Skilled in data flow diagrams (DFDs), a visual representation technique used to illustrate the flow of data within a system, aiding in the analysis, design, and understanding of information processes and relationships.",
+                  url:
+                      'https://www.visual-paradigm.com/tutorials/data-flow-diagram-dfd.jsp',
+                ),
+                Ability(
+                  name: 'Entity Relationship Diagram',
+                  brief:
+                      "Proficient in Entity-Relationship Diagrams (ERDs), a modeling technique used to visually represent the structure of a database, depicting entities, their attributes, and relationships, facilitating database design and analysis.",
+                  url:
+                      'https://www.visual-paradigm.com/tutorials/databasedesign.jsp',
+                ),
+              ],
+            ),
+          ],
         ),
       ];
 

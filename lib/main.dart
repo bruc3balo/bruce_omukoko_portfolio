@@ -1,4 +1,5 @@
 import 'package:bruce_omukoko_portfolio/pages/home.dart';
+import 'package:bruce_omukoko_portfolio/pages/projects.dart';
 import 'package:bruce_omukoko_portfolio/pages/publicatons.dart';
 import 'package:bruce_omukoko_portfolio/pages/resume.dart';
 import 'package:bruce_omukoko_portfolio/pages/skills.dart';
@@ -28,6 +29,7 @@ class PortfolioApplication extends StatelessWidget {
           Routes.publications.path: (context) => const Publications(),
           Routes.skills.path: (context) => const Skills(),
           Routes.home.path: (context) => const HomePage(),
+          Routes.projects.path: (context) => const ProjectsPage(),
         },
       ),
     );
