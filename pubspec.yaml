@@ -17,6 +17,8 @@ dependencies:
   webview_flutter_web: 
   phone_form_field: 
   rive: ^0.13.1
+  cloud_firestore: ^4.16.0
+  firebase_core: ^2.28.0
 
 dev_dependencies:
   flutter_test:

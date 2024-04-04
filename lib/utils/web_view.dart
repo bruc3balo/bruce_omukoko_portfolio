@@ -18,8 +18,8 @@ class WebView extends StatelessWidget {
   late final LoadRequestParams params = LoadRequestParams(
     uri: parsedUri,
     headers: {
-      "X-FRAME-OPTIONS": "ALLOW-FROM *",
-      "Access-Control-Allow-Origin": "*,"
+   //   "X-FRAME-OPTIONS": "ALLOW-FROM *",
+    //  "Access-Control-Allow-Origin": "*,"
     },
   );
 
