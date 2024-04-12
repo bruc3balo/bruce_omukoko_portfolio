@@ -8,7 +8,6 @@ import 'package:bruce_omukoko_portfolio/routes/routes.dart';
 import 'package:bruce_omukoko_portfolio/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 

@@ -1,5 +1,8 @@
 import 'package:bruce_omukoko_portfolio/utils/functions.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:rive/rive.dart';
 
 enum PublicationType {
@@ -9,17 +12,24 @@ enum PublicationType {
   final String value;
 
   const PublicationType(this.value);
+
+  Widget get widget => switch (this) {
+        PublicationType.pubDev => SvgPicture.asset("dart.svg"),
+        PublicationType.rive => Image.asset("rive.jpeg"),
+      };
 }
 
 class PubDevPackage {
   final String name;
   final String about;
   final String url;
+  final String image;
 
   const PubDevPackage({
     required this.name,
     required this.about,
     required this.url,
+    required this.image,
   });
 }
 
@@ -57,14 +67,12 @@ class PublicationsPage extends StatelessWidget {
         itemCount: publicationTypeList.length,
         itemBuilder: (_, i) {
           PublicationType p = publicationTypeList[i];
-          return ExpansionTile(
+          return ListTile(
             title: Text(p.value),
-            children: [
-              switch (p) {
-                PublicationType.pubDev => const PubDevPublications(),
-                PublicationType.rive => const RivePublications(),
-              },
-            ],
+            subtitle: switch (p) {
+              PublicationType.pubDev => const PubDevPublications(),
+              PublicationType.rive => const RivePublications(),
+            },
           );
         },
       ),
@@ -77,32 +85,34 @@ class PubDevPublications extends StatelessWidget {
 
   List<PubDevPackage> get publications => const [
         PubDevPackage(
-          name: "LRUMemoryCache",
-          about:
-              "A dart library used to cache data with an optional expiry date and callback functions",
-          url: 'https://pub.dev/packages/lru_memory_cache',
-        ),
+            name: "LRUMemoryCache",
+            about:
+                "A dart library used to cache data with an optional expiry date and callback functions",
+            url: 'https://pub.dev/packages/lru_memory_cache',
+            image: "lru_cache.png"),
         PubDevPackage(
-          name: "Spinner Date Picker",
-          about:
-              "A minimally customizable flutter date picker library used to choose a date",
-          url: 'https://pub.dev/packages/spinner_date_picker',
-        ),
+            name: "Spinner Date Picker",
+            about:
+                "A minimally customizable flutter date picker library used to choose a date",
+            url: 'https://pub.dev/packages/spinner_date_picker',
+            image: "spinner.png"),
       ];
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      shrinkWrap: true,
-      itemCount: publications.length,
-      itemBuilder: (_, i) {
-        PubDevPackage p = publications[i];
-        return ListTile(
-          onTap: () => openStringUri(p.url),
-          title: Text(p.name),
-          subtitle: Text(p.about),
-        );
-      },
+    return SizedBox(
+      height: 500,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: publications.length,
+        itemBuilder: (_, i) {
+          PubDevPackage p = publications[i];
+
+          return PubDevPublicationItem(
+            p: p,
+          );
+        },
+      ),
     );
   }
 }
@@ -178,30 +188,73 @@ class RivePublications extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      shrinkWrap: true,
-      itemCount: riveArts.length,
-      itemBuilder: (_, i) {
-        RiveArt p = riveArts[i];
-        return ExpansionTile(
-          title: Text(p.name),
-          subtitle: Text(p.description),
-          children: [
-            ConstrainedBox(
-              constraints: riveConstraints,
-              child: RiveAnimation.asset(
-                p.asset,
-                // controllers: [
-                //   OneShotAnimation(
-                //     p.animation,
-                //     autoplay: true,
-                //   )
-                // ],
-              ),
+    return SizedBox(
+      height: 500,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        shrinkWrap: true,
+        itemCount: riveArts.length,
+        itemBuilder: (_, i) {
+          RiveArt r = riveArts[i];
+          return RivePublicationItem(r: r);
+        },
+      ),
+    );
+  }
+}
+
+class PubDevPublicationItem extends StatelessWidget {
+  const PubDevPublicationItem({
+    required this.p,
+    super.key,
+  });
+
+  final PubDevPackage p;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: Flex(
+        direction: Axis.vertical,
+        children: [
+          Text(p.name),
+          Expanded(
+            child: Image.asset(
+              p.image,
+              fit: BoxFit.fill,
             ),
+          ),
+          Text(p.about),
+        ],
+      ),
+    );
+  }
+}
+
+class RivePublicationItem extends StatelessWidget {
+  const RivePublicationItem({
+    required this.r,
+    super.key,
+  });
+
+  final RiveArt r;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 300,
+      child: Card(
+        child: Flex(
+          direction: Axis.vertical,
+          children: [
+            Text(r.name),
+            Expanded(
+              child: RiveAnimation.asset(r.asset),
+            ),
+            Text(r.description),
           ],
-        );
-      },
+        ),
+      ),
     );
   }
 }
