@@ -39,8 +39,8 @@ class RiveArt {
   });
 }
 
-class Publications extends StatelessWidget {
-  const Publications({super.key});
+class PublicationsPage extends StatelessWidget {
+  const PublicationsPage({super.key});
 
   BoxConstraints get webViewConstraints => const BoxConstraints(
         maxHeight: 600,
@@ -52,9 +52,6 @@ class Publications extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Publications"),
-      ),
       body: ListView.builder(
         shrinkWrap: true,
         itemCount: publicationTypeList.length,

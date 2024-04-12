@@ -43,8 +43,8 @@ class SkillBoard {
   });
 }
 
-class Skills extends StatelessWidget {
-  const Skills({super.key});
+class SkillsPage extends StatelessWidget {
+  const SkillsPage({super.key});
 
   List<SkillBoard> get skills => [
         SkillBoard(
@@ -519,9 +519,6 @@ class Skills extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Skills"),
-      ),
       body: ListView.builder(
         itemCount: skills.length,
         itemBuilder: (_, i) {

@@ -1,10 +1,11 @@
 import 'package:bruce_omukoko_portfolio/pages/home.dart';
 import 'package:bruce_omukoko_portfolio/pages/projects.dart';
-import 'package:bruce_omukoko_portfolio/pages/publicatons.dart';
+import 'package:bruce_omukoko_portfolio/pages/publications.dart';
 import 'package:bruce_omukoko_portfolio/pages/resume.dart';
 import 'package:bruce_omukoko_portfolio/pages/skills.dart';
 import 'package:bruce_omukoko_portfolio/pages/splash_screen.dart';
 import 'package:bruce_omukoko_portfolio/routes/routes.dart';
+import 'package:bruce_omukoko_portfolio/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -28,15 +29,14 @@ class PortfolioApplication extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: MaterialApp(
+        theme: lightTheme,
+        darkTheme: darkTheme,
         debugShowCheckedModeBanner: false,
         initialRoute: Routes.splashScreen.path,
         routes: {
           Routes.splashScreen.path: (context) => const SplashScreen(),
           Routes.resume.path: (context) => const ResumeView(),
-          Routes.publications.path: (context) => const Publications(),
-          Routes.skills.path: (context) => const Skills(),
           Routes.home.path: (context) => const HomePage(),
-          Routes.projects.path: (context) => const ProjectsPage(),
         },
       ),
     );

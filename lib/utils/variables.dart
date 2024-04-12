@@ -1,0 +1,1 @@
+const bruce = "Bruce Omukoko";
