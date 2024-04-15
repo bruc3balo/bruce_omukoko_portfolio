@@ -1,4 +1,5 @@
 import 'package:animations/animations.dart';
+import 'package:bruce_omukoko_portfolio/main.dart';
 import 'package:bruce_omukoko_portfolio/pages/contact_me.dart';
 import 'package:bruce_omukoko_portfolio/pages/projects.dart';
 import 'package:bruce_omukoko_portfolio/pages/publications.dart';
@@ -30,62 +31,62 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
-      valueListenable: _homeMenu,
-      builder: (_, selectedItem, __) {
-        return Scaffold(
-          appBar: AppBar(
-            title: Flex(
-              direction: Axis.horizontal,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const Flexible(
-                  child: Text(bruce),
-                ),
-                Expanded(
-                  flex: 2,
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: pages
-                          .map(
-                            (e) => TextButton(
-                          onPressed: () => _homeMenu.value = e,
-                          child: Text(e.value),
-                        ),
-                      ).toList(),
+        valueListenable: _homeMenu,
+        builder: (_, selectedItem, __) {
+          return Scaffold(
+            appBar: AppBar(
+              title: Flex(
+                direction: Axis.horizontal,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const Flexible(
+                    child: Text(bruce),
+                  ),
+                  Expanded(
+                    flex: 2,
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: pages
+                            .map(
+                              (e) => TextButton(
+                                onPressed: () => _homeMenu.value = e,
+                                child: Text(e.value),
+                              ),
+                            )
+                            .toList(),
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          body: PageTransitionSwitcher(
-            duration: const Duration(seconds: 1),
-            transitionBuilder: (
+            body: PageTransitionSwitcher(
+              duration: const Duration(seconds: 1),
+              transitionBuilder: (
                 Widget child,
                 Animation<double> primaryAnimation,
                 Animation<double> secondaryAnimation,
-                ) {
-              return SharedAxisTransition(
-                fillColor: Theme.of(context).colorScheme.onBackground,
-                transitionType: SharedAxisTransitionType.horizontal,
-                animation: primaryAnimation,
-                secondaryAnimation: secondaryAnimation,
-                child: child,
-              );
-            },
-            child: switch (selectedItem) {
-              HomeMenu.about => const AboutMePage(),
-              HomeMenu.publications => const PublicationsPage(),
-              HomeMenu.skills => const SkillsPage(),
-              HomeMenu.projects => const ProjectsPage(),
-            },
-          ),
-        );
-      }
-    );
+              ) {
+                return SharedAxisTransition(
+                  fillColor: Theme.of(context).colorScheme.onBackground,
+                  transitionType: SharedAxisTransitionType.horizontal,
+                  animation: primaryAnimation,
+                  secondaryAnimation: secondaryAnimation,
+                  child: child,
+                );
+              },
+              child: switch (selectedItem) {
+                HomeMenu.about => const AboutMePage(),
+                HomeMenu.publications => const PublicationsPage(),
+                HomeMenu.skills => const SkillsPage(),
+                HomeMenu.projects => const ProjectsPage(),
+              },
+            ),
+          );
+        });
   }
 }

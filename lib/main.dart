@@ -1,6 +1,4 @@
 import 'package:bruce_omukoko_portfolio/pages/home.dart';
-import 'package:bruce_omukoko_portfolio/pages/projects.dart';
-import 'package:bruce_omukoko_portfolio/pages/publications.dart';
 import 'package:bruce_omukoko_portfolio/pages/resume.dart';
 import 'package:bruce_omukoko_portfolio/pages/skills.dart';
 import 'package:bruce_omukoko_portfolio/pages/splash_screen.dart';
@@ -10,6 +8,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+
+//247247
+//0110347033
+
 
 
 Future<void> main() async {

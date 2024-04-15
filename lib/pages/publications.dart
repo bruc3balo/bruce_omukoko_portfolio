@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:rive/rive.dart';
 
 enum PublicationType {
@@ -67,8 +68,15 @@ class PublicationsPage extends StatelessWidget {
         itemCount: publicationTypeList.length,
         itemBuilder: (_, i) {
           PublicationType p = publicationTypeList[i];
+
           return ListTile(
-            title: Text(p.value),
+            title: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                p.value,
+                textAlign: TextAlign.start,
+              ),
+            ),
             subtitle: switch (p) {
               PublicationType.pubDev => const PubDevPublications(),
               PublicationType.rive => const RivePublications(),
@@ -214,18 +222,40 @@ class PubDevPublicationItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: Flex(
-        direction: Axis.vertical,
-        children: [
-          Text(p.name),
-          Expanded(
-            child: Image.asset(
-              p.image,
-              fit: BoxFit.fill,
+      child: SizedBox(
+        width: 500,
+        child: Flex(
+          direction: Axis.vertical,
+          children: [
+            Text(
+              p.name,
+              style: GoogleFonts.robotoMono(
+                fontWeight: FontWeight.w600,
+                fontSize: 18,
+                wordSpacing: 3.0,
+                letterSpacing: 2.0,
+              ),
+              textAlign: TextAlign.center,
             ),
-          ),
-          Text(p.about),
-        ],
+            Expanded(
+              child: Image.asset(
+                p.image,
+                fit: BoxFit.fill,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                p.about,
+                style: GoogleFonts.robotoMono(
+                  fontWeight: FontWeight.normal,
+                  fontSize: 14,
+                ),
+                textAlign: TextAlign.start,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -241,17 +271,39 @@ class RivePublicationItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var themeData = Theme.of(context);
     return SizedBox(
       width: 300,
       child: Card(
         child: Flex(
           direction: Axis.vertical,
           children: [
-            Text(r.name),
-            Expanded(
-              child: RiveAnimation.asset(r.asset),
+            Text(
+              r.name,
+              style: GoogleFonts.robotoMono(
+                fontWeight: FontWeight.w600,
+                fontSize: 18,
+                wordSpacing: 3.0,
+                letterSpacing: 2.0,
+              ),
+              textAlign: TextAlign.center,
             ),
-            Text(r.description),
+            Expanded(
+              child: RiveAnimation.asset(
+                r.asset,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                r.description,
+                style: GoogleFonts.robotoMono(
+                  fontWeight: FontWeight.normal,
+                  fontSize: 14,
+                ),
+                textAlign: TextAlign.start,
+              ),
+            ),
           ],
         ),
       ),

@@ -133,3 +133,30 @@ class DropDownMenuButton<T> extends StatelessWidget {
     );
   }
 }
+
+class OnHover extends StatelessWidget {
+  OnHover({
+    required this.builder,
+    this.animationDuration = const Duration(milliseconds: 100),
+    super.key,
+  });
+
+  final Widget Function(bool isHovered) builder;
+  final Duration animationDuration;
+  final ValueNotifier<bool> isHovered = ValueNotifier(false);
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      onEnter: (_) => isHovered.value = true,
+      onExit: (_) => isHovered.value = false,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 100),
+        child: ValueListenableBuilder(
+          valueListenable: isHovered,
+          builder: (__, bool hovered, ___) => builder.call(hovered),
+        ),
+      ),
+    );
+  }
+}

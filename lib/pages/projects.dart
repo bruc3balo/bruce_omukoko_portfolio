@@ -67,6 +67,7 @@ class ProjectItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData theme = Theme.of(context);
     return Card(
       child: GestureDetector(
         onTap: () => openStringUri(project.url),
@@ -83,8 +84,14 @@ class ProjectItem extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Text(project.name),
-                    Text(project.about),
+                    Text(
+                      project.name,
+                      style: theme.listTileTheme.titleTextStyle,
+                    ),
+                    Text(
+                      project.about,
+                      style: theme.listTileTheme.subtitleTextStyle,
+                    ),
                     Column(
                       children: [
                         Flex(
