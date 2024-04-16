@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 class ColorPack {
   final Color primary;
@@ -17,20 +18,20 @@ class ColorPack {
   });
 }
 
-const ColorPack lightColor = ColorPack(
+ ColorPack lightColor = ColorPack(
   primary: Colors.blueAccent,
   secondary: Colors.black87,
-  background: Colors.white,
-  titleColor: Colors.cyanAccent,
+  background: HexColor("#140152"),
+  titleColor: HexColor("#6D1A36"),
   tileColor: Colors.indigo,
 );
 
-const ColorPack darkColor = ColorPack(
-  primary: Colors.cyan,
-  secondary: Colors.white,
-  background: Colors.deepPurple,
-  titleColor: Colors.blue,
-  tileColor: Colors.purple,
+ ColorPack darkColor = ColorPack(
+  primary: HexColor("#F0F6F6"),
+  secondary: HexColor("#F4FFFD"),
+  background: HexColor("#071013"),
+  titleColor: HexColor("#6D1A36"),
+  tileColor: HexColor("#1C7293"),
 );
 
 ThemeData lightTheme = ThemeData(
@@ -44,7 +45,7 @@ ThemeData lightTheme = ThemeData(
     ),
     toolbarHeight: 70,
   ),
-  textButtonTheme: TextButtonThemeData(
+  textButtonTheme: const TextButtonThemeData(
     style: ButtonStyle(
       padding: MaterialStatePropertyAll(
         EdgeInsets.all(10.0),
@@ -132,6 +133,45 @@ ThemeData darkTheme = ThemeData(
       decorationThickness: 35,
       color: darkColor.primary,
     ),
+  ),
+  expansionTileTheme: ExpansionTileThemeData(
+    backgroundColor: darkColor.background,
+    textColor: darkColor.secondary,
+    collapsedBackgroundColor: darkColor.background,
+    collapsedTextColor: darkColor.tileColor,
+    shape: RoundedRectangleBorder(
+        side: BorderSide(
+          color: darkColor.titleColor,
+          width: 2.0,
+          style: BorderStyle.solid,
+        ),
+        borderRadius: BorderRadius.circular(0)),
+  ),
+  listTileTheme: ListTileThemeData(
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+    contentPadding: const EdgeInsets.all(10.0),
+    tileColor: darkColor.background,
+    titleTextStyle: GoogleFonts.robotoMono(
+      color: darkColor.secondary,
+      fontWeight: FontWeight.w600,
+      fontSize: 18,
+      wordSpacing: 3.0,
+      letterSpacing: 2.0,
+    ),
+    subtitleTextStyle: GoogleFonts.robotoMono(
+      color: darkColor.secondary,
+      fontWeight: FontWeight.normal,
+      fontSize: 14,
+    ),
+  ),
+  cardTheme: CardTheme(
+    color: darkColor.background,
+    surfaceTintColor: darkColor.titleColor,
+    shadowColor: darkColor.tileColor,
+    elevation: 6.0,
+  ),
+  bottomSheetTheme: BottomSheetThemeData(
+    backgroundColor: darkColor.background,
   ),
   scaffoldBackgroundColor: darkColor.background,
 );

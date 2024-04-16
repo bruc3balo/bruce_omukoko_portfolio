@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:bruce_omukoko_portfolio/main.dart';
 import 'package:bruce_omukoko_portfolio/utils/functions.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -619,14 +620,15 @@ class SkillPlayground extends StatelessWidget {
     showModalBottomSheet(
       context: context,
       builder: (_) {
+        var theme = Theme.of(context);
         return BottomSheet(
           onClosing: () {},
           builder: (_) {
             return Flex(
               direction: Axis.vertical,
               children: <Widget>[
-                Text(technologies.name),
-                Text(technologies.xp),
+                Text(technologies.name, style: theme.listTileTheme.titleTextStyle,),
+                Text(technologies.xp, style: theme.listTileTheme.subtitleTextStyle,),
                 Expanded(
                   child: ListView.builder(
                     itemCount: technologies.abilities.length,
@@ -689,6 +691,7 @@ class SkillPlayground extends StatelessWidget {
       },
     );
   }
+
 }
 
 class TechnologyBoard extends StatefulWidget {
@@ -790,6 +793,14 @@ class _TechnologyBoardState extends State<TechnologyBoard> {
           curve: tech.curves,
           child: GestureDetector(
             onTap: () => widget.onSelect(tech),
+            onVerticalDragUpdate: (d) {
+              var globalPosition = d.globalPosition;
+              positionNotifier.value = Size(
+                globalPosition.dx,
+                globalPosition.dy,
+              );
+            },
+            dragStartBehavior: DragStartBehavior.down,
             child: CircleAvatar(
               radius: 60,
               backgroundColor: widget.color,

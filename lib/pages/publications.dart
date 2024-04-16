@@ -69,18 +69,21 @@ class PublicationsPage extends StatelessWidget {
         itemBuilder: (_, i) {
           PublicationType p = publicationTypeList[i];
 
-          return ListTile(
-            title: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                p.value,
-                textAlign: TextAlign.start,
+          return Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: ListTile(
+              title: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  p.value,
+                  textAlign: TextAlign.start,
+                ),
               ),
+              subtitle: switch (p) {
+                PublicationType.pubDev => const PubDevPublications(),
+                PublicationType.rive => const RivePublications(),
+              },
             ),
-            subtitle: switch (p) {
-              PublicationType.pubDev => const PubDevPublications(),
-              PublicationType.rive => const RivePublications(),
-            },
           );
         },
       ),
@@ -221,6 +224,8 @@ class PubDevPublicationItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var themeData = Theme.of(context);
+
     return Card(
       child: SizedBox(
         width: 500,
@@ -229,28 +234,25 @@ class PubDevPublicationItem extends StatelessWidget {
           children: [
             Text(
               p.name,
-              style: GoogleFonts.robotoMono(
-                fontWeight: FontWeight.w600,
-                fontSize: 18,
-                wordSpacing: 3.0,
-                letterSpacing: 2.0,
-              ),
+              style: themeData.listTileTheme.titleTextStyle,
               textAlign: TextAlign.center,
             ),
             Expanded(
-              child: Image.asset(
-                p.image,
-                fit: BoxFit.fill,
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(100)
+                ),
+                child: Image.asset(
+                  p.image,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 p.about,
-                style: GoogleFonts.robotoMono(
-                  fontWeight: FontWeight.normal,
-                  fontSize: 14,
-                ),
+                style: themeData.listTileTheme.subtitleTextStyle,
                 textAlign: TextAlign.start,
               ),
             ),
@@ -280,12 +282,7 @@ class RivePublicationItem extends StatelessWidget {
           children: [
             Text(
               r.name,
-              style: GoogleFonts.robotoMono(
-                fontWeight: FontWeight.w600,
-                fontSize: 18,
-                wordSpacing: 3.0,
-                letterSpacing: 2.0,
-              ),
+              style: themeData.listTileTheme.titleTextStyle,
               textAlign: TextAlign.center,
             ),
             Expanded(
@@ -297,10 +294,7 @@ class RivePublicationItem extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 r.description,
-                style: GoogleFonts.robotoMono(
-                  fontWeight: FontWeight.normal,
-                  fontSize: 14,
-                ),
+                style: themeData.listTileTheme.subtitleTextStyle,
                 textAlign: TextAlign.start,
               ),
             ),
