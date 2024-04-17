@@ -18,24 +18,52 @@ class ColorPack {
   });
 }
 
- ColorPack lightColor = ColorPack(
-  primary: Colors.blueAccent,
-  secondary: Colors.black87,
-  background: HexColor("#140152"),
-  titleColor: HexColor("#6D1A36"),
-  tileColor: Colors.indigo,
+Color errorColor = HexColor("#7B0828");
+
+ColorPack lightColor = ColorPack(
+  primary: HexColor("#1C2826"),
+  secondary: HexColor("#6D3B47"),
+  background: HexColor("#EBEBEB"),
+  titleColor: HexColor("#52050A"),
+  tileColor: HexColor("#ADA8BE"),
+);
+ColorScheme lightColorScheme = ColorScheme(
+  brightness: Brightness.dark,
+  primary: lightColor.primary,
+  onPrimary: lightColor.primary.withOpacity(0.8),
+  secondary: lightColor.secondary,
+  onSecondary: lightColor.secondary.withOpacity(0.8),
+  error: errorColor,
+  onError: errorColor.withOpacity(0.8),
+  background: lightColor.background,
+  onBackground: lightColor.background.withOpacity(0.8),
+  surface: lightColor.tileColor,
+  onSurface: lightColor.tileColor.withOpacity(0.8),
 );
 
- ColorPack darkColor = ColorPack(
-  primary: HexColor("#F0F6F6"),
-  secondary: HexColor("#F4FFFD"),
-  background: HexColor("#071013"),
-  titleColor: HexColor("#6D1A36"),
-  tileColor: HexColor("#1C7293"),
+ColorPack darkColor = ColorPack(
+  primary: HexColor("#FFFAFF"),
+  secondary: HexColor("#FEFCFD"),
+  background: HexColor("#04080F"),
+  titleColor: HexColor("#7B0828"),
+  tileColor: HexColor("#EBEBEB"),
+);
+ColorScheme darkColorScheme = ColorScheme(
+  brightness: Brightness.dark,
+  primary: darkColor.primary,
+  onPrimary: darkColor.primary.withOpacity(0.8),
+  secondary: darkColor.secondary,
+  onSecondary: darkColor.secondary.withOpacity(0.8),
+  error: errorColor,
+  onError: errorColor.withOpacity(0.8),
+  background: darkColor.background,
+  onBackground: darkColor.background.withOpacity(0.8),
+  surface: darkColor.tileColor,
+  onSurface: darkColor.tileColor.withOpacity(0.8),
 );
 
 ThemeData lightTheme = ThemeData(
-  colorScheme: ColorScheme.fromSeed(seedColor: lightColor.primary),
+  colorScheme: lightColorScheme,
   appBarTheme: AppBarTheme(
     backgroundColor: lightColor.secondary,
     titleTextStyle: GoogleFonts.robotoMono(
@@ -100,27 +128,31 @@ ThemeData lightTheme = ThemeData(
 );
 
 ThemeData darkTheme = ThemeData(
-  colorScheme: ColorScheme.fromSeed(seedColor: lightColor.primary),
+  colorScheme: darkColorScheme,
   appBarTheme: AppBarTheme(
-    backgroundColor: darkColor.secondary,
+    backgroundColor: darkColor.primary,
     titleTextStyle: GoogleFonts.robotoMono(
       color: darkColor.titleColor,
       fontWeight: FontWeight.bold,
-      decorationThickness: 15,
-      letterSpacing: 5.0,
+      decorationThickness: 20,
+      letterSpacing: 8.0,
     ),
     toolbarHeight: 70,
   ),
   textButtonTheme: TextButtonThemeData(
     style: ButtonStyle(
+      backgroundColor: MaterialStatePropertyAll(darkColor.primary),
+      foregroundColor: MaterialStatePropertyAll(darkColor.titleColor),
+      side: MaterialStatePropertyAll(
+          BorderSide(color: darkColor.background, width: 2)),
       textStyle: MaterialStatePropertyAll(
         GoogleFonts.robotoMono(
-          color: lightColor.titleColor,
+          color: darkColor.tileColor,
           fontWeight: FontWeight.w700,
           letterSpacing: 2.0,
         ),
       ),
-      padding: MaterialStatePropertyAll(
+      padding: const MaterialStatePropertyAll(
         EdgeInsets.all(10.0),
       ),
       enableFeedback: true,
@@ -131,7 +163,7 @@ ThemeData darkTheme = ThemeData(
       fontSize: 24,
       fontWeight: FontWeight.bold,
       decorationThickness: 35,
-      color: darkColor.primary,
+      color: darkColor.secondary,
     ),
   ),
   expansionTileTheme: ExpansionTileThemeData(
@@ -166,8 +198,8 @@ ThemeData darkTheme = ThemeData(
   ),
   cardTheme: CardTheme(
     color: darkColor.background,
-    surfaceTintColor: darkColor.titleColor,
-    shadowColor: darkColor.tileColor,
+    surfaceTintColor: darkColor.tileColor,
+    shadowColor: darkColor.titleColor,
     elevation: 6.0,
   ),
   bottomSheetTheme: BottomSheetThemeData(

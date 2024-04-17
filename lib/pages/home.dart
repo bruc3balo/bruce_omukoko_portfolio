@@ -7,13 +7,14 @@ import 'package:bruce_omukoko_portfolio/pages/skills.dart';
 import 'package:bruce_omukoko_portfolio/routes/routes.dart';
 import 'package:bruce_omukoko_portfolio/utils/variables.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'about_me.dart';
 
-ValueNotifier<HomeMenu> _homeMenu = ValueNotifier(HomeMenu.about);
+ValueNotifier<HomeMenu> _homeMenu = ValueNotifier(HomeMenu.skills);
 
 enum HomeMenu {
-  about("About me"),
+  about("About"),
   publications("Publications"),
   skills("Skills"),
   projects("Projects");
@@ -30,6 +31,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var themeData = Theme.of(context);
     return ValueListenableBuilder(
         valueListenable: _homeMenu,
         builder: (_, selectedItem, __) {
@@ -48,13 +50,22 @@ class HomePage extends StatelessWidget {
                     child: SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: pages
                             .map(
-                              (e) => TextButton(
-                                onPressed: () => _homeMenu.value = e,
-                                child: Text(e.value),
+                              (e) => Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: TextButton(
+                                  onPressed: () => _homeMenu.value = e,
+                                  style: selectedItem != e
+                                      ? themeData.textButtonTheme.style
+                                      : themeData.textButtonTheme.style?.copyWith(
+                                          foregroundColor: MaterialStatePropertyAll(themeData.colorScheme.background),
+                                          side: MaterialStatePropertyAll(BorderSide(color: themeData.colorScheme.onError, width: 2)),
+                                        ),
+                                  child: Text(e.value),
+                                ),
                               ),
                             )
                             .toList(),
