@@ -31,7 +31,7 @@ class ProjectsPage extends StatelessWidget {
             name: 'Truth or Drink',
             about:
                 "Truth or Drink is a drinking game where players take turns asking each other questions. If someone doesn't want to answer, they take a drink instead. It's a fun way to get to know each other better while enjoying some drinks.",
-            url: 'https://truthordrink-44d9a.web.app',
+            url: 'https://truthordrink-kg.web.app',
             cover: RiveAnimation.asset(
               "assets/tod.riv",
             ),
