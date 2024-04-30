@@ -6,6 +6,7 @@ import 'package:bruce_omukoko_portfolio/utils/functions.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 List<SkillBoard> get skills => [
       SkillBoard(
@@ -20,7 +21,10 @@ List<SkillBoard> get skills => [
                 'Spring is a powerful and versatile backend framework for Java development, renowned for its maturity, extensive community support, and focus on security. With its comprehensive suite of features and modules, Spring empowers developers to build scalable, reliable, and secure applications for a wide range of use cases, from simple microservices to complex enterprise systems.',
             url: 'https://spring.io/projects/spring-framework',
             startDate: DateTime(2021, DateTime.august),
-            cover: SvgPicture.asset("spring.svg"),
+            cover: SvgPicture.asset(
+              "spring.svg",
+              fit: BoxFit.contain,
+            ),
             abilities: [
               const Ability(
                 name: 'USSD Applications',
@@ -87,7 +91,10 @@ List<SkillBoard> get skills => [
                 "Docker simplifies application deployment by packaging them with their dependencies into portable containers, enabling consistent and efficient deployment across various environments.",
             url: 'https://www.docker.com',
             startDate: DateTime(2022, DateTime.august),
-            cover: SvgPicture.asset("docker.svg"),
+            cover: SvgPicture.asset(
+              "docker.svg",
+              fit: BoxFit.contain,
+            ),
             abilities: [
               const Ability(
                 name: 'Application Dockerfile authoring',
@@ -128,7 +135,10 @@ List<SkillBoard> get skills => [
                 "It's used for automating deployment, scaling, and management of containerized applications, providing a robust and scalable solution for container orchestration. Having dealt with flavours such as Minikube and Microk8s",
             url: 'https://kubernetes.io',
             startDate: DateTime(2024, DateTime.february),
-            cover: SvgPicture.asset("kubernets.svg"),
+            cover: SvgPicture.asset(
+              "kubernets.svg",
+              fit: BoxFit.contain,
+            ),
             abilities: const [
               Ability(
                 name: 'Deployment and Scaling',
@@ -215,7 +225,10 @@ List<SkillBoard> get skills => [
             brief: 'brief',
             startDate: DateTime(2017, DateTime.august),
             url: 'https://github.com',
-            cover: SvgPicture.asset("git.svg"),
+            cover: SvgPicture.asset(
+              "git.svg",
+              fit: BoxFit.contain,
+            ),
             abilities: const [
               Ability(
                   name: 'Manage repositories',
@@ -308,7 +321,11 @@ List<SkillBoard> get skills => [
           Technologies(
             name: 'Flutter Development',
             startDate: DateTime(2022, DateTime.january),
-            cover: SvgPicture.asset("flutter.svg", height: 400, width: 400),
+            cover: SvgPicture.asset(
+              "flutter.svg",
+              height: 300,
+              width: 300,
+            ),
             brief:
                 "I am a seasoned Flutter developer with a solid 3-year track record in the field. My expertise lies in leveraging Flutter's capabilities to ensure code reusability and deliver cross-platform functionality. By adhering to best practices and architectural patterns, I prioritize the development of maintainable and scalable applications. Additionally, I am dedicated to maintaining consistent frames per second (fps) across various devices, ensuring optimal performance and user experience. With a keen eye for detail and a passion for crafting high-quality software, I strive to push the boundaries of Flutter development and create polished, user-centric applications.",
             url: 'https://flutter.dev',
@@ -353,7 +370,12 @@ List<SkillBoard> get skills => [
             brief:
                 "Rive is a powerful design and animation tool used for creating interactive vector animations and illustrations for various digital platforms.",
             startDate: DateTime(2022, DateTime.march),
-            cover: Image.asset("rive.png"),
+            cover: Image.asset(
+              "rive.png",
+              fit: BoxFit.contain,
+              width: 300,
+              height: 300,
+            ),
             url: 'https://rive.app',
             abilities: const [
               Ability(
@@ -572,9 +594,7 @@ class SkillsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ThemeData theme = Theme.of(context);
-    return Scaffold(
-      body: SkillPlayground(),
-    );
+    return SkillButtons();
   }
 }
 
@@ -585,236 +605,39 @@ class SkillButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder(
-      valueListenable: selectedTech,
-      builder: (_, tech, __) {
-        return GridView(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 4
+    return Column(
+      children: [
+        Text("Skills"),
 
-          ),
-          children: skills.expand((s) => s.technologies.map((t) => GestureDetector(
-            child: CircleAvatar(
-              radius: 60,
-              backgroundColor: s.color,
-              child: CircleAvatar(
-                radius: 50,
-                child: t.cover,
-              ),
-            ),
-          )).toList()).toList(),
-        );
-      },
-    );
-  }
-}
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ValueListenableBuilder(
+            valueListenable: selectedTech,
+            builder: (_, tech, __) {
+              return GridView(
+                shrinkWrap: true,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 4,
+                  mainAxisExtent: 100,
+                  mainAxisSpacing: 40,
 
-class SkillPlayground extends StatelessWidget {
-  const SkillPlayground({super.key});
-
-  void showInfo({
-    required BuildContext context,
-    required SkillBoard skillBoard,
-    required Technologies technologies,
-  }) {
-    showModalBottomSheet(
-      context: context,
-      builder: (_) {
-        var theme = Theme.of(context);
-        return BottomSheet(
-          onClosing: () {},
-          builder: (_) {
-            return Flex(
-              direction: Axis.vertical,
-              children: <Widget>[
-                Text(technologies.name, style: theme.listTileTheme.titleTextStyle,),
-                Text(technologies.xp, style: theme.listTileTheme.subtitleTextStyle,),
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: technologies.abilities.length,
-                    itemBuilder: (_, i) {
-                      Ability a = technologies.abilities[i];
-                      return Visibility(
-                        visible: a.points.isNotEmpty,
-                        replacement: ListTile(
-                          title: Text(a.name),
-                          subtitle: Text(a.brief),
-                        ),
-                        child: ExpansionTile(
-                          title: Text(a.name),
-                          subtitle: Text(a.brief),
-                          children: a.points
-                              .map(
-                                (e) => ListTile(
-                                  leading: const Icon(Icons.chevron_right),
-                                  title: Text(e),
-                                ),
-                              )
-                              .toList(),
-                        ),
-                      );
-                    },
-                  ),
-                )
-              ],
-            );
-          },
-        );
-      },
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, size) {
-        return Stack(
-          children: skills
-              .expand(
-                (s) => s.technologies
-                    .map(
-                      (t) => TechnologyBoard(
-                        color: s.color,
-                        technologies: t,
-                        constraints: size,
-                        onSelect: (t) => showInfo(
-                          context: context,
-                          skillBoard: s,
-                          technologies: t,
-                        ),
-                      ),
+                ),
+                children: skills
+                    .expand(
+                      (s) => s.technologies
+                          .map(
+                            (t) => GestureDetector(
+                              child: t.cover,
+                            ),
+                          )
+                          .toList(),
                     )
                     .toList(),
-              )
-              .toList(),
-        );
-      },
-    );
-  }
-
-}
-
-class TechnologyBoard extends StatefulWidget {
-  const TechnologyBoard({
-    required this.color,
-    required this.technologies,
-    required this.constraints,
-    required this.onSelect,
-    super.key,
-  });
-
-  final Color color;
-  final Technologies technologies;
-  final BoxConstraints constraints;
-  final Function(Technologies) onSelect;
-
-  @override
-  State<TechnologyBoard> createState() => _TechnologyBoardState();
-}
-
-class _TechnologyBoardState extends State<TechnologyBoard> {
-  Technologies get tech => widget.technologies;
-
-  double get maxWidth => widget.constraints.maxWidth;
-
-  double get maxHeight => widget.constraints.maxHeight;
-  bool movingLeft = Random().nextInt(10) < 5;
-  bool movingTop = Random().nextInt(10) > 5;
-  late Timer timer;
-
-  late final ValueNotifier<Size> positionNotifier = ValueNotifier(
-    Size(
-      Random().nextInt(maxWidth.floor()).floorToDouble(),
-      Random().nextInt(maxHeight.floor()).floorToDouble(),
-    ),
-  );
-
-  Duration get syncSpeed => const Duration(milliseconds: 500);
-
-  Timer start() {
-    return Timer.periodic(
-      syncSpeed,
-      (timer) {
-        Size oldPosition = positionNotifier.value;
-
-        double newWidth = oldPosition.width;
-        double newHeight = oldPosition.height;
-
-        if (oldPosition.width >= maxWidth - 130) movingLeft = true;
-        if (oldPosition.width <= 0) movingLeft = false;
-
-        if (oldPosition.height >= maxHeight - 130) movingTop = true;
-        if (oldPosition.height <= 0) movingTop = false;
-
-        //detect side edge position
-        if (movingLeft) {
-          newWidth -= 10;
-        } else {
-          newWidth += 10;
-        }
-
-        //detect top edge position
-        if (movingTop) {
-          newHeight -= 10;
-        } else {
-          newHeight += 10;
-        }
-
-        // print("Width: $newWidth, Height: $newHeight, movingLeft: $movingLeft, movingTop: $movingTop");
-
-        positionNotifier.value = Size(
-          newWidth,
-          newHeight,
-        );
-      },
-    );
-  }
-
-  void pause() {
-    if (!timer.isActive) return;
-    timer.cancel();
-  }
-
-  @override
-  void initState() {
-    timer = start();
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return ValueListenableBuilder(
-      valueListenable: positionNotifier,
-      builder: (_, position, __) {
-        return AnimatedPositioned(
-          duration: syncSpeed,
-          top: position.height,
-          left: position.width,
-          curve: tech.curves,
-          child: GestureDetector(
-            onTap: () => widget.onSelect(tech),
-            onVerticalDragUpdate: (d) {
-              var globalPosition = d.globalPosition;
-              positionNotifier.value = Size(
-                globalPosition.dx,
-                globalPosition.dy,
               );
             },
-            dragStartBehavior: DragStartBehavior.down,
-            child: CircleAvatar(
-              radius: 60,
-              backgroundColor: widget.color,
-              child: CircleAvatar(
-                radius: 50,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: widget.technologies.cover,
-                ),
-              ),
-            ),
           ),
-        );
-      },
+        ),
+      ],
     );
   }
 }

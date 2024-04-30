@@ -62,31 +62,34 @@ class PublicationsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: ListView.builder(
-        shrinkWrap: true,
-        itemCount: publicationTypeList.length,
-        itemBuilder: (_, i) {
-          PublicationType p = publicationTypeList[i];
+    return Column(
+      children: [
+        Text("Publications"),
 
-          return Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: ListTile(
-              title: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  p.value,
-                  textAlign: TextAlign.start,
+        ListView.builder(
+            shrinkWrap: true,
+            itemCount: publicationTypeList.length,
+            itemBuilder: (_, i) {
+              PublicationType p = publicationTypeList[i];
+              return Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: ListTile(
+                  title: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      p.value,
+                      textAlign: TextAlign.start,
+                    ),
+                  ),
+                  subtitle: switch (p) {
+                    PublicationType.pubDev => const PubDevPublications(),
+                    PublicationType.rive => const RivePublications(),
+                  },
                 ),
-              ),
-              subtitle: switch (p) {
-                PublicationType.pubDev => const PubDevPublications(),
-                PublicationType.rive => const RivePublications(),
-              },
-            ),
-          );
-        },
-      ),
+              );
+            },
+          ),
+      ],
     );
   }
 }

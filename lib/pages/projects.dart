@@ -1,10 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bruce_omukoko_portfolio/utils/functions.dart';
-import 'package:bruce_omukoko_portfolio/utils/web_view.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:rive/rive.dart';
 
 class Project {
@@ -28,31 +24,39 @@ class ProjectsPage extends StatelessWidget {
 
   List<Project> get projects => [
         Project(
-            name: 'Truth or Drink',
-            about:
-                "Truth or Drink is a drinking game where players take turns asking each other questions. If someone doesn't want to answer, they take a drink instead. It's a fun way to get to know each other better while enjoying some drinks.",
-            url: 'https://truthordrink-kg.web.app',
-            cover: RiveAnimation.asset(
-              "assets/tod.riv",
-            ),
-            stack: [
-              "Spring",
-              "Flutter",
-              "MongoDB",
-              "Rive",
-            ]),
+          name: 'Truth or Drink',
+          about:
+              "Truth or Drink is a drinking game where players take turns asking each other questions. If someone doesn't want to answer, they take a drink instead. It's a fun way to get to know each other better while enjoying some drinks.",
+          url: 'https://truthordrink-kg.web.app',
+          cover: RiveAnimation.asset(
+            "assets/tod.riv",
+          ),
+          stack: [
+            "Spring",
+            "Flutter",
+            "MongoDB",
+            "Rive",
+            "K8s",
+            "Docker",
+          ],
+        ),
       ];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: ListView.builder(
-        itemCount: projects.length,
-        itemBuilder: (_, i) {
-          Project p = projects[i];
-          return ProjectItem(project: p);
-        },
-      ),
+    return Column(
+      children: [
+        Text("Projects"),
+
+        ListView.builder(
+          shrinkWrap: true,
+          itemCount: projects.length,
+          itemBuilder: (_, i) {
+            Project p = projects[i];
+            return ProjectItem(project: p);
+          },
+        ),
+      ],
     );
   }
 }

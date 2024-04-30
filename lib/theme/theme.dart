@@ -44,7 +44,7 @@ ColorScheme lightColorScheme = ColorScheme(
 ColorPack darkColor = ColorPack(
   primary: HexColor("#FFFAFF"),
   secondary: HexColor("#FEFCFD"),
-  background: HexColor("#04080F"),
+  background: HexColor("#14191d"),
   titleColor: HexColor("#7B0828"),
   tileColor: HexColor("#EBEBEB"),
 );

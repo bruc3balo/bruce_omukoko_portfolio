@@ -1,8 +1,4 @@
 import 'package:bruce_omukoko_portfolio/pages/home.dart';
-import 'package:bruce_omukoko_portfolio/pages/resume.dart';
-import 'package:bruce_omukoko_portfolio/pages/skills.dart';
-import 'package:bruce_omukoko_portfolio/pages/splash_screen.dart';
-import 'package:bruce_omukoko_portfolio/routes/routes.dart';
 import 'package:bruce_omukoko_portfolio/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
@@ -33,12 +29,7 @@ class PortfolioApplication extends StatelessWidget {
         theme: lightTheme,
         darkTheme: darkTheme,
         debugShowCheckedModeBanner: false,
-        initialRoute: Routes.splashScreen.path,
-        routes: {
-          Routes.splashScreen.path: (context) => const SplashScreen(),
-          Routes.resume.path: (context) => const ResumeView(),
-          Routes.home.path: (context) => const HomePage(),
-        },
+        home: const HomePage(),
       ),
     );
   }

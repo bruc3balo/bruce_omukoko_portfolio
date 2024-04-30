@@ -1,8 +1,9 @@
 import 'package:bruce_omukoko_portfolio/utils/web_view.dart';
 import 'package:flutter/material.dart';
 
-class ResumeView extends StatelessWidget {
-  const ResumeView({
+class ResumePage extends StatelessWidget {
+  const ResumePage({
+    required this.goToCore,
     super.key,
   });
 
@@ -10,14 +11,19 @@ class ResumeView extends StatelessWidget {
   String get resumeUri =>
       "https://www.figma.com/file/c8UgYsEh6lNs0b2Lfp6f3P/CV-%26-Cover-Letter?type=design&node-id=603%3A2&mode=dev&t=1lQ1Yp2hwWXIKazM-1";
 
+  final Function() goToCore;
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Bruce Omukoko's Resume"),
-      ),
-      body: WebView(
-        uri: resumeFileUri,
+    return PopScope(
+      onPopInvoked: (_) => goToCore(),
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text("Bruce Omukoko's Resume"),
+        ),
+        body: WebView(
+          uri: resumeFileUri,
+        ),
       ),
     );
   }
