@@ -1,5 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AboutMePage extends StatelessWidget {
   const AboutMePage({super.key});
@@ -8,13 +10,15 @@ class AboutMePage extends StatelessWidget {
   Widget build(BuildContext context) {
     var textTheme = Theme.of(context).textTheme;
     return Column(
-      mainAxisSize: MainAxisSize.min,
       children: [
-
-        Text("About me"),
-
+        Text(
+          "About me",
+          style: GoogleFonts.poppins(
+            fontSize: 60,
+          ),
+        ),
         SizedBox(
-          height: 500,
+          height: 800,
           child: Flex(
             direction: Axis.horizontal,
             children: [

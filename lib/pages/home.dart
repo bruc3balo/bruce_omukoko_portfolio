@@ -107,8 +107,11 @@ class CorePage extends StatelessWidget {
       child: Column(
         children: [
           AboutMePage(),
+          SizedBox(height: 150,),
           PublicationsPage(),
+          SizedBox(height: 150,),
           SkillsPage(),
+          SizedBox(height: 150,),
           ProjectsPage(),
         ],
       ),

@@ -1,10 +1,11 @@
-import 'package:bruce_omukoko_portfolio/utils/functions.dart';
-import 'package:flutter/cupertino.dart';
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rive/rive.dart';
+import 'dart:math';
+import 'package:vector_math/vector_math.dart' show radians;
 
 enum PublicationType {
   pubDev("Pub Dev"),
@@ -34,8 +35,6 @@ class PubDevPackage {
   });
 }
 
-// enum RiveArtTypes {}
-
 class RiveArt {
   final String name;
   final String description;
@@ -64,39 +63,48 @@ class PublicationsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text("Publications"),
-
-        ListView.builder(
-            shrinkWrap: true,
-            itemCount: publicationTypeList.length,
-            itemBuilder: (_, i) {
-              PublicationType p = publicationTypeList[i];
-              return Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: ListTile(
-                  title: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      p.value,
-                      textAlign: TextAlign.start,
-                    ),
-                  ),
-                  subtitle: switch (p) {
-                    PublicationType.pubDev => const PubDevPublications(),
-                    PublicationType.rive => const RivePublications(),
-                  },
-                ),
-              );
-            },
+        Text(
+          "Publications",
+          style: GoogleFonts.poppins(
+            fontSize: 60,
           ),
+        ),
+        ListView.builder(
+          shrinkWrap: true,
+          itemCount: publicationTypeList.length,
+          itemBuilder: (_, i) {
+            PublicationType p = publicationTypeList[i];
+            return Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: ListTile(
+                title: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    p.value,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                subtitle: switch (p) {
+                  PublicationType.pubDev => const PubDevPublications(),
+                  PublicationType.rive => const RivePublications(),
+                },
+              ),
+            );
+          },
+        ),
       ],
     );
   }
 }
 
-class PubDevPublications extends StatelessWidget {
+class PubDevPublications extends StatefulWidget {
   const PubDevPublications({super.key});
 
+  @override
+  State<PubDevPublications> createState() => _PubDevPublicationsState();
+}
+
+class _PubDevPublicationsState extends State<PubDevPublications> {
   List<PubDevPackage> get publications => const [
         PubDevPackage(
             name: "LRUMemoryCache",
@@ -112,18 +120,51 @@ class PubDevPublications extends StatelessWidget {
             image: "spinner.png"),
       ];
 
+  Size get sectionSize => const Size(500, 500);
+
+  final PageController controller = PageController();
+
+  @override
+  void initState() {
+    Timer.periodic(
+      const Duration(seconds: 3),
+      (timer) {
+        bool isLastPage = (controller.page?.toInt() ?? 0) == publications.length - 1;
+        if (isLastPage) {
+          controller.animateToPage(
+            0,
+            duration: const Duration(seconds: 1),
+            curve: Curves.easeInExpo,
+          );
+          return;
+        }
+
+        controller.nextPage(
+          duration: const Duration(seconds: 1),
+          curve: Curves.slowMiddle,
+        );
+      },
+    );
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 500,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
+      height: sectionSize.height,
+      child: PageView.builder(
+        physics: const NeverScrollableScrollPhysics(),
+        allowImplicitScrolling: false,
+        reverse: true,
         itemCount: publications.length,
-        itemBuilder: (_, i) {
-          PubDevPackage p = publications[i];
-
+        controller: controller,
+        onPageChanged: (index) {
+          print("Page changed to $index");
+        },
+        itemBuilder: (context, itemIndex) {
           return PubDevPublicationItem(
-            p: p,
+            p: publications[itemIndex],
+            width: sectionSize.width,
           );
         },
       ),
@@ -202,17 +243,8 @@ class RivePublications extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 500,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        shrinkWrap: true,
-        itemCount: riveArts.length,
-        itemBuilder: (_, i) {
-          RiveArt r = riveArts[i];
-          return RivePublicationItem(r: r);
-        },
-      ),
+    return RivePublicationItemMenu(
+      rives: riveArts,
     );
   }
 }
@@ -220,10 +252,12 @@ class RivePublications extends StatelessWidget {
 class PubDevPublicationItem extends StatelessWidget {
   const PubDevPublicationItem({
     required this.p,
+    this.width = 500,
     super.key,
   });
 
   final PubDevPackage p;
+  final double width;
 
   @override
   Widget build(BuildContext context) {
@@ -231,7 +265,7 @@ class PubDevPublicationItem extends StatelessWidget {
 
     return Card(
       child: SizedBox(
-        width: 500,
+        width: width,
         child: Flex(
           direction: Axis.vertical,
           children: [
@@ -242,9 +276,8 @@ class PubDevPublicationItem extends StatelessWidget {
             ),
             Expanded(
               child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(100)
-                ),
+                decoration:
+                    BoxDecoration(borderRadius: BorderRadius.circular(100)),
                 child: Image.asset(
                   p.image,
                   fit: BoxFit.cover,
@@ -266,8 +299,8 @@ class PubDevPublicationItem extends StatelessWidget {
   }
 }
 
-class RivePublicationItem extends StatelessWidget {
-  const RivePublicationItem({
+class RivePublicationCardItem extends StatelessWidget {
+  const RivePublicationCardItem({
     required this.r,
     super.key,
   });
@@ -304,6 +337,182 @@ class RivePublicationItem extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class RivePublicationCircularItem extends StatelessWidget {
+  const RivePublicationCircularItem({
+    required this.r,
+    this.width = 300,
+    super.key,
+  });
+
+  final RiveArt r;
+  final double width;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: width,
+      child: RiveAnimation.asset(
+        r.asset,
+      ),
+    );
+  }
+}
+
+class RivePublicationItemMenu extends StatefulWidget {
+  const RivePublicationItemMenu({required this.rives, super.key});
+
+  final List<RiveArt> rives;
+
+  @override
+  State<RivePublicationItemMenu> createState() =>
+      _RivePublicationItemMenuState();
+}
+
+class _RivePublicationItemMenuState extends State<RivePublicationItemMenu>
+    with SingleTickerProviderStateMixin {
+  ValueNotifier<bool> openNotifier = ValueNotifier(false);
+
+  double get widthFactor => 5.5;
+
+  late AnimationController controller;
+  late final Animation<double> rotation = Tween<double>(
+    begin: 0.0,
+    end: 360.0,
+  ).animate(
+    CurvedAnimation(
+      parent: controller,
+      curve: const Interval(
+        0.0,
+        0.7,
+        curve: Curves.easeInOutCubicEmphasized,
+      ),
+    ),
+  );
+
+  late final Animation<double> scale = Tween<double>(
+    begin: 1.5,
+    end: 0.0,
+  ).animate(
+    CurvedAnimation(parent: controller, curve: Curves.elasticOut),
+  );
+
+  void open() {
+    openNotifier.value = true;
+    controller.forward();
+  }
+
+  void close() {
+    openNotifier.value = false;
+    controller.reverse();
+  }
+
+  List<RiveArt> get rives => widget.rives;
+
+  Widget buildButton({
+    required double angle,
+    required Animation<double> translation,
+    double width = 250,
+    required RiveArt riveArt,
+  }) {
+    final double rad = radians(angle);
+    return Transform(
+      transform: Matrix4.identity()
+        ..translate(
+            (translation.value) * cos(rad), (translation.value) * sin(rad)),
+      child: RivePublicationCircularItem(
+        r: riveArt,
+        width: width,
+      ),
+    );
+  }
+
+  @override
+  void initState() {
+    controller = AnimationController(
+      duration: const Duration(milliseconds: 900),
+      vsync: this,
+    );
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (_, size) {
+        double diameter = (size.maxWidth / widthFactor);
+        double radius = (diameter / 2);
+
+        final Animation<double> translation = Tween<double>(
+          begin: 0.0,
+          end: diameter,
+        ).animate(
+          CurvedAnimation(parent: controller, curve: Curves.slowMiddle),
+        );
+
+        return SizedBox(
+          height: 1000,
+          child: Center(
+            child: AnimatedBuilder(
+              animation: controller,
+              builder: (_, __) {
+                return ValueListenableBuilder(
+                  valueListenable: openNotifier,
+                  builder: (_, isOpen, __) => Transform.rotate(
+                    angle: radians(rotation.value),
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: rives.sublist(1).asMap().entries.map((r) {
+                            double angle =
+                                r.key * (360 / rives.sublist(1).length);
+
+                            return buildButton(
+                              angle: angle,
+                              translation: translation,
+                              riveArt: r.value,
+                              width: isOpen ? diameter : radius,
+                            );
+                          }).toList() +
+                          <Widget>[
+                            Transform.scale(
+                              scale: isOpen ? scale.value - 1 : scale.value,
+                              child: GestureDetector(
+                                onTap: () => isOpen ? close() : open(),
+                                child: CircleAvatar(
+                                  radius: radius - 20,
+                                  backgroundColor:
+                                      isOpen ? Colors.red : Colors.green,
+                                  child: CircleAvatar(
+                                    radius: radius - 25,
+                                    child: RotatedBox(
+                                      quarterTurns: isOpen ? 2 : 0,
+                                      child: RivePublicationCircularItem(
+                                        r: rives[0],
+                                        width: isOpen ? radius : diameter + 100,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+        );
+      },
     );
   }
 }
