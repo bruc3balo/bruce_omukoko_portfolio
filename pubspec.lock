@@ -177,6 +177,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.1.5"
+  duration_picker:
+    dependency: "direct main"
+    description:
+      name: duration_picker
+      sha256: "052b34dac04c29f3849bb3817a26c5aebe9e5f0697c3a374be87db2b84d75753"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.1"
   fake_async:
     dependency: transitive
     description:
@@ -366,7 +374,7 @@ packages:
     source: hosted
     version: "4.1.7"
   intl:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: intl
       sha256: "3bc132a9dbce73a7e4a21a17d06e1878839ffbf975568bc875c60537824b0c4d"
@@ -421,6 +429,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.0"
+  lru_memory_cache:
+    dependency: "direct main"
+    description:
+      name: lru_memory_cache
+      sha256: "7fce50f54a0d9ac512fc106b37a9038720e6db84409c5056d71b01e1a0c8f8e7"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.2"
   matcher:
     dependency: transitive
     description:
@@ -610,6 +626,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.10.0"
+  spinner_date_picker:
+    dependency: "direct main"
+    description:
+      name: spinner_date_picker
+      sha256: "213a9b21e34351d82ad780d206f8c22bf318efc4ff4332a50a92274dcedcbcf3"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.2"
   sprintf:
     dependency: transitive
     description:

@@ -80,6 +80,8 @@ class HomePage extends StatelessWidget {
                   goToCore: () => _homeMenu.value = SingleHomePages.core,
                 ),
               SingleHomePages.core => CorePage(
+                  goToSkillPlayground: () =>
+                      _homeMenu.value = SingleHomePages.skillPlayground,
                   goToResume: () => _homeMenu.value = SingleHomePages.resume,
                 ),
               SingleHomePages.resume => ResumePage(
@@ -97,9 +99,14 @@ class HomePage extends StatelessWidget {
 }
 
 class CorePage extends StatelessWidget {
-  const CorePage({required this.goToResume, super.key});
+  const CorePage({
+    required this.goToResume,
+    required this.goToSkillPlayground,
+    super.key,
+  });
 
   final Function() goToResume;
+  final Function() goToSkillPlayground;
 
   @override
   Widget build(BuildContext context) {
@@ -107,11 +114,19 @@ class CorePage extends StatelessWidget {
       child: Column(
         children: [
           AboutMePage(),
-          SizedBox(height: 150,),
+          SizedBox(
+            height: 150,
+          ),
           PublicationsPage(),
-          SizedBox(height: 150,),
-          SkillsPage(),
-          SizedBox(height: 150,),
+          SizedBox(
+            height: 150,
+          ),
+          SkillsPage(
+            goToSkillPlayground: goToSkillPlayground,
+          ),
+          SizedBox(
+            height: 150,
+          ),
           ProjectsPage(),
         ],
       ),

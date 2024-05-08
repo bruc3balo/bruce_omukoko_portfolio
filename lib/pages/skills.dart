@@ -3,9 +3,11 @@ import 'dart:math';
 
 import 'package:bruce_omukoko_portfolio/main.dart';
 import 'package:bruce_omukoko_portfolio/utils/functions.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 List<SkillBoard> get skills => [
@@ -24,6 +26,7 @@ List<SkillBoard> get skills => [
             cover: SvgPicture.asset(
               "spring.svg",
               fit: BoxFit.contain,
+              color: HexColor("#77bc1f"),
             ),
             abilities: [
               const Ability(
@@ -494,7 +497,7 @@ List<SkillBoard> get skills => [
               2020,
               DateTime.january,
             ),
-            cover: Image.asset("visual-paradigm.jpg"),
+            cover: Image.asset("visual-paradigm.png"),
             url: 'https://www.visual-paradigm.com',
             abilities: const [
               Ability(
@@ -589,26 +592,31 @@ class SkillBoard {
 }
 
 class SkillsPage extends StatelessWidget {
-  const SkillsPage({super.key});
+  SkillsPage({
+    required this.goToSkillPlayground,
+    super.key,
+  });
 
-  @override
-  Widget build(BuildContext context) {
-    ThemeData theme = Theme.of(context);
-    return SkillButtons();
-  }
-}
-
-class SkillButtons extends StatelessWidget {
-  SkillButtons({super.key});
-
+  final Function() goToSkillPlayground;
   final ValueNotifier<Technologies?> selectedTech = ValueNotifier(null);
 
   @override
   Widget build(BuildContext context) {
+    ThemeData theme = Theme.of(context);
     return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisSize: MainAxisSize.min,
       children: [
-        Text("Skills"),
-
+        Text(
+          "Skills",
+          style: GoogleFonts.poppins(
+            fontSize: 60,
+          ),
+        ),
+        IconButton(
+          onPressed: goToSkillPlayground,
+          icon: Icon(Icons.ads_click),
+        ),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: ValueListenableBuilder(
@@ -618,16 +626,26 @@ class SkillButtons extends StatelessWidget {
                 shrinkWrap: true,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 4,
-                  mainAxisExtent: 100,
-                  mainAxisSpacing: 40,
-
+                  mainAxisExtent: 150,
+                  mainAxisSpacing: 80,
                 ),
                 children: skills
                     .expand(
                       (s) => s.technologies
                           .map(
                             (t) => GestureDetector(
-                              child: t.cover,
+                              child: Flex(
+                                direction: Axis.vertical,
+                                children: [
+                                  Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: t.cover,
+                                    ),
+                                  ),
+                                  Text(t.name),
+                                ],
+                              ),
                             ),
                           )
                           .toList(),

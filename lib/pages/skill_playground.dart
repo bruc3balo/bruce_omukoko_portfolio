@@ -10,7 +10,6 @@ class SkillPlayground extends StatelessWidget {
 
   final Function() goToCore;
 
-
   void showInfo({
     required BuildContext context,
     required SkillBoard skillBoard,
@@ -51,10 +50,10 @@ class SkillPlayground extends StatelessWidget {
                           children: a.points
                               .map(
                                 (e) => ListTile(
-                              leading: const Icon(Icons.chevron_right),
-                              title: Text(e),
-                            ),
-                          )
+                                  leading: const Icon(Icons.chevron_right),
+                                  title: Text(e),
+                                ),
+                              )
                               .toList(),
                         ),
                       );
@@ -73,29 +72,44 @@ class SkillPlayground extends StatelessWidget {
   Widget build(BuildContext context) {
     return PopScope(
       onPopInvoked: (_) => goToCore(),
-      child: LayoutBuilder(
-        builder: (context, size) {
-          return Stack(
-            children: skills
-                .expand(
-                  (s) => s.technologies
-                  .map(
-                    (t) => TechnologyBoard(
-                  color: s.color,
-                  technologies: t,
-                  constraints: size,
-                  onSelect: (t) => showInfo(
-                    context: context,
-                    skillBoard: s,
-                    technologies: t,
-                  ),
-                ),
-              )
+      child: Scaffold(
+        body: LayoutBuilder(
+          builder: (context, size) {
+            return Stack(
+              children: skills
+                  .expand(
+                    (s) => s.technologies
+                        .map(
+                          (t) => TechnologyBoard(
+                            color: s.color,
+                            technologies: t,
+                            constraints: size,
+                            onSelect: (t) => showInfo(
+                              context: context,
+                              skillBoard: s,
+                              technologies: t,
+                            ),
+                          ),
+                        )
+                        .toList(),
+                  )
                   .toList(),
+            );
+          },
+        ),
+        floatingActionButton: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            FloatingActionButton.large(
+              onPressed: goToCore,
+              child: Icon(
+                Icons.arrow_circle_left,
+                color: Colors.red,
+              ),
             )
-                .toList(),
-          );
-        },
+          ],
+        ),
       ),
     );
   }
@@ -141,7 +155,7 @@ class _TechnologyBoardState extends State<TechnologyBoard> {
   Timer start() {
     return Timer.periodic(
       syncSpeed,
-          (timer) {
+      (timer) {
         Size oldPosition = positionNotifier.value;
 
         double newWidth = oldPosition.width;

@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bruce_omukoko_portfolio/utils/functions.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:rive/rive.dart';
 
 class Project {
@@ -46,8 +47,12 @@ class ProjectsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text("Projects"),
-
+        Text(
+          "Projects",
+          style: GoogleFonts.poppins(
+            fontSize: 60,
+          ),
+        ),
         ListView.builder(
           shrinkWrap: true,
           itemCount: projects.length,
