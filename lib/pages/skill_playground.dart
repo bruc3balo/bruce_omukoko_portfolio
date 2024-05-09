@@ -1,72 +1,75 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bruce_omukoko_portfolio/pages/skills.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+
+void showTechnologyInfo({
+  required BuildContext context,
+  required SkillBoard skillBoard,
+  required Technologies technologies,
+}) {
+  showModalBottomSheet(
+    context: context,
+    builder: (_) {
+      var theme = Theme.of(context);
+      return BottomSheet(
+        onClosing: () {},
+        builder: (_) {
+          return Flex(
+            direction: Axis.vertical,
+            children: <Widget>[
+              Text(
+                technologies.name,
+                style: theme.listTileTheme.titleTextStyle,
+              ),
+              Text(
+                technologies.xp,
+                style: theme.listTileTheme.subtitleTextStyle,
+              ),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: technologies.abilities.length,
+                  itemBuilder: (_, i) {
+                    Ability a = technologies.abilities[i];
+                    return Visibility(
+                      visible: a.points.isNotEmpty,
+                      replacement: ListTile(
+                        title: Text(a.name),
+                        subtitle: Text(a.brief),
+                      ),
+                      child: ExpansionTile(
+                        title: Text(a.name),
+                        subtitle: Text(a.brief),
+                        children: a.points
+                            .map(
+                              (e) => ListTile(
+                            leading: const Icon(Icons.chevron_right),
+                            title: Text(e),
+                          ),
+                        )
+                            .toList(),
+                      ),
+                    );
+                  },
+                ),
+              )
+            ],
+          );
+        },
+      );
+    },
+  );
+}
 
 class SkillPlayground extends StatelessWidget {
   const SkillPlayground({required this.goToCore, super.key});
 
   final Function() goToCore;
 
-  void showInfo({
-    required BuildContext context,
-    required SkillBoard skillBoard,
-    required Technologies technologies,
-  }) {
-    showModalBottomSheet(
-      context: context,
-      builder: (_) {
-        var theme = Theme.of(context);
-        return BottomSheet(
-          onClosing: () {},
-          builder: (_) {
-            return Flex(
-              direction: Axis.vertical,
-              children: <Widget>[
-                Text(
-                  technologies.name,
-                  style: theme.listTileTheme.titleTextStyle,
-                ),
-                Text(
-                  technologies.xp,
-                  style: theme.listTileTheme.subtitleTextStyle,
-                ),
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: technologies.abilities.length,
-                    itemBuilder: (_, i) {
-                      Ability a = technologies.abilities[i];
-                      return Visibility(
-                        visible: a.points.isNotEmpty,
-                        replacement: ListTile(
-                          title: Text(a.name),
-                          subtitle: Text(a.brief),
-                        ),
-                        child: ExpansionTile(
-                          title: Text(a.name),
-                          subtitle: Text(a.brief),
-                          children: a.points
-                              .map(
-                                (e) => ListTile(
-                                  leading: const Icon(Icons.chevron_right),
-                                  title: Text(e),
-                                ),
-                              )
-                              .toList(),
-                        ),
-                      );
-                    },
-                  ),
-                )
-              ],
-            );
-          },
-        );
-      },
-    );
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +87,7 @@ class SkillPlayground extends StatelessWidget {
                             color: s.color,
                             technologies: t,
                             constraints: size,
-                            onSelect: (t) => showInfo(
+                            onSelect: (t) => showTechnologyInfo(
                               context: context,
                               skillBoard: s,
                               technologies: t,
@@ -222,16 +225,19 @@ class _TechnologyBoardState extends State<TechnologyBoard> {
               );
             },
             dragStartBehavior: DragStartBehavior.down,
-            child: CircleAvatar(
-              radius: 60,
-              backgroundColor: widget.color,
-              child: CircleAvatar(
-                radius: 50,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: widget.technologies.cover,
+            child: Column(
+              children: [
+
+                SizedBox(
+                  width: 120,
+                  height: 120,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: widget.technologies.cover,
+                  ),
                 ),
-              ),
+                AutoSizeText(widget.technologies.name),
+              ],
             ),
           ),
         );

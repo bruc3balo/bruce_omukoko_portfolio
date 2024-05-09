@@ -458,7 +458,7 @@ class LRUBallsDemo extends StatelessWidget {
 
                   if (time == null) return;
 
-                  print("time is ${time.inSeconds}");
+                  debugPrint("time is ${time.inSeconds}");
 
                   var id = count++;
                   var ball = BallDemo(

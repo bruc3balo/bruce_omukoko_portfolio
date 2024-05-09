@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 import 'about_me.dart';
 
 ValueNotifier<SingleHomePages> _homeMenu = ValueNotifier(
-  SingleHomePages.splash,
+  SingleHomePages.core,
 );
 
 enum SingleHomePages {
@@ -108,26 +108,33 @@ class CorePage extends StatelessWidget {
   final Function() goToResume;
   final Function() goToSkillPlayground;
 
+  double get separation => 200;
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          AboutMePage(),
+          const AboutMePage(),
           SizedBox(
-            height: 150,
+            height: separation,
           ),
-          PublicationsPage(),
+          const PublicationsPage(),
           SizedBox(
-            height: 150,
+            height: separation,
           ),
           SkillsPage(
             goToSkillPlayground: goToSkillPlayground,
           ),
           SizedBox(
-            height: 150,
+            height: separation,
           ),
-          ProjectsPage(),
+          const ProjectsPage(),
+          SizedBox(
+            height: separation / 2,
+          ),
         ],
       ),
     );
