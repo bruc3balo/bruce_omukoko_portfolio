@@ -17,46 +17,82 @@ class AboutMePage extends StatelessWidget {
             fontSize: 60,
           ),
         ),
-        SizedBox(
-          height: 800,
-          child: Flex(
-            direction: Axis.horizontal,
-            children: [
-              Expanded(
-                child: Image.asset(
-                  "bruce.jpg",
-                  fit: BoxFit.contain,
-                  width: double.infinity,
+        LayoutBuilder(
+          builder: (_, size) {
+
+           bool mobile = size.maxWidth < 700;
+
+           if(mobile) {
+             return Column(
+               children: [
+                 Image.asset(
+                   "bruce.jpg",
+                   fit: BoxFit.contain,
+                   width: double.infinity,
+                 ),
+
+                 Padding(
+                   padding: const EdgeInsets.all(8.0),
+                   child: Text(
+                     "Hey there! I’m Bruce Omukoko, chilling out in Nairobi and always up for a good problem-solving challenge mixed with a healthy dose of creativity. I’m all about learning new stuff and figuring out cool ways to tackle problems, whether it’s in my work or just day-to-day life.",
+                     style: textTheme.bodyLarge?.copyWith(fontSize: 23),
+                     textAlign: TextAlign.start,
+                   ),
+                 ),
+
+                 Padding(
+                   padding: const EdgeInsets.all(8.0),
+                   child: AutoSizeText(
+                     "When I’m not deep in thought, you can probably find me gaming, getting rough and tumble on the rugby field, or just hanging out with friends. Life’s too short not to enjoy a good game and some great company, right? So yeah, that’s me – always looking for the next adventure and bringing a bit of creative flair to everything I do.",
+                     style: textTheme.bodyLarge?.copyWith(fontSize: 25),
+                     textAlign: TextAlign.start,
+                     maxFontSize: 20,
+                     minFontSize: 10,
+                   ),
+                 ),
+               ],
+             );
+           }
+
+            return Flex(
+              direction: Axis.horizontal,
+              children: [
+                Expanded(
+                  child: Image.asset(
+                    "bruce.jpg",
+                    fit: BoxFit.contain,
+                    width: double.infinity,
+                  ),
                 ),
-              ),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        "Hey there! I’m Bruce Omukoko, chilling out in Nairobi and always up for a good problem-solving challenge mixed with a healthy dose of creativity. I’m all about learning new stuff and figuring out cool ways to tackle problems, whether it’s in my work or just day-to-day life.",
-                        style: textTheme.bodyLarge?.copyWith(fontSize: 23),
-                        textAlign: TextAlign.start,
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          "Hey there! I’m Bruce Omukoko, chilling out in Nairobi and always up for a good problem-solving challenge mixed with a healthy dose of creativity. I’m all about learning new stuff and figuring out cool ways to tackle problems, whether it’s in my work or just day-to-day life.",
+                          style: textTheme.bodyLarge?.copyWith(fontSize: 23),
+                          textAlign: TextAlign.start,
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: AutoSizeText(
-                        "When I’m not deep in thought, you can probably find me gaming, getting rough and tumble on the rugby field, or just hanging out with friends. Life’s too short not to enjoy a good game and some great company, right? So yeah, that’s me – always looking for the next adventure and bringing a bit of creative flair to everything I do.",
-                        style: textTheme.bodyLarge?.copyWith(fontSize: 25),
-                        textAlign: TextAlign.start,
-                        maxFontSize: 20,
-                        minFontSize: 10,
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: AutoSizeText(
+                          "When I’m not deep in thought, you can probably find me gaming, getting rough and tumble on the rugby field, or just hanging out with friends. Life’s too short not to enjoy a good game and some great company, right? So yeah, that’s me – always looking for the next adventure and bringing a bit of creative flair to everything I do.",
+                          style: textTheme.bodyLarge?.copyWith(fontSize: 25),
+                          textAlign: TextAlign.start,
+                          maxFontSize: 20,
+                          minFontSize: 10,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ],
-          ),
+              ],
+            );
+          }
         ),
       ],
     );

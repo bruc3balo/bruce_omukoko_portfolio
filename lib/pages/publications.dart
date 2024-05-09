@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:html';
 
 import 'package:bruce_omukoko_portfolio/utils/extensions.dart';
 import 'package:duration_picker/duration_picker.dart';
@@ -20,7 +21,7 @@ enum PubPackage {
 }
 
 enum PublicationType {
-  pubDev("Pub Dev"),
+  pubDev("PubDev"),
   rive("Rive");
 
   final String value;
@@ -395,19 +396,47 @@ class LRUBallsDemo extends StatelessWidget {
           builder: (_, list, __) {
             var balls = list.values.toList();
 
-            return Stack(
-              children: balls
-                  .map(
-                    (ball) => LRUBallDemo(
-                      color: Colors.white,
-                      ball: ball,
-                      constraints: size,
-                      onSelect: (i) {
-                        cache.get(i.id);
-                      },
-                    ),
-                  )
-                  .toList(),
+            return Flex(
+              direction: Axis.horizontal,
+              children: [
+                Flex(
+                  direction: Axis.vertical,
+                  children: balls
+                      .map(
+                        (e) => Flexible(
+                          flex: 1,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: CircleAvatar(
+                              child: Text(
+                                "${e.id}",
+                                style: GoogleFonts.aBeeZee(
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                      .toList(),
+                ),
+                Expanded(
+                  child: Stack(
+                    children: balls
+                        .map(
+                          (ball) => LRUBallDemo(
+                            color: Colors.white,
+                            ball: ball,
+                            constraints: size,
+                            onSelect: (i) {
+                              cache.get(i.id);
+                            },
+                          ),
+                        )
+                        .toList(),
+                  ),
+                ),
+              ],
             );
           },
         ),
@@ -427,14 +456,17 @@ class LRUBallsDemo extends StatelessWidget {
                     snapToMins: 0.1,
                   );
 
-                  if(time == null) return;
+                  if (time == null) return;
 
                   print("time is ${time.inSeconds}");
 
                   var id = count++;
                   var ball = BallDemo(
                     id,
-                    Text("$id",style: GoogleFonts.aBeeZee(color: Colors.black),),
+                    Text(
+                      "$id",
+                      style: GoogleFonts.aBeeZee(color: Colors.black),
+                    ),
                   );
                   cache.add(ball, expiryDuration: time);
                   listNotifier.value = cache.dataMap;
@@ -449,7 +481,9 @@ class LRUBallsDemo extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: FloatingActionButton.small(
-                onPressed: () {},
+                onPressed: () {
+                  count = 0;
+                },
                 child: Icon(Icons.refresh, color: Colors.black),
               ),
             ),
@@ -581,47 +615,59 @@ class _LRUBallDemoState extends State<LRUBallDemo> {
 class SpinnerDatePickerDemo extends StatelessWidget {
   SpinnerDatePickerDemo({super.key});
 
-  final ValueNotifier<DateTime> dateNotifier = ValueNotifier(DateTime.now());
+  final ValueNotifier<DateTime> dateNotifier = ValueNotifier(
+    DateTime.now(),
+  );
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 350,
-      decoration: BoxDecoration(
-          color: Colors.white12, borderRadius: BorderRadius.circular(20.0)),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          ValueListenableBuilder(
-            valueListenable: dateNotifier,
-            builder: (_, date, __) {
-              return Text(
-                date.readableDateOnly,
-                style: GoogleFonts.aBeeZee(
+    return Scaffold(
+      body: Center(
+        child: Container(
+          width: 350,
+          decoration: BoxDecoration(
+            color: Colors.white12,
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ValueListenableBuilder(
+                valueListenable: dateNotifier,
+                builder: (_, date, __) {
+                  return Text(
+                    date.readableDateOnly,
+                    style: GoogleFonts.aBeeZee(
+                      fontSize: 20,
+                    ),
+                    textAlign: TextAlign.center,
+                  );
+                },
+              ),
+              SpinnerDatePicker(
+                dayText: (date) => Text(
+                  date,
+                  style: GoogleFonts.aBeeZee(
+                    fontSize: 20,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                textStyle: GoogleFonts.aBeeZee(
                   fontSize: 20,
                 ),
-                textAlign: TextAlign.center,
-              );
-            },
-          ),
-          SpinnerDatePicker(
-            dayText: (date) => Text(
-              date,
-              style: GoogleFonts.aBeeZee(
-                fontSize: 20,
+                initialDate: dateNotifier.value,
+                onDateChanged: (date) => dateNotifier.value = date,
+                dateOptions: const [
+                  DateOptions.d,
+                  DateOptions.m,
+                  DateOptions.y
+                ],
               ),
-              textAlign: TextAlign.center,
-            ),
-            textStyle: GoogleFonts.aBeeZee(
-              fontSize: 20,
-            ),
-            initialDate: dateNotifier.value,
-            onDateChanged: (date) => dateNotifier.value = date,
-            dateOptions: const [DateOptions.d, DateOptions.m, DateOptions.y],
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
@@ -662,7 +708,10 @@ class _RivePublicationItemMenuState extends State<RivePublicationItemMenu>
     with SingleTickerProviderStateMixin {
   ValueNotifier<bool> openNotifier = ValueNotifier(false);
 
-  double get widthFactor => 5.5;
+  double widthFactor = 4.5;
+  late Timer timer;
+
+  Duration get riveDuration => const Duration(seconds: 1);
 
   late AnimationController controller;
   late final Animation<double> rotation = Tween<double>(
@@ -716,18 +765,39 @@ class _RivePublicationItemMenuState extends State<RivePublicationItemMenu>
     );
   }
 
+  final ValueNotifier<double> scaleNotifier = ValueNotifier(1.0);
+  bool reverse = false;
+
   @override
   void initState() {
     controller = AnimationController(
       duration: const Duration(milliseconds: 900),
       vsync: this,
     );
+    timer = Timer.periodic(riveDuration, (timer) {
+      double val = scaleNotifier.value;
+
+      if (val <= 0.9) {
+        reverse = false;
+      } else if (val >= 1.1) {
+        reverse = true;
+      }
+
+      if (reverse) {
+        val -= 0.1;
+      } else {
+        val += 0.1;
+      }
+
+      scaleNotifier.value = val;
+    });
     super.initState();
   }
 
   @override
   void dispose() {
     controller.dispose();
+    timer.cancel();
     super.dispose();
   }
 
@@ -735,6 +805,8 @@ class _RivePublicationItemMenuState extends State<RivePublicationItemMenu>
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (_, size) {
+        widthFactor = size.maxWidth > 700 ? 5.5 : 3.0;
+
         double diameter = (size.maxWidth / widthFactor);
         double radius = (diameter / 2);
 
@@ -773,21 +845,33 @@ class _RivePublicationItemMenuState extends State<RivePublicationItemMenu>
                               scale: isOpen ? scale.value - 1 : scale.value,
                               child: GestureDetector(
                                 onTap: () => isOpen ? close() : open(),
-                                child: CircleAvatar(
-                                  radius: radius - 20,
-                                  backgroundColor:
-                                      isOpen ? Colors.red : Colors.green,
-                                  child: CircleAvatar(
-                                    radius: radius - 25,
-                                    child: RotatedBox(
-                                      quarterTurns: isOpen ? 2 : 0,
-                                      child: RivePublicationCircularItem(
-                                        r: rives[0],
-                                        width: isOpen ? radius : diameter + 100,
-                                      ),
-                                    ),
-                                  ),
-                                ),
+                                child: ValueListenableBuilder(
+                                    valueListenable: scaleNotifier,
+                                    builder: (_, scale, __) {
+                                      return AnimatedScale(
+                                        scale: scale,
+                                        duration: riveDuration,
+                                        child: CircleAvatar(
+                                          radius: radius - 20,
+                                          backgroundColor: isOpen
+                                              ? Colors.red
+                                              : Colors.green,
+                                          child: CircleAvatar(
+                                            radius: radius - 25,
+                                            child: RotatedBox(
+                                              quarterTurns: isOpen ? 2 : 0,
+                                              child:
+                                                  RivePublicationCircularItem(
+                                                r: rives[0],
+                                                width: isOpen
+                                                    ? radius
+                                                    : diameter + 100,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    }),
                               ),
                             ),
                           ],
