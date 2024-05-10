@@ -690,7 +690,8 @@ class SkillsPage extends StatelessWidget {
                                         ),
                                         child: Padding(
                                           padding: EdgeInsets.all(
-                                              hovering ? 8.0 : 20.0),
+                                            hovering ? 8.0 : 20.0,
+                                          ),
                                           child: t.cover,
                                         ),
                                       ),

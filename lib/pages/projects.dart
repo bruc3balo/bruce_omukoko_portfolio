@@ -2,7 +2,10 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bruce_omukoko_portfolio/utils/functions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:rive/rive.dart';
 
 class Project {
@@ -10,7 +13,7 @@ class Project {
   final String name;
   final String about;
   final String url;
-  final List<String> stack;
+  final List<Widget> stack;
 
   const Project({
     required this.cover,
@@ -34,12 +37,41 @@ class ProjectsPage extends StatelessWidget {
             "assets/tod.riv",
           ),
           stack: [
-            "Spring",
-            "Flutter",
-            "MongoDB",
-            "Rive",
-            "K8s",
-            "Docker",
+            SvgPicture.asset(
+              "spring.svg",
+              fit: BoxFit.contain,
+              color: HexColor("#77bc1f"),
+              height: 40,
+              width: 40,
+            ),
+            SvgPicture.asset(
+              "flutter.svg",
+              height: 40,
+              width: 40,
+            ),
+            SvgPicture.asset(
+              "mongo.svg",
+              height: 40,
+              width: 40,
+            ),
+            Image.asset(
+              "rive.png",
+              fit: BoxFit.contain,
+              width: 40,
+              height: 40,
+            ),
+            SvgPicture.asset(
+              "kubernets.svg",
+              fit: BoxFit.contain,
+              width: 40,
+              height: 40,
+            ),
+            SvgPicture.asset(
+              "docker.svg",
+              fit: BoxFit.contain,
+              width: 40,
+              height: 40,
+            ),
           ],
         ),
       ];
@@ -47,6 +79,7 @@ class ProjectsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
         Text(
           "Projects",
@@ -78,69 +111,101 @@ class ProjectItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ThemeData theme = Theme.of(context);
-    return GestureDetector(
-      onTap: () => openStringUri(project.url),
-      child: SizedBox(
-        height: 300,
-        child: Flex(
-          direction: Axis.horizontal,
-          children: [
-            Flexible(
-              child: project.cover,
-            ),
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  ListTile(
-                    title: Padding(
-                      padding: const EdgeInsets.only(bottom: 8.0),
-                      child: Text(project.name),
-                    ),
-                    subtitle: Text(project.about),
+
+    return SizedBox(
+      height: 500,
+      child: Flex(
+        direction: Axis.horizontal,
+        children: [
+          Flexible(child: project.cover),
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ListTile(
+                  title: Padding(
+                    padding: const EdgeInsets.only(bottom: 8.0),
+                    child: Text(project.name),
                   ),
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
+                  subtitle: Text(project.about),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: SizedBox(
+                    height: 70,
+                    child: Flex(
+                      direction: Axis.horizontal,
                       children: project.stack
                           .map(
-                            (e) => Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: TextButton(
-                                onPressed: () {},
-                                style: ButtonStyle(
-                                  shape: MaterialStatePropertyAll(
-                                    RoundedRectangleBorder(
-                                      side: const BorderSide(
-                                        width: 2.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(
-                                        20,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                child: AutoSizeText(e),
+                            (e) => Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: e,
                               ),
                             ),
                           )
                           .toList(),
                     ),
                   ),
-                  IconButton(
-                    onPressed: () => openStringUri(project.url),
-                    icon: const Icon(
-                      Icons.open_in_new,
-                    ),
+                ),
+                IconButton(
+                  onPressed: () => openStringUri(project.url),
+                  icon: const Icon(
+                    Icons.open_in_new,
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
+      ),
+    );
+
+    return GestureDetector(
+      onTap: () => openStringUri(project.url),
+      child: Flex(
+        direction: Axis.horizontal,
+        children: [
+          project.cover,
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ListTile(
+                  title: Padding(
+                    padding: const EdgeInsets.only(bottom: 8.0),
+                    child: Text(project.name),
+                  ),
+                  subtitle: Text(project.about),
+                ),
+                GridView.builder(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    crossAxisSpacing: 50,
+                    mainAxisSpacing: 10,
+                    mainAxisExtent: 50,
+                  ),
+                  itemCount: project.stack.length,
+                  itemBuilder: (_, i) {
+                    return project.stack[i];
+                  },
+                ),
+                IconButton(
+                  onPressed: () => openStringUri(project.url),
+                  icon: const Icon(
+                    Icons.open_in_new,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
