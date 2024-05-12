@@ -192,14 +192,18 @@ class CorePage extends StatelessWidget {
             onVisibilityChanged: (info) {
               bool isVisible = info.visibleFraction > 0;
               if (isVisible) {
-                _visiblePages.value =
-                    Set.from(_visiblePages.value..add(HomeSection.about));
+                _visiblePages.value = Set.from(
+                  _visiblePages.value..add(HomeSection.about),
+                );
               } else {
-                _visiblePages.value =
-                    Set.from(_visiblePages.value..remove(HomeSection.about));
+                _visiblePages.value = Set.from(
+                  _visiblePages.value..remove(HomeSection.about),
+                );
               }
             },
-            child: const AboutMePage(),
+            child: AboutMePage(
+              goToResume: goToResume,
+            ),
           ),
           SizedBox(
             height: separation,
@@ -210,10 +214,12 @@ class CorePage extends StatelessWidget {
               bool isVisible = info.visibleFraction > 0;
               if (isVisible) {
                 _visiblePages.value = Set.from(
-                    _visiblePages.value..add(HomeSection.publications));
+                  _visiblePages.value..add(HomeSection.publications),
+                );
               } else {
                 _visiblePages.value = Set.from(
-                    _visiblePages.value..remove(HomeSection.publications));
+                  _visiblePages.value..remove(HomeSection.publications),
+                );
               }
             },
             child: const PublicationsPage(),

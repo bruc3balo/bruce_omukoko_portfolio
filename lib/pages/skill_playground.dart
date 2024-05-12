@@ -77,7 +77,7 @@ class SkillPlayground extends StatelessWidget {
        bottomNavigationBar: ElevatedButton(
          onPressed: goToCore,
 
-         style: ButtonStyle(
+         style: const ButtonStyle(
            backgroundColor: MaterialStatePropertyAll(Colors.red),
          ),
          child: Text("Exit"),

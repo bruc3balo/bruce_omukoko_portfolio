@@ -18,11 +18,16 @@ class ResumePage extends StatelessWidget {
     return PopScope(
       onPopInvoked: (_) => goToCore(),
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text("Bruce Omukoko's Resume"),
-        ),
         body: WebView(
           uri: resumeFileUri,
+        ),
+        bottomNavigationBar: ElevatedButton(
+          onPressed: goToCore,
+
+          style: const ButtonStyle(
+            backgroundColor: MaterialStatePropertyAll(Colors.red),
+          ),
+          child: const Text("Exit"),
         ),
       ),
     );
