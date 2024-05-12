@@ -26,7 +26,7 @@ List<SkillBoard> get skills => [
             url: 'https://spring.io/projects/spring-framework',
             startDate: DateTime(2021, DateTime.august),
             cover: SvgPicture.asset(
-              "spring.svg",
+              "assets/spring.svg",
               fit: BoxFit.contain,
               color: HexColor("#77bc1f"),
             ),
@@ -97,7 +97,7 @@ List<SkillBoard> get skills => [
             url: 'https://www.docker.com',
             startDate: DateTime(2022, DateTime.august),
             cover: SvgPicture.asset(
-              "docker.svg",
+              "assets/docker.svg",
               fit: BoxFit.contain,
             ),
             abilities: [
@@ -141,7 +141,7 @@ List<SkillBoard> get skills => [
             url: 'https://kubernetes.io',
             startDate: DateTime(2024, DateTime.february),
             cover: SvgPicture.asset(
-              "kubernets.svg",
+              "assets/kubernets.svg",
               fit: BoxFit.contain,
             ),
             abilities: const [
@@ -231,7 +231,7 @@ List<SkillBoard> get skills => [
             startDate: DateTime(2017, DateTime.august),
             url: 'https://github.com',
             cover: SvgPicture.asset(
-              "git.svg",
+              "assets/git.svg",
               fit: BoxFit.contain,
             ),
             abilities: const [
@@ -280,7 +280,7 @@ List<SkillBoard> get skills => [
             url: 'https://developer.android.com',
             startDate: DateTime(2020, DateTime.may),
             cover: SvgPicture.asset(
-              "android.svg",
+              "assets/android.svg",
               height: 300,
               width: 300,
               color: Colors.green,
@@ -328,7 +328,7 @@ List<SkillBoard> get skills => [
             name: 'Flutter Development',
             startDate: DateTime(2022, DateTime.january),
             cover: SvgPicture.asset(
-              "flutter.svg",
+              "assets/flutter.svg",
               height: 300,
               width: 300,
             ),
@@ -377,7 +377,7 @@ List<SkillBoard> get skills => [
                 "Rive is a powerful design and animation tool used for creating interactive vector animations and illustrations for various digital platforms.",
             startDate: DateTime(2022, DateTime.march),
             cover: Image.asset(
-              "rive.png",
+              "assets/rive.png",
               fit: BoxFit.contain,
               width: 300,
               height: 300,
@@ -401,7 +401,7 @@ List<SkillBoard> get skills => [
             brief:
                 "Adobe Illustrator is a versatile vector graphics editor used for creating scalable illustrations, logos, icons, and other graphical elements for print, web, and multimedia projects.",
             startDate: DateTime(2022, DateTime.march),
-            cover: SvgPicture.asset("adobe-illustrator.svg"),
+            cover: SvgPicture.asset("assets/adobe-illustrator.svg"),
             url: 'https://www.adobe.com/products/illustrator.html',
             abilities: const [
               Ability(
@@ -424,7 +424,7 @@ List<SkillBoard> get skills => [
             brief:
                 "PostgreSQL is a powerful open-source relational database management system known for its robustness, extensibility, and adherence to SQL standards, offering advanced features for data storage, retrieval, and management in various applications.",
             startDate: DateTime(2021, DateTime.august),
-            cover: SvgPicture.asset("postgresql.svg"),
+            cover: SvgPicture.asset("assets/postgresql.svg"),
             url: 'https://www.postgresql.org',
             abilities: const [
               Ability(
@@ -469,7 +469,7 @@ List<SkillBoard> get skills => [
             brief:
                 "MySQL is a widely-used open-source relational database management system known for its reliability, performance, and ease of use, offering robust features for data storage, retrieval, and management in various applications.",
             startDate: DateTime(2018, DateTime.may),
-            cover: SvgPicture.asset("mysql.svg"),
+            cover: SvgPicture.asset("assets/mysql.svg"),
             url: 'https://www.mysql.com',
           ),
           Technologies(
@@ -478,7 +478,7 @@ List<SkillBoard> get skills => [
                 "MongoDB is a popular NoSQL database solution known for its flexibility, scalability, and high performance, offering document-oriented storage and flexible data models suitable for modern application development.",
             startDate: DateTime(2021, DateTime.august),
             cover: SvgPicture.asset(
-              "mongo.svg",
+              "assets/mongo.svg",
               height: 300,
               width: 300,
             ),
@@ -500,7 +500,7 @@ List<SkillBoard> get skills => [
               2020,
               DateTime.january,
             ),
-            cover: Image.asset("visual-paradigm.png"),
+            cover: Image.asset("assets/visual-paradigm.png"),
             url: 'https://www.visual-paradigm.com',
             abilities: const [
               Ability(

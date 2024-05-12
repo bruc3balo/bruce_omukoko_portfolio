@@ -54,7 +54,7 @@ class ProjectsPage extends StatelessWidget {
               width: 40,
             ),
             Image.asset(
-              "rive.png",
+              "assets/rive.png",
               fit: BoxFit.contain,
               width: 40,
               height: 40,

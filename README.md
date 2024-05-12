@@ -26,3 +26,8 @@ flutter pub run flutter_launcher_icons:main
 ```bash
 flutter pub run flutter_native_splash:create
 ```
+
+* Build
+```bash
+flutter build web --web-renderer html
+```

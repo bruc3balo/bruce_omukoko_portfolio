@@ -46,7 +46,7 @@ class AboutMePage extends StatelessWidget {
               ),
             ),
             Image.asset(
-              "bruce_rugby.jpg",
+              "assets/bruce_rugby.jpg",
               fit: BoxFit.contain,
               width: double.infinity,
             ),

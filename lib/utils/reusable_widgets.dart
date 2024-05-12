@@ -27,7 +27,7 @@ class PhoneNumberTextField extends StatelessWidget {
       countryButtonStyle: const CountryButtonStyle(
         showFlag: false
       ),
-      countrySelectorNavigator: CountrySelectorNavigator.draggableBottomSheet(
+      countrySelectorNavigator: const CountrySelectorNavigator.draggableBottomSheet(
         flagSize: 0.0,
         addSeparator: true,
         searchBoxTextStyle: TextStyle(
