@@ -18,7 +18,7 @@ class ColorPack {
   });
 }
 
-Color errorColor = HexColor("#7B0828");
+Color errorColor = Colors.red;
 
 ColorPack lightColor = ColorPack(
   primary: HexColor("#1C2826"),
@@ -45,7 +45,7 @@ ColorPack darkColor = ColorPack(
   primary: HexColor("#FFFAFF"),
   secondary: HexColor("#FEFCFD"),
   background: HexColor("#14191d"),
-  titleColor: HexColor("#7B0828"),
+  titleColor: HexColor("#FFFAFF"),
   tileColor: HexColor("#EBEBEB"),
 );
 ColorScheme darkColorScheme = ColorScheme(
@@ -130,12 +130,13 @@ ThemeData lightTheme = ThemeData(
 ThemeData darkTheme = ThemeData(
   colorScheme: darkColorScheme,
   appBarTheme: AppBarTheme(
-    backgroundColor: darkColor.primary,
+    elevation: 12.0,
+    backgroundColor: Colors.transparent,
     titleTextStyle: GoogleFonts.robotoMono(
       color: darkColor.titleColor,
       fontWeight: FontWeight.bold,
       decorationThickness: 20,
-      letterSpacing: 8.0,
+      letterSpacing: 4.0,
     ),
     toolbarHeight: 70,
   ),

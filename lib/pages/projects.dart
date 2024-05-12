@@ -1,4 +1,3 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bruce_omukoko_portfolio/utils/functions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -111,101 +110,60 @@ class ProjectItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ThemeData theme = Theme.of(context);
-
-    return SizedBox(
-      height: 500,
-      child: Flex(
-        direction: Axis.horizontal,
-        children: [
-          Flexible(child: project.cover),
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                ListTile(
-                  title: Padding(
-                    padding: const EdgeInsets.only(bottom: 8.0),
-                    child: Text(project.name),
-                  ),
-                  subtitle: Text(project.about),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: SizedBox(
-                    height: 70,
-                    child: Flex(
-                      direction: Axis.horizontal,
-                      children: project.stack
-                          .map(
-                            (e) => Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: e,
-                              ),
-                            ),
-                          )
-                          .toList(),
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
+        onTap: () => openStringUri(project.url),
+        child: SizedBox(
+          height: 500,
+          child: Flex(
+            direction: Axis.horizontal,
+            children: [
+              Flexible(child: project.cover),
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    ListTile(
+                      title: ListTile(
+                        titleAlignment: ListTileTitleAlignment.center,
+                        title: Padding(
+                          padding: const EdgeInsets.only(bottom: 8.0),
+                          child: Text(project.name),
+                        ),
+                        trailing: const Icon(
+                          Icons.open_in_new,
+                        ),
+                      ),
+                      subtitle: Text(project.about),
                     ),
-                  ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SizedBox(
+                        height: 70,
+                        child: Flex(
+                          direction: Axis.horizontal,
+                          children: project.stack
+                              .map(
+                                (e) => Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: e,
+                                  ),
+                                ),
+                              )
+                              .toList(),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-                IconButton(
-                  onPressed: () => openStringUri(project.url),
-                  icon: const Icon(
-                    Icons.open_in_new,
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
-      ),
-    );
-
-    return GestureDetector(
-      onTap: () => openStringUri(project.url),
-      child: Flex(
-        direction: Axis.horizontal,
-        children: [
-          project.cover,
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                ListTile(
-                  title: Padding(
-                    padding: const EdgeInsets.only(bottom: 8.0),
-                    child: Text(project.name),
-                  ),
-                  subtitle: Text(project.about),
-                ),
-                GridView.builder(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    crossAxisSpacing: 50,
-                    mainAxisSpacing: 10,
-                    mainAxisExtent: 50,
-                  ),
-                  itemCount: project.stack.length,
-                  itemBuilder: (_, i) {
-                    return project.stack[i];
-                  },
-                ),
-                IconButton(
-                  onPressed: () => openStringUri(project.url),
-                  icon: const Icon(
-                    Icons.open_in_new,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }

@@ -29,6 +29,7 @@ dependencies:
   spinner_date_picker: ^0.0.2
   lru_memory_cache: ^1.0.2
   duration_picker:
+  visibility_detector: ^0.4.0+2
 
 dev_dependencies:
   flutter_test:

@@ -28,13 +28,16 @@ class PhoneNumberTextField extends StatelessWidget {
       enableInteractiveSelection: enableInteractiveSelection,*/
       decoration: InputDecoration(
         labelText: labelText,
+        errorStyle: const TextStyle(
+          color: Colors.red
+        ),
         border: const OutlineInputBorder(
           borderSide: BorderSide(),
         ),
       ),
       validator: PhoneValidator.compose([
         // list of validators to use
-        PhoneValidator.required(context, errorText: "Number required"),
+        // PhoneValidator.required(context, errorText: "Number required"),
         PhoneValidator.validMobile(context),
         // ..
       ]),
@@ -81,7 +84,7 @@ class DropDownMenuButton<T> extends StatelessWidget {
       valueListenable: _valueNotifier,
       builder: (context, value, _) {
         return Card(
-          color: Colors.white,
+          // color: Colors.white,
           elevation: 12.0,
           shadowColor: Colors.grey.withOpacity(0.15),
           shape: const RoundedRectangleBorder(
@@ -89,7 +92,7 @@ class DropDownMenuButton<T> extends StatelessWidget {
               Radius.circular(10.0),
             ),
           ),
-          margin: const EdgeInsets.all(20.0),
+          // margin: const EdgeInsets.all(20.0),
           child: SizedBox(
             width: width,
             // height: height,
@@ -104,7 +107,7 @@ class DropDownMenuButton<T> extends StatelessWidget {
               //underline: itemUnderline,
               borderRadius: const BorderRadius.all(Radius.circular(10.0)),
               //focusColor: HexColor("#A9D2F0"),
-              dropdownColor: Colors.white,
+              // dropdownColor: Colors.white,
               elevation: 12,
               onChanged: (newValue) {
                 if (newValue != null) {

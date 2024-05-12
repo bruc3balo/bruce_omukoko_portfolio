@@ -829,23 +829,27 @@ class _RivePublicationItemMenuState extends State<RivePublicationItemMenu>
                     angle: radians(rotation.value),
                     child: Stack(
                       alignment: Alignment.center,
-                      children: rives.sublist(1).asMap().entries.map((r) {
-                            double angle =
-                                r.key * (360 / rives.sublist(1).length);
+                      children: rives.sublist(1).asMap().entries.map(
+                            (r) {
+                              double angle =
+                                  r.key * (360 / rives.sublist(1).length);
 
-                            return buildButton(
-                              angle: angle,
-                              translation: translation,
-                              riveArt: r.value,
-                              width: isOpen ? diameter : radius,
-                            );
-                          }).toList() +
+                              return buildButton(
+                                angle: angle,
+                                translation: translation,
+                                riveArt: r.value,
+                                width: isOpen ? diameter : radius,
+                              );
+                            },
+                          ).toList() +
                           <Widget>[
                             Transform.scale(
                               scale: isOpen ? scale.value - 1 : scale.value,
-                              child: GestureDetector(
-                                onTap: () => isOpen ? close() : open(),
-                                child: ValueListenableBuilder(
+                              child: MouseRegion(
+                                cursor: SystemMouseCursors.click,
+                                child: GestureDetector(
+                                  onTap: () => isOpen ? close() : open(),
+                                  child: ValueListenableBuilder(
                                     valueListenable: scaleNotifier,
                                     builder: (_, scale, __) {
                                       return AnimatedScale(
@@ -871,7 +875,9 @@ class _RivePublicationItemMenuState extends State<RivePublicationItemMenu>
                                           ),
                                         ),
                                       );
-                                    }),
+                                    },
+                                  ),
+                                ),
                               ),
                             ),
                           ],

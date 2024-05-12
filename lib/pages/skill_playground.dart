@@ -46,10 +46,10 @@ void showTechnologyInfo({
                         children: a.points
                             .map(
                               (e) => ListTile(
-                            leading: const Icon(Icons.chevron_right),
-                            title: Text(e),
-                          ),
-                        )
+                                leading: const Icon(Icons.chevron_right),
+                                title: Text(e),
+                              ),
+                            )
                             .toList(),
                       ),
                     );
@@ -69,13 +69,19 @@ class SkillPlayground extends StatelessWidget {
 
   final Function() goToCore;
 
-
-
   @override
   Widget build(BuildContext context) {
     return PopScope(
       onPopInvoked: (_) => goToCore(),
       child: Scaffold(
+       bottomNavigationBar: ElevatedButton(
+         onPressed: goToCore,
+
+         style: ButtonStyle(
+           backgroundColor: MaterialStatePropertyAll(Colors.red),
+         ),
+         child: Text("Exit"),
+       ),
         body: LayoutBuilder(
           builder: (context, size) {
             return Stack(
@@ -99,19 +105,6 @@ class SkillPlayground extends StatelessWidget {
                   .toList(),
             );
           },
-        ),
-        floatingActionButton: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            FloatingActionButton.large(
-              onPressed: goToCore,
-              child: Icon(
-                Icons.arrow_circle_left,
-                color: Colors.red,
-              ),
-            )
-          ],
         ),
       ),
     );
@@ -227,7 +220,6 @@ class _TechnologyBoardState extends State<TechnologyBoard> {
             dragStartBehavior: DragStartBehavior.down,
             child: Column(
               children: [
-
                 SizedBox(
                   width: 120,
                   height: 120,

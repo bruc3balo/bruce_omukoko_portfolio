@@ -283,6 +283,7 @@ List<SkillBoard> get skills => [
               "android.svg",
               height: 300,
               width: 300,
+              color: Colors.green,
             ),
             abilities: const [
               Ability(
@@ -629,36 +630,43 @@ class SkillsPage extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       mainAxisSize: MainAxisSize.min,
       children: [
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "Skills",
-              style: GoogleFonts.poppins(
-                fontSize: 60,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: IconButton(
-                onPressed: goToSkillPlayground,
-                icon: ValueListenableBuilder(
-                  valueListenable: colorStream,
-                  builder: (_, opacity, __) {
-                    return AnimatedOpacity(
-                      opacity: opacity,
-                      duration: const Duration(milliseconds: 200),
-                      child: const Icon(
-                        Icons.ads_click,
-                        color: Colors.greenAccent,
-                      ),
-                    );
-                  },
+        Padding(
+          padding:  const EdgeInsets.only(bottom: 50.0),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+
+                child: Text(
+                  "Skills",
+                  style: GoogleFonts.poppins(
+                    fontSize: 60,
+                  ),
                 ),
               ),
-            ),
-          ],
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: IconButton(
+                  onPressed: goToSkillPlayground,
+                  icon: ValueListenableBuilder(
+                    valueListenable: colorStream,
+                    builder: (_, opacity, __) {
+                      return AnimatedOpacity(
+                        opacity: opacity,
+                        duration: const Duration(milliseconds: 200),
+                        child: const Icon(
+                          Icons.ads_click,
+                          color: Colors.greenAccent,
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),

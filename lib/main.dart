@@ -28,6 +28,7 @@ class PortfolioApplication extends StatelessWidget {
       child: MaterialApp(
         theme: lightTheme,
         darkTheme: darkTheme,
+        themeMode: ThemeMode.dark,
         debugShowCheckedModeBanner: false,
         home: const HomePage(),
       ),
