@@ -24,6 +24,22 @@ class PhoneNumberTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return PhoneFormField(
       controller: phoneController,
+      countryButtonStyle: const CountryButtonStyle(
+        showFlag: false
+      ),
+      countrySelectorNavigator: CountrySelectorNavigator.draggableBottomSheet(
+        flagSize: 0.0,
+        addSeparator: true,
+        searchBoxTextStyle: TextStyle(
+          color: Colors.white,
+        ),
+        searchBoxDecoration: InputDecoration(
+          hintStyle: TextStyle(
+            color: Colors.white,
+          ),
+          fillColor: Colors.black,
+        )
+      ),
       /*isCountrySelectionEnabled: isCountrySelectionEnabled,
       enableInteractiveSelection: enableInteractiveSelection,*/
       decoration: InputDecoration(
