@@ -1,7 +1,7 @@
 flutter_native_splash:
   
-  color: "#f5f5f5"
-  color_dark: "#111111"
+  color: "#25292D"
+  color_dark: "#25292D"
 
   # The image parameter allows you to specify an image used in the splash screen.  It must be a
   # png file and should be sized for 4x pixel density.

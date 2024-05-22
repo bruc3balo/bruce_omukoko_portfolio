@@ -26,7 +26,6 @@ class PortfolioApplication extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: MaterialApp(
-        theme: lightTheme,
         darkTheme: darkTheme,
         themeMode: ThemeMode.dark,
         debugShowCheckedModeBanner: false,

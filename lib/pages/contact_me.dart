@@ -73,7 +73,7 @@ class _ContactMePageState extends State<ContactMePage> {
 
   final TextEditingController messageController = TextEditingController();
 
-  final PhoneController numberController = PhoneController();
+  final PhoneController numberController = PhoneController(null);
 
   final TextEditingController emailController = TextEditingController();
 
@@ -225,7 +225,7 @@ class _ContactMePageState extends State<ContactMePage> {
                           type: subjectNotifier.value.value,
                           message: messageController.text,
                           number:
-                              '${numberController.value.countryCode}${numberController.value.nsn}',
+                              '${numberController.value?.dialCode}${numberController.value?.international}',
                           email: emailController.text,
                           sentAt: DateTime.now(),
                         );

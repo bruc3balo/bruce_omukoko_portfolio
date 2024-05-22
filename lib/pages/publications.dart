@@ -1,8 +1,7 @@
 import 'dart:async';
-import 'dart:html';
 
 import 'package:bruce_omukoko_portfolio/utils/extensions.dart';
-import 'package:duration_picker/duration_picker.dart';
+// import 'package:duration_picker/duration_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -449,13 +448,14 @@ class LRUBallsDemo extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: FloatingActionButton.small(
                 onPressed: () async {
-                  var time = await showDurationPicker(
+                  var time = null;
+                  /*var time = await showDurationPicker(
                     context: context,
                     initialTime: const Duration(seconds: 15),
                     baseUnit: BaseUnit.second,
                     snapToMins: 0.1,
                   );
-
+*/
                   if (time == null) return;
 
                   debugPrint("time is ${time.inSeconds}");

@@ -24,24 +24,7 @@ class PhoneNumberTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return PhoneFormField(
       controller: phoneController,
-      countryButtonStyle: const CountryButtonStyle(
-        showFlag: false
-      ),
-      countrySelectorNavigator: const CountrySelectorNavigator.draggableBottomSheet(
-        flagSize: 0.0,
-        addSeparator: true,
-        searchBoxTextStyle: TextStyle(
-          color: Colors.white,
-        ),
-        searchBoxDecoration: InputDecoration(
-          hintStyle: TextStyle(
-            color: Colors.white,
-          ),
-          fillColor: Colors.black,
-        )
-      ),
-      /*isCountrySelectionEnabled: isCountrySelectionEnabled,
-      enableInteractiveSelection: enableInteractiveSelection,*/
+      selectorNavigator: const DraggableModalBottomSheetNavigator(),
       decoration: InputDecoration(
         labelText: labelText,
         errorStyle: const TextStyle(
@@ -51,12 +34,6 @@ class PhoneNumberTextField extends StatelessWidget {
           borderSide: BorderSide(),
         ),
       ),
-      validator: PhoneValidator.compose([
-        // list of validators to use
-        // PhoneValidator.required(context, errorText: "Number required"),
-        PhoneValidator.validMobile(context),
-        // ..
-      ]),
       autovalidateMode: AutovalidateMode.onUserInteraction,
       onChanged: (phone) {
         // ignore: unnecessary_null_comparison
