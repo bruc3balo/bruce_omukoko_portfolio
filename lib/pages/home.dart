@@ -81,6 +81,7 @@ class HomePage extends StatelessWidget {
                       TextSpan(
                         text: "Bruce",
                         style: GoogleFonts.inter(
+                          fontWeight: FontWeight.bold,
                           fontSize: 30,
                           color: orange,
                         ),
@@ -88,6 +89,7 @@ class HomePage extends StatelessWidget {
                       TextSpan(
                         text: " Omukoko",
                         style: GoogleFonts.inter(
+                          fontWeight: FontWeight.bold,
                           fontSize: 30,
                           color: Colors.white,
                         ),

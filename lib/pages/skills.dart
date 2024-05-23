@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:bruce_omukoko_portfolio/main.dart';
 import 'package:bruce_omukoko_portfolio/pages/skill_playground.dart';
+import 'package:bruce_omukoko_portfolio/theme/theme.dart';
 import 'package:bruce_omukoko_portfolio/utils/functions.dart';
 import 'package:bruce_omukoko_portfolio/utils/reusable_widgets.dart';
 import 'package:flutter/cupertino.dart';
@@ -594,78 +595,124 @@ class SkillBoard {
   });
 }
 
-class SkillsPage extends StatelessWidget {
-  SkillsPage({
+class SkillsPage extends StatefulWidget {
+  const SkillsPage({
     required this.goToSkillPlayground,
     super.key,
   });
 
   final Function() goToSkillPlayground;
+
+  @override
+  State<SkillsPage> createState() => _SkillsPageState();
+}
+
+class _SkillsPageState extends State<SkillsPage> {
   final ValueNotifier<Technologies?> selectedTech = ValueNotifier(null);
 
   final ValueNotifier<double> colorStream = ValueNotifier(1);
+
   bool reverse = false;
+
+  @override
+  void initState() {
+    Timer.periodic(
+      const Duration(milliseconds: 200),
+      (timer) {
+        double val = colorStream.value;
+
+        if (val <= 0.1) {
+          reverse = false;
+        } else if (val >= 0.9) {
+          reverse = true;
+        }
+
+        if (reverse) {
+          val -= 0.1;
+        } else {
+          val += 0.1;
+        }
+
+        colorStream.value = val;
+      },
+    );
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     ThemeData theme = Theme.of(context);
-    Timer.periodic(const Duration(milliseconds: 200), (timer) {
-      double val = colorStream.value;
-
-      if (val <= 0.1) {
-        reverse = false;
-      } else if (val >= 0.9) {
-        reverse = true;
-      }
-
-      if (reverse) {
-        val -= 0.1;
-      } else {
-        val += 0.1;
-      }
-
-      colorStream.value = val;
-    });
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       mainAxisSize: MainAxisSize.min,
       children: [
         Padding(
-          padding:  const EdgeInsets.only(bottom: 50.0),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-
-                child: Text(
-                  "Skills",
-                  style: GoogleFonts.poppins(
-                    fontSize: 60,
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: IconButton(
-                  onPressed: goToSkillPlayground,
-                  icon: ValueListenableBuilder(
-                    valueListenable: colorStream,
-                    builder: (_, opacity, __) {
-                      return AnimatedOpacity(
-                        opacity: opacity,
-                        duration: const Duration(milliseconds: 200),
-                        child: const Icon(
-                          Icons.ads_click,
-                          color: Colors.greenAccent,
+          padding: const EdgeInsets.only(bottom: 50.0),
+          child: SizedBox(
+            height: 500,
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                Align(
+                  alignment: Alignment.center,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          "Skills",
+                          style: GoogleFonts.inter(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 60,
+                            color: orange,
+                          ),
                         ),
-                      );
-                    },
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: IconButton(
+                          onPressed: widget.goToSkillPlayground,
+                          icon: ValueListenableBuilder(
+                            valueListenable: colorStream,
+                            builder: (_, opacity, __) {
+                              return AnimatedOpacity(
+                                opacity: opacity,
+                                duration: const Duration(milliseconds: 200),
+                                child: const Icon(
+                                  Icons.ads_click,
+                                  color: Colors.greenAccent,
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ),
-            ],
+                Positioned(
+                  right: 0,
+                  left: 350,
+                  bottom: 300,
+                  child: SvgPicture.asset(
+                    "assets/skills_arrow.svg",
+                  ),
+                ),
+                Positioned(
+                  right: 150,
+                  bottom: 380,
+                  child: Text(
+                    "Psst press here",
+                    style: GoogleFonts.lovedByTheKing(
+                      color: Colors.white,
+                      fontSize: 64,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
         Padding(
@@ -700,7 +747,25 @@ class SkillsPage extends StatelessWidget {
                                           padding: EdgeInsets.all(
                                             hovering ? 8.0 : 20.0,
                                           ),
-                                          child: t.cover,
+                                          child: Visibility(
+                                            visible: hovering,
+                                            replacement: t.cover,
+                                            child: Stack(
+                                              alignment: Alignment.center,
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsets.all(
+                                                      20.0),
+                                                  child: t.cover,
+                                                ),
+                                                SvgPicture.asset(
+                                                  "assets/skills_hover.svg",
+                                                  width: 250,
+                                                  height: 250,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
                                         ),
                                       ),
                                     ),

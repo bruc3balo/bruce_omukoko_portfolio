@@ -1,3 +1,6 @@
+import 'dart:ui';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:phone_form_field/phone_form_field.dart';
 
@@ -154,5 +157,29 @@ class OnHover extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class SkillHoverPainter extends CustomPainter {
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    const angle = -pi / 4;
+    Color paintColor = Colors.white;
+    Paint circlePaint = Paint()
+      ..color = paintColor
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 5;
+
+    canvas.save();
+    canvas.translate(size.width * 0.5, size.height * 0.5);
+    canvas.rotate(angle);
+    canvas.drawOval(Rect.fromCenter(center: Offset.zero, width: 150, height: 150), circlePaint);
+    canvas.restore();
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) {
+    return false;
   }
 }
