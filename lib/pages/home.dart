@@ -92,6 +92,7 @@ class HomePage extends StatelessWidget {
                                       return OnHover(
                                         builder: (hovering) {
                                           return ListTile(
+                                            tileColor: visible ? orange : Colors.white,
                                             selected: visible,
                                             leading: AnimatedOpacity(
                                               opacity: visible ? 1 : 0,

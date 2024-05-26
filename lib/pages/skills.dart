@@ -127,7 +127,7 @@ class _SkillsPageState extends State<SkillsPage> {
                   ),
                   Positioned(
                     right: 0,
-                    left: size.maxWidth < 400 ? 200 : 350,
+                    left: isMobileView ? 200 : 350,
                     bottom: 250,
                     child: PsstPressHere(
                       isMobileView: isMobileView,
