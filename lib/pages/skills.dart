@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:bruce_omukoko_portfolio/main.dart';
-import 'package:bruce_omukoko_portfolio/pages/skill_playground.dart';
+import 'package:bruce_omukoko_portfolio/pages/skills_playground.dart';
 import 'package:bruce_omukoko_portfolio/theme/theme.dart';
 import 'package:bruce_omukoko_portfolio/utils/functions.dart';
 import 'package:bruce_omukoko_portfolio/utils/reusable_widgets.dart';

@@ -21,7 +21,7 @@ class ColorPack {
 Color errorColor = Colors.red;
 
 Color orange = HexColor("#EC7F00");
-
+Color darkBackground = HexColor("#25292D");
 
 ColorPack darkColor = ColorPack(
   primary: HexColor("#FFFAFF"),
@@ -33,6 +33,8 @@ ColorPack darkColor = ColorPack(
 ColorScheme darkColorScheme = ColorScheme(
   brightness: Brightness.dark,
   primary: darkColor.primary,
+  background: darkBackground,
+  onBackground: darkBackground,
   onPrimary: darkColor.primary.withOpacity(0.8),
   secondary: darkColor.secondary,
   onSecondary: darkColor.secondary.withOpacity(0.8),
@@ -60,7 +62,11 @@ ThemeData darkTheme = ThemeData(
       backgroundColor: MaterialStatePropertyAll(darkColor.primary),
       foregroundColor: MaterialStatePropertyAll(darkColor.titleColor),
       side: MaterialStatePropertyAll(
-          BorderSide(color: darkColor.background, width: 2)),
+        BorderSide(
+          color: darkColor.background,
+          width: 2,
+        ),
+      ),
       textStyle: MaterialStatePropertyAll(
         GoogleFonts.robotoMono(
           color: darkColor.tileColor,
@@ -88,12 +94,13 @@ ThemeData darkTheme = ThemeData(
     collapsedBackgroundColor: darkColor.background,
     collapsedTextColor: darkColor.tileColor,
     shape: RoundedRectangleBorder(
-        side: BorderSide(
-          color: darkColor.titleColor,
-          width: 2.0,
-          style: BorderStyle.solid,
-        ),
-        borderRadius: BorderRadius.circular(0)),
+      side: BorderSide(
+        color: darkColor.titleColor,
+        width: 2.0,
+        style: BorderStyle.solid,
+      ),
+      borderRadius: BorderRadius.circular(0),
+    ),
   ),
   listTileTheme: ListTileThemeData(
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -114,8 +121,8 @@ ThemeData darkTheme = ThemeData(
   ),
   cardTheme: CardTheme(
     color: darkColor.background,
-    surfaceTintColor: darkColor.tileColor,
-    shadowColor: darkColor.titleColor,
+    surfaceTintColor: darkBackground,
+    shadowColor: darkBackground,
     elevation: 6.0,
   ),
   bottomSheetTheme: BottomSheetThemeData(

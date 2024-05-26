@@ -1,7 +1,6 @@
+import 'package:bruce_omukoko_portfolio/theme/theme.dart';
 import 'package:bruce_omukoko_portfolio/utils/functions.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -32,7 +31,7 @@ class ProjectsPage extends StatelessWidget {
           about:
               "Truth or Drink is a drinking game where players take turns asking each other questions. If someone doesn't want to answer, they take a drink instead. It's a fun way to get to know each other better while enjoying some drinks.",
           url: 'https://truthordrink-kg.web.app',
-          cover: RiveAnimation.asset(
+          cover: const RiveAnimation.asset(
             "assets/tod.riv",
           ),
           stack: [
@@ -80,10 +79,15 @@ class ProjectsPage extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text(
-          "Projects",
-          style: GoogleFonts.poppins(
-            fontSize: 60,
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            "Projects",
+            style: GoogleFonts.inter(
+              fontWeight: FontWeight.w600,
+              fontSize: 60,
+              color: orange,
+            ),
           ),
         ),
         ListView.builder(

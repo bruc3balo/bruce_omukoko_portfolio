@@ -23,7 +23,6 @@ class ResumePage extends StatelessWidget {
         ),
         bottomNavigationBar: ElevatedButton(
           onPressed: goToCore,
-
           style: const ButtonStyle(
             backgroundColor: MaterialStatePropertyAll(Colors.red),
           ),

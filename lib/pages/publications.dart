@@ -1,11 +1,10 @@
 import 'dart:async';
 
 import 'package:bruce_omukoko_portfolio/utils/extensions.dart';
+
 // import 'package:duration_picker/duration_picker.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lru_memory_cache/lru_memory_cache.dart';
@@ -73,38 +72,41 @@ class PublicationsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          "Publications",
-          style: GoogleFonts.poppins(
-            fontSize: 60,
+    return Visibility(
+      visible: false,
+      child: Column(
+        children: [
+          Text(
+            "Publications",
+            style: GoogleFonts.poppins(
+              fontSize: 60,
+            ),
           ),
-        ),
-        ListView.builder(
-          shrinkWrap: true,
-          itemCount: publicationTypeList.length,
-          itemBuilder: (_, i) {
-            PublicationType p = publicationTypeList[i];
-            return Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: ListTile(
-                title: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    p.value,
-                    textAlign: TextAlign.center,
+          ListView.builder(
+            shrinkWrap: true,
+            itemCount: publicationTypeList.length,
+            itemBuilder: (_, i) {
+              PublicationType p = publicationTypeList[i];
+              return Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: ListTile(
+                  title: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      p.value,
+                      textAlign: TextAlign.center,
+                    ),
                   ),
+                  subtitle: switch (p) {
+                    PublicationType.pubDev => const PubDevPublications(),
+                    PublicationType.rive => const RivePublications(),
+                  },
                 ),
-                subtitle: switch (p) {
-                  PublicationType.pubDev => const PubDevPublications(),
-                  PublicationType.rive => const RivePublications(),
-                },
-              ),
-            );
-          },
-        ),
-      ],
+              );
+            },
+          ),
+        ],
+      ),
     );
   }
 }
@@ -814,7 +816,10 @@ class _RivePublicationItemMenuState extends State<RivePublicationItemMenu>
           begin: 0.0,
           end: diameter,
         ).animate(
-          CurvedAnimation(parent: controller, curve: Curves.slowMiddle),
+          CurvedAnimation(
+            parent: controller,
+            curve: Curves.slowMiddle,
+          ),
         );
 
         return SizedBox(
@@ -888,6 +893,7 @@ class _RivePublicationItemMenuState extends State<RivePublicationItemMenu>
             ),
           ),
         );
+
       },
     );
   }

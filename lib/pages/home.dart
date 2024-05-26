@@ -4,29 +4,21 @@ import 'package:bruce_omukoko_portfolio/pages/contact_me.dart';
 import 'package:bruce_omukoko_portfolio/pages/projects.dart';
 import 'package:bruce_omukoko_portfolio/pages/publications.dart';
 import 'package:bruce_omukoko_portfolio/pages/resume.dart';
-import 'package:bruce_omukoko_portfolio/pages/skill_playground.dart';
+import 'package:bruce_omukoko_portfolio/pages/skills_playground.dart';
 import 'package:bruce_omukoko_portfolio/pages/skills.dart';
 import 'package:bruce_omukoko_portfolio/pages/splash_screen.dart';
 import 'package:bruce_omukoko_portfolio/theme/theme.dart';
 import 'package:bruce_omukoko_portfolio/utils/reusable_widgets.dart';
-import 'package:bruce_omukoko_portfolio/utils/variables.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:visibility_detector/visibility_detector.dart';
-
 import 'about_me.dart';
 
-ValueNotifier<SingleHomePages> _homeMenu = ValueNotifier(
+final ValueNotifier<SingleHomePages> _homeMenu = ValueNotifier(
   SingleHomePages.core,
 );
-
-const List<HomeSection> sections = HomeSection.values;
-
-
-ValueNotifier<Set<HomeSection>> _visiblePages = ValueNotifier({});
+final List<HomeSection> sections = HomeSection.values.sublist(0, 1).toList();
+final ValueNotifier<Set<HomeSection>> _visiblePages = ValueNotifier({});
 
 final ScrollController scrollController = ScrollController();
 final aboutMeKey = GlobalKey();
@@ -227,12 +219,14 @@ class CorePage extends StatelessWidget {
     return ListView.separated(
       itemCount: sections.length,
       separatorBuilder: (_, i) {
+
         bool first = sections.first == sections[i];
         bool last = sections.last == sections[i];
 
         return SizedBox(
           height: last ? separation / 2 : separation,
         );
+
       },
       itemBuilder: (_, i) {
         HomeSection s = sections[i];
