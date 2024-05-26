@@ -1,10 +1,13 @@
 import 'dart:async';
 
+import 'package:bruce_omukoko_portfolio/data/data.dart';
 import 'package:bruce_omukoko_portfolio/utils/extensions.dart';
+import 'package:flutter/cupertino.dart';
 
 // import 'package:duration_picker/duration_picker.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lru_memory_cache/lru_memory_cache.dart';
@@ -13,10 +16,6 @@ import 'package:spinner_date_picker/date_picker/date_picker.dart';
 import 'dart:math';
 import 'package:vector_math/vector_math.dart' show radians;
 
-enum PubPackage {
-  spinnerDatePicker,
-  lruMemoryCache;
-}
 
 enum PublicationType {
   pubDev("PubDev"),
@@ -27,9 +26,9 @@ enum PublicationType {
   const PublicationType(this.value);
 
   Widget get widget => switch (this) {
-        PublicationType.pubDev => SvgPicture.asset("assets/dart.svg"),
-        PublicationType.rive => Image.asset("assets/rive.jpeg"),
-      };
+    PublicationType.pubDev => SvgPicture.asset("assets/dart.svg"),
+    PublicationType.rive => Image.asset("assets/rive.jpeg"),
+  };
 }
 
 class PubDevPackage {
@@ -68,45 +67,44 @@ class PublicationsPage extends StatelessWidget {
         minHeight: 300,
       );
 
-  List<PublicationType> get publicationTypeList => PublicationType.values;
+  List<PublicationType> get publicationTypeList =>
+      PublicationType.values.sublist(1, 2);
 
   @override
   Widget build(BuildContext context) {
-    return Visibility(
-      visible: false,
-      child: Column(
-        children: [
-          Text(
-            "Publications",
-            style: GoogleFonts.poppins(
-              fontSize: 60,
-            ),
+    return Column(
+      children: [
+        Text(
+          "Publications",
+          style: GoogleFonts.poppins(
+            fontSize: 60,
           ),
-          ListView.builder(
-            shrinkWrap: true,
-            itemCount: publicationTypeList.length,
-            itemBuilder: (_, i) {
-              PublicationType p = publicationTypeList[i];
-              return Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: ListTile(
-                  title: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      p.value,
-                      textAlign: TextAlign.center,
-                    ),
+        ),
+        ListView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: publicationTypeList.length,
+          itemBuilder: (_, i) {
+            PublicationType p = publicationTypeList[i];
+            return Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: ListTile(
+                title: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    p.value,
+                    textAlign: TextAlign.center,
                   ),
-                  subtitle: switch (p) {
-                    PublicationType.pubDev => const PubDevPublications(),
-                    PublicationType.rive => const RivePublications(),
-                  },
                 ),
-              );
-            },
-          ),
-        ],
-      ),
+                subtitle: switch (p) {
+                  PublicationType.pubDev => const PubDevPublications(),
+                  PublicationType.rive => const RivePublications(),
+                },
+              ),
+            );
+          },
+        ),
+      ],
     );
   }
 }
@@ -823,7 +821,7 @@ class _RivePublicationItemMenuState extends State<RivePublicationItemMenu>
         );
 
         return SizedBox(
-          height: 1000,
+          height: 800,
           child: Center(
             child: AnimatedBuilder(
               animation: controller,
@@ -893,7 +891,6 @@ class _RivePublicationItemMenuState extends State<RivePublicationItemMenu>
             ),
           ),
         );
-
       },
     );
   }

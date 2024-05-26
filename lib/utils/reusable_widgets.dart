@@ -79,54 +79,39 @@ class DropDownMenuButton<T> extends StatelessWidget {
     return ValueListenableBuilder(
       valueListenable: _valueNotifier,
       builder: (context, value, _) {
-        return Card(
-          // color: Colors.white,
-          elevation: 12.0,
-          shadowColor: Colors.grey.withOpacity(0.15),
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(
-              Radius.circular(10.0),
-            ),
+        return DropdownButton<T>(
+          isExpanded: true,
+          hint: Text(
+            hint ?? "e.g ${options.isEmpty ? '' : label(options.first)}",
           ),
-          // margin: const EdgeInsets.all(20.0),
-          child: SizedBox(
-            width: width,
-            // height: height,
-            child: DropdownButton<T>(
-              isExpanded: true,
-              hint: Text(
-                hint ?? "e.g ${options.isEmpty ? '' : label(options.first)}",
-              ),
-              value: value,
-              alignment: Alignment.center,
-              //style: itemStyle,
-              //underline: itemUnderline,
-              borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-              //focusColor: HexColor("#A9D2F0"),
-              // dropdownColor: Colors.white,
-              elevation: 12,
-              onChanged: (newValue) {
-                if (newValue != null) {
-                  onSelect(newValue);
-                  _valueNotifier.value = newValue;
-                }
-              },
-              items: options
-                  .map(
-                    (e) => DropdownMenuItem<T>(
-                      value: e,
-                      child: Center(
-                        child: Text(
-                          label(e),
-                          textAlign: TextAlign.center,
-                          //style: itemStyle,
-                        ),
-                      ),
+          value: value,
+          alignment: Alignment.center,
+          //style: itemStyle,
+          //underline: itemUnderline,
+          borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+          //focusColor: HexColor("#A9D2F0"),
+          // dropdownColor: Colors.white,
+          elevation: 12,
+          onChanged: (newValue) {
+            if (newValue != null) {
+              onSelect(newValue);
+              _valueNotifier.value = newValue;
+            }
+          },
+          items: options
+              .map(
+                (e) => DropdownMenuItem<T>(
+                  value: e,
+                  child: Center(
+                    child: Text(
+                      label(e),
+                      textAlign: TextAlign.center,
+                      //style: itemStyle,
                     ),
-                  )
-                  .toList(),
-            ),
-          ),
+                  ),
+                ),
+              )
+              .toList(),
         );
       },
     );

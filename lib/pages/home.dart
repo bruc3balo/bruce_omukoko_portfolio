@@ -1,5 +1,6 @@
 import 'package:animations/animations.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:bruce_omukoko_portfolio/data/data.dart';
 import 'package:bruce_omukoko_portfolio/pages/contact_me.dart';
 import 'package:bruce_omukoko_portfolio/pages/projects.dart';
 import 'package:bruce_omukoko_portfolio/pages/publications.dart';
@@ -11,24 +12,20 @@ import 'package:bruce_omukoko_portfolio/theme/theme.dart';
 import 'package:bruce_omukoko_portfolio/utils/reusable_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:visibility_detector/visibility_detector.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'about_me.dart';
 
 final ValueNotifier<SingleHomePages> _homeMenu = ValueNotifier(
   SingleHomePages.core,
 );
-final List<HomeSection> sections = HomeSection.values.sublist(0, 1).toList();
+final List<HomeSection> sections = HomeSection.values.toList();
 final ValueNotifier<Set<HomeSection>> _visiblePages = ValueNotifier({});
-
 final ScrollController scrollController = ScrollController();
-final aboutMeKey = GlobalKey();
-final skillsKey = GlobalKey();
-final publicationsKey = GlobalKey();
-final projectsKey = GlobalKey();
-final contactMeKey = GlobalKey();
+final ItemScrollController itemScrollController = ItemScrollController();
+final ItemPositionsListener itemPositionsListener =
+    ItemPositionsListener.create();
 
 enum SingleHomePages {
-  splash("splash"),
   core("core"),
   resume("Resume"),
   skillPlayground("Skill playground");
@@ -53,156 +50,236 @@ enum HomeSection {
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
-
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         Image.asset(
-          "background.png",
+          "assets/background.png",
           fit: BoxFit.fill,
         ),
-        ValueListenableBuilder(
-          valueListenable: _homeMenu,
-          builder: (_, selectedItem, __) {
-            return Scaffold(
-              appBar: AppBar(
-                title: Text.rich(
-                  TextSpan(
-                    children: [
-                      TextSpan(
-                        text: "Bruce",
-                        style: GoogleFonts.inter(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 30,
-                          color: orange,
-                        ),
-                      ),
-                      TextSpan(
-                        text: " Omukoko",
-                        style: GoogleFonts.inter(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 30,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                actions: sections
-                    .map(
-                      (e) => GestureDetector(
-                        onTap: () {
-                          GlobalKey key = switch (e) {
-                            HomeSection.about => aboutMeKey,
-                            HomeSection.publications => publicationsKey,
-                            HomeSection.skills => skillsKey,
-                            HomeSection.projects => projectsKey,
-                            HomeSection.contact => contactMeKey,
-                          };
+        LayoutBuilder(
+          builder: (_, size) {
+            bool isMobileView = size.maxWidth < mobileSizeBorder;
 
-                          Scrollable.ensureVisible(
-                            key.currentContext!,
-                            duration: const Duration(milliseconds: 1000),
-                            curve: Curves.slowMiddle,
-                          );
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                            top: 3.0,
-                            bottom: 3.0,
-                            left: 6.0,
-                            right: 6.0,
-                          ),
-                          child: OnHover(
-                            builder: (hovering) {
-                              return Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  AutoSizeText(
-                                    e.value,
-                                    minFontSize: 12,
-                                    maxFontSize: 16,
-                                    style: GoogleFonts.inter(
-                                      color: hovering ? orange : Colors.white,
-                                      fontSize: 24,
-                                    ),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                  ValueListenableBuilder(
+            return ValueListenableBuilder(
+              valueListenable: _homeMenu,
+              builder: (_, selectedItem, __) {
+                return Scaffold(
+                  drawer: isMobileView
+                      ? Drawer(
+                          backgroundColor: darkBackground,
+                          child: ListView.builder(
+                            itemCount: sections.length,
+                            itemBuilder: (_, i) {
+                              var e = sections[i];
+                              return MouseRegion(
+                                cursor: SystemMouseCursors.click,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    itemScrollController.scrollTo(
+                                      index: e.index,
+                                      duration: const Duration(seconds: 1),
+                                      curve: Curves.easeInOutCubic,
+                                    );
+
+                                    Navigator.pop(context);
+                                  },
+                                  child: ValueListenableBuilder(
                                     valueListenable: _visiblePages,
                                     builder: (_, pages, __) {
                                       bool visible = pages.contains(e);
-                                      return AnimatedOpacity(
-                                        opacity: visible ? 1 : 0,
-                                        duration: const Duration(seconds: 1),
-                                        curve: Curves.slowMiddle,
-                                        child: Visibility(
-                                          visible: visible,
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: CircleAvatar(
-                                              radius: 3.5,
-                                              backgroundColor: orange,
+                                      return OnHover(
+                                        builder: (hovering) {
+                                          return ListTile(
+                                            selected: visible,
+                                            leading: AnimatedOpacity(
+                                              opacity: visible ? 1 : 0,
+                                              duration:
+                                                  const Duration(seconds: 1),
+                                              curve: Curves.slowMiddle,
+                                              child: Visibility(
+                                                visible: visible,
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(8.0),
+                                                  child: CircleAvatar(
+                                                    radius: 3.5,
+                                                    backgroundColor: orange,
+                                                  ),
+                                                ),
+                                              ),
                                             ),
-                                          ),
-                                        ),
+                                            title: AutoSizeText(
+                                              e.value,
+                                              minFontSize: 8,
+                                              maxFontSize: 16,
+                                              style: GoogleFonts.inter(
+                                                color: hovering
+                                                    ? orange
+                                                    : Colors.white,
+                                                fontWeight: visible
+                                                    ? FontWeight.bold
+                                                    : FontWeight.w400,
+                                                // fontSize: 24,
+                                              ),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          );
+                                        },
                                       );
                                     },
                                   ),
-                                ],
+                                ),
                               );
                             },
                           ),
-                        ),
+                        )
+                      : null,
+                  appBar: AppBar(
+                    title: Text.rich(
+                      TextSpan(
+                        children: [
+                          TextSpan(
+                            text: "Bruce",
+                            style: GoogleFonts.inter(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 30,
+                              color: orange,
+                            ),
+                          ),
+                          TextSpan(
+                            text: " Omukoko",
+                            style: GoogleFonts.inter(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 30,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
                       ),
-                    )
-                    .toList(),
-              ),
-              body: PageTransitionSwitcher(
-                duration: const Duration(seconds: 1),
-                transitionBuilder: (
-                  Widget child,
-                  Animation<double> primaryAnimation,
-                  Animation<double> secondaryAnimation,
-                ) {
-                  return SharedAxisTransition(
-                    fillColor: Colors.transparent,
-                    transitionType: SharedAxisTransitionType.horizontal,
-                    animation: primaryAnimation,
-                    secondaryAnimation: secondaryAnimation,
-                    child: child,
-                  );
-                },
-                child: switch (selectedItem) {
-                  SingleHomePages.splash => SplashScreen(
-                      goToCore: () => _homeMenu.value = SingleHomePages.core,
                     ),
-                  SingleHomePages.core => CorePage(
-                      goToSkillPlayground: () =>
-                          _homeMenu.value = SingleHomePages.skillPlayground,
-                      goToResume: () =>
-                          _homeMenu.value = SingleHomePages.resume,
-                    ),
-                  SingleHomePages.resume => ResumePage(
-                      goToCore: () => _homeMenu.value = SingleHomePages.core,
-                    ),
-                  SingleHomePages.skillPlayground => SkillPlayground(
-                      goToCore: () => _homeMenu.value = SingleHomePages.core,
-                    ),
-                },
-              ),
+                    actions: sections
+                        .sublist(0, isMobileView ? 0 : sections.length)
+                        .map(
+                          (e) => MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: GestureDetector(
+                              onTap: () {
+                                itemScrollController.scrollTo(
+                                  index: e.index,
+                                  duration: const Duration(seconds: 1),
+                                  curve: Curves.easeInOutCubic,
+                                );
+                              },
+                              child: Padding(
+                                padding: EdgeInsets.only(
+                                  top: 3.0,
+                                  bottom: 3.0,
+                                  left: isMobileView ? 2.0 : 6.0,
+                                  right: isMobileView ? 2.0 : 6.0,
+                                ),
+                                child: ValueListenableBuilder(
+                                    valueListenable: _visiblePages,
+                                    builder: (_, pages, __) {
+                                      bool visible = pages.contains(e);
+                                      return OnHover(
+                                        builder: (hovering) {
+                                          return Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              AutoSizeText(
+                                                e.value,
+                                                minFontSize: 8,
+                                                maxFontSize: 16,
+                                                style: GoogleFonts.inter(
+                                                  color: hovering
+                                                      ? orange
+                                                      : Colors.white,
+                                                  fontWeight: visible
+                                                      ? FontWeight.bold
+                                                      : FontWeight.w400,
+                                                  // fontSize: 24,
+                                                ),
+                                                textAlign: TextAlign.center,
+                                              ),
+                                              AnimatedOpacity(
+                                                opacity: visible ? 1 : 0,
+                                                duration:
+                                                    const Duration(seconds: 1),
+                                                curve: Curves.slowMiddle,
+                                                child: Visibility(
+                                                  visible: visible,
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            8.0),
+                                                    child: CircleAvatar(
+                                                      radius: 3.5,
+                                                      backgroundColor: orange,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      );
+                                    }),
+                              ),
+                            ),
+                          ),
+                        )
+                        .toList(),
+                  ),
+                  body: PageTransitionSwitcher(
+                    duration: const Duration(seconds: 1),
+                    transitionBuilder: (
+                      Widget child,
+                      Animation<double> primaryAnimation,
+                      Animation<double> secondaryAnimation,
+                    ) {
+                      return SharedAxisTransition(
+                        fillColor: Colors.transparent,
+                        transitionType: SharedAxisTransitionType.horizontal,
+                        animation: primaryAnimation,
+                        secondaryAnimation: secondaryAnimation,
+                        child: child,
+                      );
+                    },
+                    child: switch (selectedItem) {
+                      SingleHomePages.core => CorePage(
+                          goToSkillPlayground: () =>
+                              _homeMenu.value = SingleHomePages.skillPlayground,
+                          goToResume: () =>
+                              _homeMenu.value = SingleHomePages.resume,
+                        ),
+                      SingleHomePages.resume => ResumePage(
+                          goToCore: () =>
+                              _homeMenu.value = SingleHomePages.core,
+                        ),
+                      SingleHomePages.skillPlayground => SkillPlayground(
+                          goToCore: () =>
+                              _homeMenu.value = SingleHomePages.core,
+                        ),
+                    },
+                  ),
+                );
+              },
             );
           },
         ),
+        const SplashScreen(),
       ],
     );
   }
 }
 
-class CorePage extends StatelessWidget {
+class CorePage extends StatefulWidget {
   const CorePage({
     required this.goToResume,
     required this.goToSkillPlayground,
@@ -212,114 +289,64 @@ class CorePage extends StatelessWidget {
   final Function() goToResume;
   final Function() goToSkillPlayground;
 
+  @override
+  State<CorePage> createState() => _CorePageState();
+}
+
+class _CorePageState extends State<CorePage> {
   double get separation => 200;
 
   @override
+  void initState() {
+    itemPositionsListener.itemPositions.addListener(() {
+      Set<HomeSection> visiblePages = itemPositionsListener.itemPositions.value
+          .map((e) => sections[e.index])
+          .toSet();
+      _visiblePages.value = visiblePages;
+    });
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return ListView.separated(
+    return ScrollablePositionedList.separated(
       itemCount: sections.length,
       separatorBuilder: (_, i) {
-
         bool first = sections.first == sections[i];
         bool last = sections.last == sections[i];
 
         return SizedBox(
           height: last ? separation / 2 : separation,
         );
-
       },
       itemBuilder: (_, i) {
         HomeSection s = sections[i];
         return switch (s) {
-          HomeSection.about => VisibilityDetector(
-              key: aboutMeKey,
-              onVisibilityChanged: (info) {
-                bool isVisible = info.visibleFraction > 0;
-                if (isVisible) {
-                  _visiblePages.value = Set.from(
-                    _visiblePages.value..add(HomeSection.about),
-                  );
-                } else {
-                  _visiblePages.value = Set.from(
-                    _visiblePages.value..remove(HomeSection.about),
-                  );
-                }
+          HomeSection.about => AboutMePage(
+              goToResume: widget.goToResume,
+              scrollToSkills: () {
+                itemScrollController.scrollTo(
+                  index: HomeSection.skills.index,
+                  duration: const Duration(seconds: 1),
+                );
               },
-              child: AboutMePage(
-                goToResume: goToResume,
-                scrollDown: () {
-                  Scrollable.ensureVisible(
-                    skillsKey.currentContext!,
-                    duration: const Duration(milliseconds: 1000),
-                    curve: Curves.easeIn,
-                  );
-                },
-              ),
-            ),
-          HomeSection.publications => VisibilityDetector(
-              key: publicationsKey,
-              onVisibilityChanged: (info) {
-                bool isVisible = info.visibleFraction > 0;
-                if (isVisible) {
-                  _visiblePages.value = Set.from(
-                    _visiblePages.value..add(HomeSection.publications),
-                  );
-                } else {
-                  _visiblePages.value = Set.from(
-                    _visiblePages.value..remove(HomeSection.publications),
-                  );
-                }
+              scrollToContactMe: () {
+                itemScrollController.scrollTo(
+                  index: HomeSection.contact.index,
+                  duration: const Duration(seconds: 1),
+                );
               },
-              child: const PublicationsPage(),
             ),
-          HomeSection.skills => VisibilityDetector(
-              key: skillsKey,
-              onVisibilityChanged: (info) {
-                bool isVisible = info.visibleFraction > 0;
-                if (isVisible) {
-                  _visiblePages.value =
-                      Set.from(_visiblePages.value..add(HomeSection.skills));
-                } else {
-                  _visiblePages.value =
-                      Set.from(_visiblePages.value..remove(HomeSection.skills));
-                }
-              },
-              child: SkillsPage(
-                goToSkillPlayground: goToSkillPlayground,
-              ),
+          HomeSection.publications => const PublicationsPage(),
+          HomeSection.skills => SkillsPage(
+              goToSkillPlayground: widget.goToSkillPlayground,
             ),
-          HomeSection.projects => VisibilityDetector(
-              key: projectsKey,
-              onVisibilityChanged: (info) {
-                bool isVisible = info.visibleFraction > 0;
-                if (isVisible) {
-                  _visiblePages.value =
-                      Set.from(_visiblePages.value..add(HomeSection.projects));
-                } else {
-                  _visiblePages.value = Set.from(
-                      _visiblePages.value..remove(HomeSection.projects));
-                }
-              },
-              child: const ProjectsPage(),
-            ),
-          HomeSection.contact => VisibilityDetector(
-              key: contactMeKey,
-              onVisibilityChanged: (info) {
-                bool isVisible = info.visibleFraction > 0;
-                if (isVisible) {
-                  _visiblePages.value = Set.from(
-                    _visiblePages.value..add(HomeSection.contact),
-                  );
-                } else {
-                  _visiblePages.value = Set.from(
-                    _visiblePages.value..remove(HomeSection.contact),
-                  );
-                }
-              },
-              child: ContactMePage(),
-            ),
+          HomeSection.projects => const ProjectsPage(),
+          HomeSection.contact => const ContactMePage(),
         };
       },
+      itemScrollController: itemScrollController,
+      itemPositionsListener: itemPositionsListener,
     );
   }
 }

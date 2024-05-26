@@ -30,6 +30,7 @@ dependencies:
   lru_memory_cache: ^1.0.2
 #  duration_picker:
   visibility_detector: ^0.4.0+2
+  scrollable_positioned_list: ^0.3.8
 
 dev_dependencies:
   flutter_test:

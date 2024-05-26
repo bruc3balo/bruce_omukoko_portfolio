@@ -1,3 +1,5 @@
+import 'package:bruce_omukoko_portfolio/data/data.dart';
+import 'package:bruce_omukoko_portfolio/pages/skills.dart';
 import 'package:bruce_omukoko_portfolio/theme/theme.dart';
 import 'package:bruce_omukoko_portfolio/utils/functions.dart';
 import 'package:flutter/material.dart';
@@ -5,22 +7,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:rive/rive.dart';
-
-class Project {
-  final Widget cover;
-  final String name;
-  final String about;
-  final String url;
-  final List<Widget> stack;
-
-  const Project({
-    required this.cover,
-    required this.name,
-    required this.about,
-    required this.url,
-    this.stack = const [],
-  });
-}
 
 class ProjectsPage extends StatelessWidget {
   const ProjectsPage({super.key});
@@ -35,41 +21,12 @@ class ProjectsPage extends StatelessWidget {
             "assets/tod.riv",
           ),
           stack: [
-            SvgPicture.asset(
-              "spring.svg",
-              fit: BoxFit.contain,
-              color: HexColor("#77bc1f"),
-              height: 40,
-              width: 40,
-            ),
-            SvgPicture.asset(
-              "flutter.svg",
-              height: 40,
-              width: 40,
-            ),
-            SvgPicture.asset(
-              "mongo.svg",
-              height: 40,
-              width: 40,
-            ),
-            Image.asset(
-              "assets/rive.png",
-              fit: BoxFit.contain,
-              width: 40,
-              height: 40,
-            ),
-            SvgPicture.asset(
-              "kubernets.svg",
-              fit: BoxFit.contain,
-              width: 40,
-              height: 40,
-            ),
-            SvgPicture.asset(
-              "docker.svg",
-              fit: BoxFit.contain,
-              width: 40,
-              height: 40,
-            ),
+            springTechnology,
+            flutterTechnology,
+            mongoDbTechnology,
+            riveTechnology,
+            kubernetesTechnology,
+            dockerTechnology,
           ],
         ),
       ];
@@ -90,13 +47,15 @@ class ProjectsPage extends StatelessWidget {
             ),
           ),
         ),
-        ListView.builder(
+        ListView(
           shrinkWrap: true,
-          itemCount: projects.length,
-          itemBuilder: (_, i) {
-            Project p = projects[i];
-            return ProjectItem(project: p);
-          },
+          physics: const NeverScrollableScrollPhysics(),
+          children: projects
+              .map(
+                (e) => ProjectItem(
+                  project: e,
+                ),
+              ).toList(),
         ),
       ],
     );
@@ -135,13 +94,18 @@ class ProjectItem extends StatelessWidget {
                         titleAlignment: ListTileTitleAlignment.center,
                         title: Padding(
                           padding: const EdgeInsets.only(bottom: 8.0),
-                          child: Text(project.name),
+                          child: SelectableText(
+                            project.name,
+                            textAlign: TextAlign.center,
+                          ),
                         ),
                         trailing: const Icon(
                           Icons.open_in_new,
                         ),
                       ),
-                      subtitle: Text(project.about),
+                      subtitle: SelectableText(
+                        project.about,
+                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -154,7 +118,13 @@ class ProjectItem extends StatelessWidget {
                                 (e) => Expanded(
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
-                                    child: e,
+                                    child: GestureDetector(
+                                      onTap: () => openStringUri(e.url),
+                                      child: Tooltip(
+                                        message: e.name,
+                                        child: e.cover,
+                                      ),
+                                    ),
                                   ),
                                 ),
                               )

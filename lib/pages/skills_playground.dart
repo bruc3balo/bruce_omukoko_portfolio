@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:bruce_omukoko_portfolio/pages/skills.dart';
+import 'package:bruce_omukoko_portfolio/data/data.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
