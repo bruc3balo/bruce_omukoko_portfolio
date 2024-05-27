@@ -213,7 +213,7 @@ class AboutMeDesktop extends StatelessWidget {
                                 ),
                               ),
                               child: Text(
-                                "Know more",
+                                "More",
                                 style: GoogleFonts.inter(
                                   fontSize: 20,
                                   color: Colors.white,
@@ -298,6 +298,7 @@ class AboutMeDesktop extends StatelessWidget {
                   children: [
                     Text(
                       "A little more about me",
+                      key: moreKey,
                       style: GoogleFonts.inter(
                         fontWeight: FontWeight.bold,
                         fontSize: 54,
@@ -553,7 +554,7 @@ class AboutMeMobile extends StatelessWidget {
                                   );
                                 }
 
-                                return BorderSide(
+                                return const BorderSide(
                                   color: Colors.white,
                                   width: 1.0,
                                 );
@@ -561,7 +562,7 @@ class AboutMeMobile extends StatelessWidget {
                             ),
                           ),
                           child: Text(
-                            "Know more",
+                            "More",
                             style: GoogleFonts.inter(
                               fontSize: 20,
                               color: Colors.white,
@@ -627,6 +628,7 @@ class AboutMeMobile extends StatelessWidget {
             children: [
               Text(
                 "A little more about me",
+                key: moreKey,
                 style: GoogleFonts.inter(
                   fontWeight: FontWeight.bold,
                   fontSize: 54,

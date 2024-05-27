@@ -88,26 +88,26 @@ class _SkillsPageState extends State<SkillsPage> {
                 children: [
                   Align(
                     alignment: Alignment.center,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            "Skills",
-                            style: GoogleFonts.inter(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 60,
-                              color: orange,
+                    child: GestureDetector(
+                      onTap: widget.goToSkillPlayground,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              "Skills",
+                              style: GoogleFonts.inter(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 60,
+                                color: orange,
+                              ),
                             ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: IconButton(
-                            onPressed: widget.goToSkillPlayground,
-                            icon: ValueListenableBuilder(
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: ValueListenableBuilder(
                               valueListenable: colorStream,
                               builder: (_, opacity, __) {
                                 return AnimatedOpacity(
@@ -121,13 +121,13 @@ class _SkillsPageState extends State<SkillsPage> {
                               },
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                   Positioned(
                     right: 0,
-                    left: isMobileView ? 200 : 350,
+                    left: isMobileView ? 270 : 350,
                     bottom: 250,
                     child: PsstPressHere(
                       isMobileView: isMobileView,

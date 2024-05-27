@@ -61,7 +61,6 @@ class HomePage extends StatelessWidget {
         LayoutBuilder(
           builder: (_, size) {
             bool isMobileView = size.maxWidth < mobileSizeBorder;
-
             return ValueListenableBuilder(
               valueListenable: _homeMenu,
               builder: (_, selectedItem, __) {
