@@ -1,3 +1,4 @@
+import 'package:bruce_omukoko_portfolio/theme/theme.dart';
 import 'package:bruce_omukoko_portfolio/utils/functions.dart';
 import 'package:bruce_omukoko_portfolio/utils/reusable_widgets.dart';
 import 'package:bruce_omukoko_portfolio/utils/validations.dart';
@@ -98,9 +99,11 @@ class _ContactMePageState extends State<ContactMePage> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  "Contact",
-                  style: GoogleFonts.poppins(
+                  "Contact Me",
+                  style: GoogleFonts.inter(
+                    fontWeight: FontWeight.w600,
                     fontSize: 60,
+                    color: orange,
                   ),
                 ),
               ),

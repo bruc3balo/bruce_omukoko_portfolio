@@ -281,7 +281,6 @@ class AboutMeDesktop extends StatelessWidget {
           ],
         ),
         Flex(
-          key: moreKey,
           direction: Axis.horizontal,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.start,

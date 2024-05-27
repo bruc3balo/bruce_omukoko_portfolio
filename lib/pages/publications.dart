@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bruce_omukoko_portfolio/data/data.dart';
+import 'package:bruce_omukoko_portfolio/theme/theme.dart';
 import 'package:bruce_omukoko_portfolio/utils/extensions.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -74,10 +75,15 @@ class PublicationsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(
-          "Publications",
-          style: GoogleFonts.poppins(
-            fontSize: 60,
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            "Publications",
+            style: GoogleFonts.inter(
+              fontWeight: FontWeight.w600,
+              fontSize: 60,
+              color: orange,
+            ),
           ),
         ),
         ListView.builder(
