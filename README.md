@@ -12,22 +12,27 @@ Overall, my passion for leveraging technology to drive business success, combine
 
 Run web_server
 
-* Web Server
+#### Web Server
 ```bash
   flutter run -d web-server --web-hostname 0.0.0.0  --web-port 80
 ```
 
-* Icons
+#### Icons
 ```bash
   flutter pub run flutter_launcher_icons:main
 ```
 
-* Splashscreen
+#### Splashscreen
 ```bash
   flutter pub run flutter_native_splash:create
 ```
 
-* Build
+#### Build
+* Github
 ```bash
   flutter build web --wasm --base-href /bruc3balo.github.io/ --release
+```
+* Firebase
+```bash
+  flutter build web --wasm --release
 ```
