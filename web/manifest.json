@@ -1,11 +1,11 @@
 {
-    "name": "bruce_omukoko_portfolio",
-    "short_name": "bruce_omukoko_portfolio",
+    "name": "Bruce Omukoko Portfolio",
+    "short_name": "Balo Portfolio",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#111111",
-    "theme_color": "#f5f5f5",
-    "description": "A new Flutter project.",
+    "background_color": "#25292D",
+    "theme_color": "#EC7F00",
+    "description": "Bruce's Portfolio Site",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

@@ -1,19 +1,12 @@
 import 'dart:async';
-import 'dart:math';
 
 import 'package:bruce_omukoko_portfolio/data/data.dart';
-import 'package:bruce_omukoko_portfolio/main.dart';
 import 'package:bruce_omukoko_portfolio/pages/skills_playground.dart';
 import 'package:bruce_omukoko_portfolio/theme/theme.dart';
-import 'package:bruce_omukoko_portfolio/utils/functions.dart';
 import 'package:bruce_omukoko_portfolio/utils/reusable_widgets.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hexcolor/hexcolor.dart';
 
 enum InfoLevel {
   low(level: 1, icon: Icons.directions_walk),
@@ -72,7 +65,7 @@ class _SkillsPageState extends State<SkillsPage> {
 
   @override
   Widget build(BuildContext context) {
-    ThemeData theme = Theme.of(context);
+    // ThemeData theme = Theme.of(context);
     return LayoutBuilder(builder: (_, size) {
       bool isMobileView = size.maxWidth < mobileSizeBorder;
       return Column(

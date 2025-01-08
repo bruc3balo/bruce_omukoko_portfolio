@@ -1,12 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bruce_omukoko_portfolio/data/data.dart';
-import 'package:bruce_omukoko_portfolio/pages/contact_me.dart';
 import 'package:bruce_omukoko_portfolio/theme/theme.dart';
 import 'package:bruce_omukoko_portfolio/utils/reusable_widgets.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -27,7 +23,6 @@ class AboutMePage extends StatelessWidget {
     return LayoutBuilder(
       builder: (_, size) {
         bool isMobileView = size.maxWidth < mobileSizeBorder;
-        print("Mobile : $isMobileView : ${size.maxWidth}");
 
         return isMobileView
             ? AboutMeMobile(
@@ -144,26 +139,26 @@ class AboutMeDesktop extends StatelessWidget {
                             child: ElevatedButton(
                               onPressed: scrollToContactMe,
                               style: ButtonStyle(
-                                padding: MaterialStateProperty.all(
-                                    const EdgeInsets.all(15.0)),
+                                padding: WidgetStateProperty.all(
+                                    const EdgeInsets.all(15.0),),
                                 backgroundColor:
-                                MaterialStateProperty.resolveWith(
+                                WidgetStateProperty.resolveWith(
                                       (state) {
-                                    if (state.contains(MaterialState.hovered)) {
+                                    if (state.contains(WidgetState.hovered)) {
                                       return Colors.transparent;
                                     }
 
                                     return orange;
                                   },
                                 ),
-                                shape: MaterialStateProperty.all(
+                                shape: WidgetStateProperty.all(
                                   RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(7.0),
                                   ),
                                 ),
-                                side: MaterialStateProperty.resolveWith(
+                                side: WidgetStateProperty.resolveWith(
                                       (state) {
-                                    if (state.contains(MaterialState.hovered)) {
+                                    if (state.contains(WidgetState.hovered)) {
                                       return BorderSide(
                                           color: orange, width: 1.0);
                                     }
@@ -186,19 +181,19 @@ class AboutMeDesktop extends StatelessWidget {
                             child: ElevatedButton(
                               onPressed: scrollToSkills,
                               style: ButtonStyle(
-                                padding: MaterialStateProperty.all(
+                                padding: WidgetStateProperty.all(
                                     const EdgeInsets.all(15.0)),
-                                backgroundColor: MaterialStateProperty.all(
+                                backgroundColor: WidgetStateProperty.all(
                                   Colors.transparent,
                                 ),
-                                shape: MaterialStateProperty.all(
+                                shape: WidgetStateProperty.all(
                                   RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(7.0),
                                   ),
                                 ),
-                                side: MaterialStateProperty.resolveWith(
+                                side: WidgetStateProperty.resolveWith(
                                       (state) {
-                                    if (state.contains(MaterialState.hovered)) {
+                                    if (state.contains(WidgetState.hovered)) {
                                       return BorderSide(
                                         color: orange,
                                         width: 1.0,
@@ -330,28 +325,28 @@ class AboutMeDesktop extends StatelessWidget {
                               child: ElevatedButton(
                                 onPressed: goToResume,
                                 style: ButtonStyle(
-                                  padding: MaterialStateProperty.all(
+                                  padding: WidgetStateProperty.all(
                                       const EdgeInsets.all(15.0)),
                                   backgroundColor:
-                                  MaterialStateProperty.resolveWith(
+                                  WidgetStateProperty.resolveWith(
                                         (state) {
                                       if (state
-                                          .contains(MaterialState.hovered)) {
+                                          .contains(WidgetState.hovered)) {
                                         return Colors.transparent;
                                       }
 
                                       return orange;
                                     },
                                   ),
-                                  shape: MaterialStateProperty.all(
+                                  shape: WidgetStateProperty.all(
                                     RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(7.0),
                                     ),
                                   ),
-                                  side: MaterialStateProperty.resolveWith(
+                                  side: WidgetStateProperty.resolveWith(
                                         (state) {
                                       if (state
-                                          .contains(MaterialState.hovered)) {
+                                          .contains(WidgetState.hovered)) {
                                         return BorderSide(
                                             color: orange, width: 1.0);
                                       }
@@ -492,25 +487,25 @@ class AboutMeMobile extends StatelessWidget {
                         child: ElevatedButton(
                           onPressed: scrollToSkills,
                           style: ButtonStyle(
-                            padding: MaterialStateProperty.all(
+                            padding: WidgetStateProperty.all(
                                 const EdgeInsets.all(15.0)),
-                            backgroundColor: MaterialStateProperty.resolveWith(
+                            backgroundColor: WidgetStateProperty.resolveWith(
                                   (state) {
-                                if (state.contains(MaterialState.hovered)) {
+                                if (state.contains(WidgetState.hovered)) {
                                   return Colors.transparent;
                                 }
 
                                 return orange;
                               },
                             ),
-                            shape: MaterialStateProperty.all(
+                            shape: WidgetStateProperty.all(
                               RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(7.0),
                               ),
                             ),
-                            side: MaterialStateProperty.resolveWith(
+                            side: WidgetStateProperty.resolveWith(
                                   (state) {
-                                if (state.contains(MaterialState.hovered)) {
+                                if (state.contains(WidgetState.hovered)) {
                                   return BorderSide(color: orange, width: 1.0);
                                 }
 
@@ -534,19 +529,19 @@ class AboutMeMobile extends StatelessWidget {
                         child: ElevatedButton(
                           onPressed: scrollToSkills,
                           style: ButtonStyle(
-                            padding: MaterialStateProperty.all(
+                            padding: WidgetStateProperty.all(
                                 const EdgeInsets.all(15.0)),
-                            backgroundColor: MaterialStateProperty.all(
+                            backgroundColor: WidgetStateProperty.all(
                               Colors.transparent,
                             ),
-                            shape: MaterialStateProperty.all(
+                            shape: WidgetStateProperty.all(
                               RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(7.0),
                               ),
                             ),
-                            side: MaterialStateProperty.resolveWith(
+                            side: WidgetStateProperty.resolveWith(
                                   (state) {
-                                if (state.contains(MaterialState.hovered)) {
+                                if (state.contains(WidgetState.hovered)) {
                                   return BorderSide(
                                     color: orange,
                                     width: 1.0,
@@ -663,25 +658,25 @@ class AboutMeMobile extends StatelessWidget {
                         child: ElevatedButton(
                           onPressed: goToResume,
                           style: ButtonStyle(
-                            padding: MaterialStateProperty.all(
+                            padding: WidgetStateProperty.all(
                                 const EdgeInsets.all(15.0)),
-                            backgroundColor: MaterialStateProperty.resolveWith(
+                            backgroundColor: WidgetStateProperty.resolveWith(
                                   (state) {
-                                if (state.contains(MaterialState.hovered)) {
+                                if (state.contains(WidgetState.hovered)) {
                                   return Colors.transparent;
                                 }
 
                                 return orange;
                               },
                             ),
-                            shape: MaterialStateProperty.all(
+                            shape: WidgetStateProperty.all(
                               RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(7.0),
                               ),
                             ),
-                            side: MaterialStateProperty.resolveWith(
+                            side: WidgetStateProperty.resolveWith(
                                   (state) {
-                                if (state.contains(MaterialState.hovered)) {
+                                if (state.contains(WidgetState.hovered)) {
                                   return BorderSide(color: orange, width: 1.0);
                                 }
 

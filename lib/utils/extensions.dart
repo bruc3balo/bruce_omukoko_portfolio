@@ -54,7 +54,6 @@ extension DateTimeX on DateTime {
     try {
       return DateFormat(originalDateFormat).parse(dateStr);
     } catch (e) {
-      print("Invalid date format $dateStr");
       return null;
     }
   }

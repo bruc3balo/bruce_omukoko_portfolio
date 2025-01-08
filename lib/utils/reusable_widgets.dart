@@ -1,54 +1,6 @@
-import 'dart:ui';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:phone_form_field/phone_form_field.dart';
-
-class PhoneNumberTextField extends StatelessWidget {
-  const PhoneNumberTextField({
-    this.labelText = 'Phone Number',
-    this.enableInteractiveSelection = true,
-    this.isCountrySelectionEnabled = true,
-    this.phoneController,
-    required this.onChanged,
-    super.key,
-  });
-
-  final String labelText;
-  final bool isCountrySelectionEnabled;
-  final bool enableInteractiveSelection;
-  final void Function({
-    required String complete,
-    required String code,
-  }) onChanged;
-  final PhoneController? phoneController;
-
-  @override
-  Widget build(BuildContext context) {
-    return PhoneFormField(
-      controller: phoneController,
-      selectorNavigator: const DraggableModalBottomSheetNavigator(),
-      decoration: InputDecoration(
-        labelText: labelText,
-        errorStyle: const TextStyle(
-          color: Colors.red
-        ),
-        border: const OutlineInputBorder(
-          borderSide: BorderSide(),
-        ),
-      ),
-      autovalidateMode: AutovalidateMode.onUserInteraction,
-      onChanged: (phone) {
-        // ignore: unnecessary_null_comparison
-        if (phone == null) return;
-
-        String complete = phone.nsn;
-        String code = phone.international;
-        onChanged(code: code, complete: complete);
-      },
-    );
-  }
-}
 
 ///Drop Down Menu with button
 ///Not searchable
@@ -80,7 +32,7 @@ class DropDownMenuButton<T> extends StatelessWidget {
       valueListenable: _valueNotifier,
       builder: (context, value, _) {
         return DropdownButton<T>(
-          isExpanded: true,
+          isExpanded: false,
           hint: Text(
             hint ?? "e.g ${options.isEmpty ? '' : label(options.first)}",
           ),
@@ -106,6 +58,7 @@ class DropDownMenuButton<T> extends StatelessWidget {
                     child: Text(
                       label(e),
                       textAlign: TextAlign.center,
+                      style: const TextStyle(color: Colors.black),
                       //style: itemStyle,
                     ),
                   ),

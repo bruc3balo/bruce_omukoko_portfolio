@@ -6,7 +6,7 @@ import 'package:hexcolor/hexcolor.dart';
 
 const mobileSizeBorder = 1000;
 
-const String resumeFileUri = "https://firebasestorage.googleapis.com/v0/b/bruce-omukoko.appspot.com/o/bruce_omukoko_resume.pdf?alt=media&token=612e9de6-5f44-4720-ac4c-21062fa21dec";
+const String resumeFileUri = "https://firebasestorage.googleapis.com/v0/b/bruce-omukoko.appspot.com/o/bruce_omukoko_resume.pdf?alt=media";
 const String resumeUri = "https://www.figma.com/file/c8UgYsEh6lNs0b2Lfp6f3P/CV-%26-Cover-Letter?type=design&node-id=603%3A2&mode=dev&t=1lQ1Yp2hwWXIKazM-1";
 
 

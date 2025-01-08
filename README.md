@@ -14,20 +14,20 @@ Run web_server
 
 * Web Server
 ```bash
-flutter run -d web-server --web-hostname 0.0.0.0  --web-port 80
+  flutter run -d web-server --web-hostname 0.0.0.0  --web-port 80
 ```
 
 * Icons
 ```bash
-flutter pub run flutter_launcher_icons:main
+  flutter pub run flutter_launcher_icons:main
 ```
 
 * Splashscreen
 ```bash
-flutter pub run flutter_native_splash:create
+  flutter pub run flutter_native_splash:create
 ```
 
 * Build
 ```bash
-flutter build web --web-renderer html
+  flutter build web --wasm
 ```

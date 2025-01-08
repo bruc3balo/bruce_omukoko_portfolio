@@ -3,16 +3,14 @@ import 'dart:async';
 import 'package:bruce_omukoko_portfolio/data/data.dart';
 import 'package:bruce_omukoko_portfolio/theme/theme.dart';
 import 'package:bruce_omukoko_portfolio/utils/extensions.dart';
-import 'package:flutter/cupertino.dart';
 
 // import 'package:duration_picker/duration_picker.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lru_memory_cache/lru_memory_cache.dart';
-import 'package:rive/rive.dart';
+import 'package:rive/rive.dart' hide Image;
 import 'package:spinner_date_picker/date_picker/date_picker.dart';
 import 'dart:math';
 import 'package:vector_math/vector_math.dart' show radians;
@@ -386,14 +384,14 @@ class LRUBallsDemo extends StatelessWidget {
     },
   );
 
-  int count = 0;
-
   final ValueNotifier<Map<int, BallDemo>> listNotifier = ValueNotifier({});
 
   final keys = GlobalKey<AnimatedListState>();
 
   @override
   Widget build(BuildContext context) {
+    // int count = 0;
+
     return LayoutBuilder(builder: (_, size) {
       return Scaffold(
         body: ValueListenableBuilder<Map<int, BallDemo>>(
@@ -454,14 +452,13 @@ class LRUBallsDemo extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: FloatingActionButton.small(
                 onPressed: () async {
-                  var time = null;
+                  return;
                   /*var time = await showDurationPicker(
                     context: context,
                     initialTime: const Duration(seconds: 15),
                     baseUnit: BaseUnit.second,
-                    snapToMins: 0.1,
                   );
-*/
+
                   if (time == null) return;
 
                   debugPrint("time is ${time.inSeconds}");
@@ -475,10 +472,9 @@ class LRUBallsDemo extends StatelessWidget {
                     ),
                   );
                   cache.add(ball, expiryDuration: time);
-                  listNotifier.value = cache.dataMap;
-                  print("Adding ball ${listNotifier.value.length}");
+                  listNotifier.value = cache.dataMap;*/
                 },
-                child: Icon(
+                child: const Icon(
                   Icons.add,
                   color: Colors.black,
                 ),
@@ -488,9 +484,9 @@ class LRUBallsDemo extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: FloatingActionButton.small(
                 onPressed: () {
-                  count = 0;
+                  //count = 0;
                 },
-                child: Icon(Icons.refresh, color: Colors.black),
+                child: const Icon(Icons.refresh, color: Colors.black),
               ),
             ),
           ],

@@ -1,11 +1,8 @@
 import 'package:bruce_omukoko_portfolio/data/data.dart';
-import 'package:bruce_omukoko_portfolio/pages/skills.dart';
 import 'package:bruce_omukoko_portfolio/theme/theme.dart';
 import 'package:bruce_omukoko_portfolio/utils/functions.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:rive/rive.dart';
 
 class ProjectsPage extends StatelessWidget {
@@ -72,7 +69,7 @@ class ProjectItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ThemeData theme = Theme.of(context);
+    // ThemeData theme = Theme.of(context);
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       child: GestureDetector(

@@ -72,12 +72,12 @@ class SkillPlayground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PopScope(
-      onPopInvoked: (_) => goToCore(),
+      onPopInvokedWithResult: (_,__) => goToCore(),
       child: Scaffold(
        bottomNavigationBar: ElevatedButton(
          onPressed: goToCore,
          style: const ButtonStyle(
-           backgroundColor: MaterialStatePropertyAll(Colors.red),
+           backgroundColor: WidgetStatePropertyAll(Colors.red),
          ),
          child: const Text("Exit"),
        ),

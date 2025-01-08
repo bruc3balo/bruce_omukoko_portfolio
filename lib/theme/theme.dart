@@ -33,15 +33,13 @@ ColorPack darkColor = ColorPack(
 ColorScheme darkColorScheme = ColorScheme(
   brightness: Brightness.dark,
   primary: darkColor.primary,
-  background: darkBackground,
-  onBackground: darkBackground,
-  onPrimary: darkColor.primary.withOpacity(0.8),
+  onPrimary: darkColor.primary.withValues(alpha: 0.8),
   secondary: darkColor.secondary,
-  onSecondary: darkColor.secondary.withOpacity(0.8),
+  onSecondary: darkColor.secondary.withValues(alpha: 0.8),
   error: errorColor,
-  onError: errorColor.withOpacity(0.8),
+  onError: errorColor.withValues(alpha: 0.8),
   surface: darkColor.tileColor,
-  onSurface: darkColor.tileColor.withOpacity(0.8),
+  onSurface: darkColor.tileColor.withValues(alpha: 0.8),
 );
 
 ThemeData darkTheme = ThemeData(
@@ -59,22 +57,22 @@ ThemeData darkTheme = ThemeData(
   ),
   textButtonTheme: TextButtonThemeData(
     style: ButtonStyle(
-      backgroundColor: MaterialStatePropertyAll(darkColor.primary),
-      foregroundColor: MaterialStatePropertyAll(darkColor.titleColor),
-      side: MaterialStatePropertyAll(
+      backgroundColor: WidgetStatePropertyAll(darkColor.primary),
+      foregroundColor: WidgetStatePropertyAll(darkColor.titleColor),
+      side: WidgetStatePropertyAll(
         BorderSide(
           color: darkColor.background,
           width: 2,
         ),
       ),
-      textStyle: MaterialStatePropertyAll(
+      textStyle: WidgetStatePropertyAll(
         GoogleFonts.robotoMono(
           color: darkColor.tileColor,
           fontWeight: FontWeight.w700,
           letterSpacing: 2.0,
         ),
       ),
-      padding: const MaterialStatePropertyAll(
+      padding: const WidgetStatePropertyAll(
         EdgeInsets.all(10.0),
       ),
       enableFeedback: true,

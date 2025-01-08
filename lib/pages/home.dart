@@ -4,11 +4,11 @@ import 'package:bruce_omukoko_portfolio/data/data.dart';
 import 'package:bruce_omukoko_portfolio/pages/contact_me.dart';
 import 'package:bruce_omukoko_portfolio/pages/projects.dart';
 import 'package:bruce_omukoko_portfolio/pages/publications.dart';
-import 'package:bruce_omukoko_portfolio/pages/resume.dart';
 import 'package:bruce_omukoko_portfolio/pages/skills_playground.dart';
 import 'package:bruce_omukoko_portfolio/pages/skills.dart';
 import 'package:bruce_omukoko_portfolio/pages/splash_screen.dart';
 import 'package:bruce_omukoko_portfolio/theme/theme.dart';
+import 'package:bruce_omukoko_portfolio/utils/functions.dart';
 import 'package:bruce_omukoko_portfolio/utils/reusable_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -27,7 +27,6 @@ final ItemPositionsListener itemPositionsListener =
 
 enum SingleHomePages {
   core("core"),
-  resume("Resume"),
   skillPlayground("Skill playground");
 
   final String value;
@@ -91,7 +90,9 @@ class HomePage extends StatelessWidget {
                                       return OnHover(
                                         builder: (hovering) {
                                           return ListTile(
-                                            tileColor: visible ? orange : Colors.transparent,
+                                            tileColor: visible
+                                                ? orange
+                                                : Colors.transparent,
                                             selected: visible,
                                             leading: AnimatedOpacity(
                                               opacity: visible ? 1 : 0,
@@ -255,12 +256,6 @@ class HomePage extends StatelessWidget {
                       SingleHomePages.core => CorePage(
                           goToSkillPlayground: () =>
                               _homeMenu.value = SingleHomePages.skillPlayground,
-                          goToResume: () =>
-                              _homeMenu.value = SingleHomePages.resume,
-                        ),
-                      SingleHomePages.resume => ResumePage(
-                          goToCore: () =>
-                              _homeMenu.value = SingleHomePages.core,
                         ),
                       SingleHomePages.skillPlayground => SkillPlayground(
                           goToCore: () =>
@@ -281,12 +276,10 @@ class HomePage extends StatelessWidget {
 
 class CorePage extends StatefulWidget {
   const CorePage({
-    required this.goToResume,
     required this.goToSkillPlayground,
     super.key,
   });
 
-  final Function() goToResume;
   final Function() goToSkillPlayground;
 
   @override
@@ -312,7 +305,7 @@ class _CorePageState extends State<CorePage> {
     return ScrollablePositionedList.separated(
       itemCount: sections.length,
       separatorBuilder: (_, i) {
-        bool first = sections.first == sections[i];
+        //bool first = sections.first == sections[i];
         bool last = sections.last == sections[i];
 
         return SizedBox(
@@ -323,7 +316,9 @@ class _CorePageState extends State<CorePage> {
         HomeSection s = sections[i];
         return switch (s) {
           HomeSection.about => AboutMePage(
-              goToResume: widget.goToResume,
+              goToResume: () {
+                openStringUri(resumeFileUri);
+              },
               scrollToSkills: () {
                 itemScrollController.scrollTo(
                   index: HomeSection.skills.index,
