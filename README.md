@@ -29,5 +29,5 @@ Run web_server
 
 * Build
 ```bash
-  flutter build web --wasm --base-href /bruce_omukoko_portfolio/ --release
+  flutter build web --wasm --base-href /bruc3balo.github.io/ --release
 ```
