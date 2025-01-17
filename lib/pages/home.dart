@@ -19,7 +19,7 @@ final ValueNotifier<SingleHomePages> _homeMenu = ValueNotifier(
   SingleHomePages.core,
 );
 final List<HomeSection> sections = HomeSection.values.toList();
-final ValueNotifier<Set<HomeSection>> _visiblePages = ValueNotifier({});
+final ValueNotifier<HomeSection> _visiblePages = ValueNotifier(HomeSection.about);
 final ScrollController scrollController = ScrollController();
 final ItemScrollController itemScrollController = ItemScrollController();
 final ItemPositionsListener itemPositionsListener =
@@ -38,7 +38,7 @@ enum HomeSection {
   about("About"),
   skills("Skills"),
   publications("Publications"),
-  projects("Projects"),
+  // projects("Projects"),
   contact("Contact");
 
   final String value;
@@ -56,6 +56,8 @@ class HomePage extends StatelessWidget {
         Image.asset(
           "assets/background.png",
           fit: BoxFit.fill,
+          width: double.infinity,
+          height: double.infinity,
         ),
         LayoutBuilder(
           builder: (_, size) {
@@ -86,7 +88,7 @@ class HomePage extends StatelessWidget {
                                   child: ValueListenableBuilder(
                                     valueListenable: _visiblePages,
                                     builder: (_, pages, __) {
-                                      bool visible = pages.contains(e);
+                                      bool visible = pages == e;
                                       return OnHover(
                                         builder: (hovering) {
                                           return ListTile(
@@ -181,56 +183,56 @@ class HomePage extends StatelessWidget {
                                   right: isMobileView ? 2.0 : 6.0,
                                 ),
                                 child: ValueListenableBuilder(
-                                    valueListenable: _visiblePages,
-                                    builder: (_, pages, __) {
-                                      bool visible = pages.contains(e);
-                                      return OnHover(
-                                        builder: (hovering) {
-                                          return Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              AutoSizeText(
-                                                e.value,
-                                                minFontSize: 8,
-                                                maxFontSize: 16,
-                                                style: GoogleFonts.inter(
-                                                  color: hovering
-                                                      ? orange
-                                                      : Colors.white,
-                                                  fontWeight: visible
-                                                      ? FontWeight.bold
-                                                      : FontWeight.w400,
-                                                  // fontSize: 24,
-                                                ),
-                                                textAlign: TextAlign.center,
+                                  valueListenable: _visiblePages,
+                                  builder: (_, pages, __) {
+                                    bool visible = pages == e;
+                                    return OnHover(
+                                      builder: (hovering) {
+                                        return Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            AutoSizeText(
+                                              e.value,
+                                              minFontSize: 8,
+                                              maxFontSize: 16,
+                                              style: GoogleFonts.inter(
+                                                color: hovering
+                                                    ? orange
+                                                    : Colors.white,
+                                                fontWeight: visible
+                                                    ? FontWeight.bold
+                                                    : FontWeight.w400,
+                                                // fontSize: 24,
                                               ),
-                                              AnimatedOpacity(
-                                                opacity: visible ? 1 : 0,
-                                                duration:
-                                                    const Duration(seconds: 1),
-                                                curve: Curves.slowMiddle,
-                                                child: Visibility(
-                                                  visible: visible,
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            8.0),
-                                                    child: CircleAvatar(
-                                                      radius: 3.5,
-                                                      backgroundColor: orange,
-                                                    ),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                            AnimatedOpacity(
+                                              opacity: visible ? 1 : 0,
+                                              duration:
+                                                  const Duration(seconds: 1),
+                                              curve: Curves.slowMiddle,
+                                              child: Visibility(
+                                                visible: visible,
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(8.0),
+                                                  child: CircleAvatar(
+                                                    radius: 3.5,
+                                                    backgroundColor: orange,
                                                   ),
                                                 ),
                                               ),
-                                            ],
-                                          );
-                                        },
-                                      );
-                                    }),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
+                                  },
+                                ),
                               ),
                             ),
                           ),
@@ -292,10 +294,19 @@ class _CorePageState extends State<CorePage> {
   @override
   void initState() {
     itemPositionsListener.itemPositions.addListener(() {
-      Set<HomeSection> visiblePages = itemPositionsListener.itemPositions.value
-          .map((e) => sections[e.index])
-          .toSet();
-      _visiblePages.value = visiblePages;
+      List<ItemPosition> positions = itemPositionsListener
+          .itemPositions
+          .value
+          .toList();
+
+      positions.sort((a, b) => -a.index.compareTo(b.index));
+
+      HomeSection section = sections[positions.first.index];
+
+      // Set<HomeSection> visiblePages = itemPositionsListener.itemPositions.value
+      //     .map((e) => sections[e.index])
+      //     .toSet();
+      _visiblePages.value = section;
     });
     super.initState();
   }
@@ -336,7 +347,7 @@ class _CorePageState extends State<CorePage> {
           HomeSection.skills => SkillsPage(
               goToSkillPlayground: widget.goToSkillPlayground,
             ),
-          HomeSection.projects => const ProjectsPage(),
+          // HomeSection.projects => const ProjectsPage(),
           HomeSection.contact => const ContactMePage(),
         };
       },
