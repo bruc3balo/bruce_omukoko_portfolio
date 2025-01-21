@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <base href="/">
+    <script>
+        // Redirect all 404s to index.html
+        window.location.replace(
+            window.location.protocol + '//' +
+            window.location.hostname +
+            (window.location.port ? ':' + window.location.port : '') +
+            '/'
+        );
+    </script>
+</head>
+<body>
+</body>
+</html>
