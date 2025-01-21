@@ -100,10 +100,13 @@ class PublicationsPage extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                 ),
-                subtitle: switch (p) {
-                  PublicationType.pubDev => const PubDevPublications(),
-                  PublicationType.rive => const RivePublications(),
-                },
+                subtitle: Padding(
+                  padding: const EdgeInsets.only(top: 30.0),
+                  child: switch (p) {
+                    PublicationType.pubDev => const PubDevPublications(),
+                    PublicationType.rive => const RivePublications(),
+                  },
+                ),
               ),
             );
           },
@@ -254,8 +257,8 @@ class RivePublications extends StatelessWidget {
       ];
 
   BoxConstraints get riveConstraints => const BoxConstraints(
-        maxHeight: 600,
-        maxWidth: 600,
+        maxHeight: 500,
+        maxWidth: 500,
         minHeight: 200,
         minWidth: 200,
       );
@@ -822,76 +825,81 @@ class _RivePublicationItemMenuState extends State<RivePublicationItemMenu>
           ),
         );
 
-        return SizedBox(
-          height: 800,
-          child: Center(
-            child: AnimatedBuilder(
-              animation: controller,
-              builder: (_, __) {
-                return ValueListenableBuilder(
-                  valueListenable: openNotifier,
-                  builder: (_, isOpen, __) => Transform.rotate(
-                    angle: radians(rotation.value),
-                    child: Stack(
-                      alignment: Alignment.center,
-                      children: rives.sublist(1).asMap().entries.map(
-                            (r) {
-                              double angle =
-                                  r.key * (360 / rives.sublist(1).length);
+        return ValueListenableBuilder(
+            valueListenable: openNotifier,
+            builder: (_, isOpen, __) {
+            return AnimatedSize(
+              duration: const Duration(milliseconds: 500),
+              child: SizedBox(
+                height: isOpen ? 600 : 200,
+                child: Center(
+                  child: AnimatedBuilder(
+                    animation: controller,
+                    builder: (_, __) {
+                      return Transform.rotate(
+                        angle: radians(rotation.value),
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: rives.sublist(1).asMap().entries.map(
+                                (r) {
+                                  double angle =
+                                      r.key * (360 / rives.sublist(1).length);
 
-                              return buildButton(
-                                angle: angle,
-                                translation: translation,
-                                riveArt: r.value,
-                                width: isOpen ? diameter : radius,
-                              );
-                            },
-                          ).toList() +
-                          <Widget>[
-                            Transform.scale(
-                              scale: isOpen ? scale.value - 1 : scale.value,
-                              child: MouseRegion(
-                                cursor: SystemMouseCursors.click,
-                                child: GestureDetector(
-                                  onTap: () => isOpen ? close() : open(),
-                                  child: ValueListenableBuilder(
-                                    valueListenable: scaleNotifier,
-                                    builder: (_, scale, __) {
-                                      return AnimatedScale(
-                                        scale: scale,
-                                        duration: riveDuration,
-                                        child: CircleAvatar(
-                                          radius: radius - 20,
-                                          backgroundColor: isOpen
-                                              ? Colors.red
-                                              : Colors.green,
-                                          child: CircleAvatar(
-                                            radius: radius - 25,
-                                            child: RotatedBox(
-                                              quarterTurns: isOpen ? 2 : 0,
-                                              child:
-                                                  RivePublicationCircularItem(
-                                                r: rives[0],
-                                                width: isOpen
-                                                    ? radius
-                                                    : diameter + 100,
+                                  return buildButton(
+                                    angle: angle,
+                                    translation: translation,
+                                    riveArt: r.value,
+                                    width: isOpen ? diameter : radius,
+                                  );
+                                },
+                              ).toList() +
+                              <Widget>[
+                                Transform.scale(
+                                  scale: isOpen ? scale.value - 1 : scale.value,
+                                  child: MouseRegion(
+                                    cursor: SystemMouseCursors.click,
+                                    child: GestureDetector(
+                                      onTap: () => isOpen ? close() : open(),
+                                      child: ValueListenableBuilder(
+                                        valueListenable: scaleNotifier,
+                                        builder: (_, scale, __) {
+                                          return AnimatedScale(
+                                            scale: scale,
+                                            duration: riveDuration,
+                                            child: CircleAvatar(
+                                              radius: radius - 20,
+                                              backgroundColor: isOpen
+                                                  ? Colors.red
+                                                  : Colors.green,
+                                              child: CircleAvatar(
+                                                radius: radius - 25,
+                                                child: RotatedBox(
+                                                  quarterTurns: isOpen ? 2 : 0,
+                                                  child:
+                                                      RivePublicationCircularItem(
+                                                    r: rives[0],
+                                                    width: isOpen
+                                                        ? radius
+                                                        : diameter + 100,
+                                                  ),
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                        ),
-                                      );
-                                    },
+                                          );
+                                        },
+                                      ),
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ),
-                          ],
-                    ),
+                              ],
+                        ),
+                      );
+                    },
                   ),
-                );
-              },
-            ),
-          ),
+                ),
+              ),
+            );
+          }
         );
       },
     );

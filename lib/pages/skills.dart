@@ -32,8 +32,8 @@ class SkillsPage extends StatefulWidget {
 }
 
 class _SkillsPageState extends State<SkillsPage> {
-  final ValueNotifier<Technologies?> selectedTech = ValueNotifier(null);
 
+  final ValueNotifier<Technologies?> selectedTech = ValueNotifier(null);
   final ValueNotifier<double> colorStream = ValueNotifier(1);
 
   bool reverse = false;
@@ -66,152 +66,156 @@ class _SkillsPageState extends State<SkillsPage> {
   @override
   Widget build(BuildContext context) {
     // ThemeData theme = Theme.of(context);
-    return LayoutBuilder(builder: (_, size) {
-      bool isMobileView = size.maxWidth < mobileSizeBorder;
-      return Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(bottom: 50.0),
-            child: SizedBox(
-              height: 500,
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  Align(
-                    alignment: Alignment.center,
-                    child: GestureDetector(
-                      onTap: widget.goToSkillPlayground,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              "Skills",
-                              style: GoogleFonts.inter(
-                                fontWeight: FontWeight.w600,
-                                fontSize: 60,
-                                color: orange,
+    return LayoutBuilder(
+      builder: (_, size) {
+        bool isMobileView = size.maxWidth < mobileSizeBorder;
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(bottom: 50.0),
+              child: SizedBox(
+                height: 500,
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Align(
+                      alignment: Alignment.center,
+                      child: GestureDetector(
+                        onTap: widget.goToSkillPlayground,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                "Skills",
+                                style: GoogleFonts.inter(
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 60,
+                                  color: orange,
+                                ),
                               ),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: ValueListenableBuilder(
-                              valueListenable: colorStream,
-                              builder: (_, opacity, __) {
-                                return AnimatedOpacity(
-                                  opacity: opacity,
-                                  duration: const Duration(milliseconds: 200),
-                                  child: const Icon(
-                                    Icons.ads_click,
-                                    color: Colors.greenAccent,
-                                  ),
-                                );
-                              },
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: ValueListenableBuilder(
+                                valueListenable: colorStream,
+                                builder: (_, opacity, __) {
+                                  return AnimatedOpacity(
+                                    opacity: opacity,
+                                    duration: const Duration(milliseconds: 200),
+                                    child: const Icon(
+                                      Icons.ads_click,
+                                      color: Colors.greenAccent,
+                                    ),
+                                  );
+                                },
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  Positioned(
-                    right: 0,
-                    left: isMobileView ? 270 : 350,
-                    bottom: 250,
-                    child: PsstPressHere(
-                      isMobileView: isMobileView,
+                    Positioned(
+                      right: 0,
+                      left: isMobileView ? 270 : 350,
+                      bottom: 250,
+                      child: PsstPressHere(
+                        isMobileView: isMobileView,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ValueListenableBuilder(
-              valueListenable: selectedTech,
-              builder: (_, tech, __) {
-                return GridView(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 4,
-                    mainAxisExtent: 150,
-                    mainAxisSpacing: 80,
-                  ),
-                  children: skills
-                      .expand(
-                        (s) => s.technologies
-                            .map(
-                              (t) => OnHover(
-                                builder: (hovering) {
-                                  return Flex(
-                                    direction: Axis.vertical,
-                                    children: [
-                                      Expanded(
-                                        child: GestureDetector(
-                                          onTap: () => showTechnologyInfo(
-                                            context: context,
-                                            skillBoard: s,
-                                            technologies: t,
-                                          ),
-                                          child: Padding(
-                                            padding: EdgeInsets.all(
-                                              hovering ? 8.0 : 20.0,
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ValueListenableBuilder(
+                valueListenable: selectedTech,
+                builder: (_, tech, __) {
+                  return GridView(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 4,
+                      mainAxisExtent: 150,
+                      mainAxisSpacing: 80,
+                    ),
+                    children: skills
+                        .expand(
+                          (s) => s.technologies
+                              .map(
+                                (t) => OnHover(
+                                  builder: (hovering) {
+                                    return Flex(
+                                      direction: Axis.vertical,
+                                      children: [
+                                        Expanded(
+                                          child: GestureDetector(
+                                            onTap: () => showTechnologyInfo(
+                                              context: context,
+                                              skillBoard: s,
+                                              technologies: t,
                                             ),
-                                            child: Visibility(
-                                              visible: hovering,
-                                              replacement: t.cover,
-                                              child: Stack(
-                                                alignment: Alignment.center,
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            20.0),
-                                                    child: t.cover,
-                                                  ),
-                                                  SvgPicture.asset(
-                                                    "assets/skills_hover.svg",
-                                                    width: 250,
-                                                    height: 250,
-                                                  ),
-                                                ],
+                                            child: AnimatedScale(
+                                              scale: hovering ? 0.5 : 0.8,
+                                              duration: const Duration(
+                                                  milliseconds: 300),
+                                              child: Visibility(
+                                                visible: hovering,
+                                                replacement: t.cover,
+                                                child: Stack(
+                                                  alignment: Alignment.center,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              20.0),
+                                                      child: t.cover,
+                                                    ),
+                                                    SvgPicture.asset(
+                                                      "assets/skills_hover.svg",
+                                                      width: 250,
+                                                      height: 250,
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                      Text(
-                                        t.name,
-                                        style: GoogleFonts.aBeeZee(),
-                                        textAlign: TextAlign.center,
-                                      ),
-                                      Text(
-                                        t.xp,
-                                        style: GoogleFonts.aBeeZee(),
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    ],
-                                  );
-                                },
-                              ),
-                            )
-                            .toList(),
-                      )
-                      .toList(),
-                );
-              },
+                                        Text(
+                                          t.name,
+                                          style: GoogleFonts.aBeeZee(),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                        Text(
+                                          t.xp,
+                                          style: GoogleFonts.aBeeZee(),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                ),
+                              )
+                              .toList(),
+                        )
+                        .toList(),
+                  );
+                },
+              ),
             ),
-          ),
-        ],
-      );
-    });
+          ],
+        );
+      },
+    );
   }
+
 }
 
 class PsstPressHere extends StatelessWidget {

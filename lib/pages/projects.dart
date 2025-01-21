@@ -24,6 +24,7 @@ class ProjectsPage extends StatelessWidget {
             riveTechnology,
             kubernetesTechnology,
             dockerTechnology,
+            visualParadigmTechnology,
           ],
         ),
       ];

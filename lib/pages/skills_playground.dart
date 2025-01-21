@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bruce_omukoko_portfolio/data/data.dart';
+import 'package:bruce_omukoko_portfolio/theme/theme.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -11,14 +12,20 @@ void showTechnologyInfo({
   required SkillBoard skillBoard,
   required Technologies technologies,
 }) {
-  showModalBottomSheet(
+  showDialog(
     context: context,
     builder: (_) {
       var theme = Theme.of(context);
-      return BottomSheet(
-        onClosing: () {},
-        builder: (_) {
-          return Flex(
+      return Dialog(
+        insetAnimationCurve: Curves.easeIn,
+        insetAnimationDuration: const Duration(seconds: 3),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20.0),
+        ),
+        backgroundColor: orange,
+        child: Card(
+          color: Colors.black,
+          child: Flex(
             direction: Axis.vertical,
             children: <Widget>[
               Text(
@@ -28,6 +35,16 @@ void showTechnologyInfo({
               Text(
                 technologies.xp,
                 style: theme.listTileTheme.subtitleTextStyle,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStatePropertyAll(Colors.red),
+                  ),
+                  onPressed: Navigator.of(context).pop,
+                  child: Text("Close"),
+                ),
               ),
               Expanded(
                 child: ListView.builder(
@@ -57,8 +74,8 @@ void showTechnologyInfo({
                 ),
               )
             ],
-          );
-        },
+          ),
+        ),
       );
     },
   );
@@ -72,15 +89,17 @@ class SkillPlayground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PopScope(
-      onPopInvokedWithResult: (_,__) => goToCore(),
+      onPopInvokedWithResult: (_, __) => goToCore(),
       child: Scaffold(
-       bottomNavigationBar: ElevatedButton(
-         onPressed: goToCore,
-         style: const ButtonStyle(
-           backgroundColor: WidgetStatePropertyAll(Colors.red),
-         ),
-         child: const Text("Exit"),
-       ),
+        appBar: AppBar(
+          title: ElevatedButton(
+            onPressed: goToCore,
+            style: const ButtonStyle(
+              backgroundColor: WidgetStatePropertyAll(Colors.red),
+            ),
+            child: const Text("Exit"),
+          ),
+        ),
         body: LayoutBuilder(
           builder: (context, size) {
             return Stack(

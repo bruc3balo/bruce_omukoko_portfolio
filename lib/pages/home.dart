@@ -19,7 +19,8 @@ final ValueNotifier<SingleHomePages> _homeMenu = ValueNotifier(
   SingleHomePages.core,
 );
 final List<HomeSection> sections = HomeSection.values.toList();
-final ValueNotifier<HomeSection> _visiblePages = ValueNotifier(HomeSection.about);
+final ValueNotifier<HomeSection> _visiblePages =
+    ValueNotifier(HomeSection.about);
 final ScrollController scrollController = ScrollController();
 final ItemScrollController itemScrollController = ItemScrollController();
 final ItemPositionsListener itemPositionsListener =
@@ -289,15 +290,13 @@ class CorePage extends StatefulWidget {
 }
 
 class _CorePageState extends State<CorePage> {
-  double get separation => 200;
+  double get separation => 70;
 
   @override
   void initState() {
     itemPositionsListener.itemPositions.addListener(() {
-      List<ItemPosition> positions = itemPositionsListener
-          .itemPositions
-          .value
-          .toList();
+      List<ItemPosition> positions =
+          itemPositionsListener.itemPositions.value.toList();
 
       positions.sort((a, b) => -a.index.compareTo(b.index));
 
@@ -327,8 +326,11 @@ class _CorePageState extends State<CorePage> {
         HomeSection s = sections[i];
         return switch (s) {
           HomeSection.about => AboutMePage(
-              goToResume: () {
-                openStringUri(resumeFileUri);
+              goToFlutterResume: () {
+                openStringUri(flutterResume);
+              },
+              goToBackendResume: () {
+                openStringUri(backendResume);
               },
               scrollToSkills: () {
                 itemScrollController.scrollTo(

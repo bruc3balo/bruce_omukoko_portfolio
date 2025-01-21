@@ -8,13 +8,15 @@ import 'package:google_fonts/google_fonts.dart';
 
 class AboutMePage extends StatelessWidget {
   const AboutMePage({
-    required this.goToResume,
+    required this.goToBackendResume,
+    required this.goToFlutterResume,
     required this.scrollToSkills,
     required this.scrollToContactMe,
     super.key,
   });
 
-  final Function() goToResume;
+  final Function() goToBackendResume;
+  final Function() goToFlutterResume;
   final Function() scrollToSkills;
   final Function() scrollToContactMe;
 
@@ -26,15 +28,17 @@ class AboutMePage extends StatelessWidget {
 
         return isMobileView
             ? AboutMeMobile(
-          goToResume: goToResume,
-          scrollToSkills: scrollToSkills,
-          scrollToContactMe: scrollToContactMe,
-        )
+                goToFlutterResume: goToFlutterResume,
+                goToBackendResume: goToBackendResume,
+                scrollToSkills: scrollToSkills,
+                scrollToContactMe: scrollToContactMe,
+              )
             : AboutMeDesktop(
-            goToResume: goToResume,
-            scrollToSkills: scrollToSkills,
-            scrollToContactMe: scrollToContactMe,
-        );
+                goToFlutterResume: goToFlutterResume,
+                goToBackendResume: goToBackendResume,
+                scrollToSkills: scrollToSkills,
+                scrollToContactMe: scrollToContactMe,
+              );
       },
     );
   }
@@ -42,13 +46,15 @@ class AboutMePage extends StatelessWidget {
 
 class AboutMeDesktop extends StatelessWidget {
   AboutMeDesktop({
-    required this.goToResume,
+    required this.goToBackendResume,
+    required this.goToFlutterResume,
     required this.scrollToSkills,
     required this.scrollToContactMe,
     super.key,
   });
 
-  final Function() goToResume;
+  final Function() goToBackendResume;
+  final Function() goToFlutterResume;
   final Function() scrollToSkills;
   final Function() scrollToContactMe;
   final GlobalKey moreKey = GlobalKey();
@@ -140,10 +146,11 @@ class AboutMeDesktop extends StatelessWidget {
                               onPressed: scrollToContactMe,
                               style: ButtonStyle(
                                 padding: WidgetStateProperty.all(
-                                    const EdgeInsets.all(15.0),),
+                                  const EdgeInsets.all(15.0),
+                                ),
                                 backgroundColor:
-                                WidgetStateProperty.resolveWith(
-                                      (state) {
+                                    WidgetStateProperty.resolveWith(
+                                  (state) {
                                     if (state.contains(WidgetState.hovered)) {
                                       return Colors.transparent;
                                     }
@@ -157,7 +164,7 @@ class AboutMeDesktop extends StatelessWidget {
                                   ),
                                 ),
                                 side: WidgetStateProperty.resolveWith(
-                                      (state) {
+                                  (state) {
                                     if (state.contains(WidgetState.hovered)) {
                                       return BorderSide(
                                           color: orange, width: 1.0);
@@ -192,7 +199,7 @@ class AboutMeDesktop extends StatelessWidget {
                                   ),
                                 ),
                                 side: WidgetStateProperty.resolveWith(
-                                      (state) {
+                                  (state) {
                                     if (state.contains(WidgetState.hovered)) {
                                       return BorderSide(
                                         color: orange,
@@ -233,7 +240,7 @@ class AboutMeDesktop extends StatelessWidget {
                                   Scrollable.ensureVisible(
                                     moreKey.currentContext!,
                                     duration:
-                                    const Duration(milliseconds: 1000),
+                                        const Duration(milliseconds: 1000),
                                     curve: Curves.easeIn,
                                   );
                                 },
@@ -323,19 +330,18 @@ class AboutMeDesktop extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: ElevatedButton(
-                                onPressed: goToResume,
+                                onPressed: goToBackendResume,
                                 style: ButtonStyle(
                                   padding: WidgetStateProperty.all(
                                       const EdgeInsets.all(15.0)),
                                   backgroundColor:
-                                  WidgetStateProperty.resolveWith(
-                                        (state) {
-                                      if (state
-                                          .contains(WidgetState.hovered)) {
-                                        return Colors.transparent;
+                                      WidgetStateProperty.resolveWith(
+                                    (state) {
+                                      if (state.contains(WidgetState.hovered)) {
+                                        return orange; //
                                       }
 
-                                      return orange;
+                                      return Colors.transparent;
                                     },
                                   ),
                                   shape: WidgetStateProperty.all(
@@ -344,23 +350,97 @@ class AboutMeDesktop extends StatelessWidget {
                                     ),
                                   ),
                                   side: WidgetStateProperty.resolveWith(
-                                        (state) {
-                                      if (state
-                                          .contains(WidgetState.hovered)) {
-                                        return BorderSide(
-                                            color: orange, width: 1.0);
+                                    (state) {
+                                      if (state.contains(WidgetState.hovered)) {
+                                        return const BorderSide(
+                                          color: Colors.white,
+                                          width: 1.0,
+                                        );
                                       }
 
-                                      return null;
+                                      return BorderSide(
+                                        color: orange,
+                                        width: 1.0,
+                                      );
                                     },
                                   ),
                                 ),
-                                child: Text(
-                                  "View my resume",
-                                  style: GoogleFonts.inter(
-                                    fontSize: 20,
-                                    color: Colors.white,
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    const Icon(Icons.code, color: Colors.green,),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                        "Backend Resume",
+                                        style: GoogleFonts.inter(
+                                          fontSize: 20,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: ElevatedButton(
+                                onPressed: goToFlutterResume,
+                                style: ButtonStyle(
+                                  padding: WidgetStateProperty.all(
+                                      const EdgeInsets.all(15.0)),
+                                  backgroundColor:
+                                      WidgetStateProperty.resolveWith(
+                                    (state) {
+                                      if (state.contains(WidgetState.hovered)) {
+                                        return orange; //
+                                      }
+
+                                      return Colors.transparent;
+                                    },
                                   ),
+                                  shape: WidgetStateProperty.all(
+                                    RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(7.0),
+                                    ),
+                                  ),
+                                  side: WidgetStateProperty.resolveWith(
+                                    (state) {
+                                      if (state.contains(WidgetState.hovered)) {
+                                        return const BorderSide(
+                                          color: Colors.white,
+                                          width: 1.0,
+                                        );
+                                      }
+
+                                      return BorderSide(
+                                        color: orange,
+                                        width: 1.0,
+                                      );
+                                    },
+                                  ),
+                                ),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    const Icon(
+                                      Icons.phone_android_outlined,
+                                      color: Colors.blue,
+                                    ),
+                                    const Icon(Icons.desktop_mac_outlined,
+                                        color: Colors.blue),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                        "Flutter Resume",
+                                        style: GoogleFonts.inter(
+                                          fontSize: 20,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),
@@ -388,13 +468,15 @@ class AboutMeDesktop extends StatelessWidget {
 
 class AboutMeMobile extends StatelessWidget {
   AboutMeMobile({
-    required this.goToResume,
+    required this.goToFlutterResume,
+    required this.goToBackendResume,
     required this.scrollToSkills,
     required this.scrollToContactMe,
     super.key,
   });
 
-  final Function() goToResume;
+  final Function() goToBackendResume;
+  final Function() goToFlutterResume;
   final Function() scrollToSkills;
   final Function() scrollToContactMe;
   final GlobalKey moreKey = GlobalKey();
@@ -490,7 +572,7 @@ class AboutMeMobile extends StatelessWidget {
                             padding: WidgetStateProperty.all(
                                 const EdgeInsets.all(15.0)),
                             backgroundColor: WidgetStateProperty.resolveWith(
-                                  (state) {
+                              (state) {
                                 if (state.contains(WidgetState.hovered)) {
                                   return Colors.transparent;
                                 }
@@ -504,7 +586,7 @@ class AboutMeMobile extends StatelessWidget {
                               ),
                             ),
                             side: WidgetStateProperty.resolveWith(
-                                  (state) {
+                              (state) {
                                 if (state.contains(WidgetState.hovered)) {
                                   return BorderSide(color: orange, width: 1.0);
                                 }
@@ -540,7 +622,7 @@ class AboutMeMobile extends StatelessWidget {
                               ),
                             ),
                             side: WidgetStateProperty.resolveWith(
-                                  (state) {
+                              (state) {
                                 if (state.contains(WidgetState.hovered)) {
                                   return BorderSide(
                                     color: orange,
@@ -637,7 +719,9 @@ class AboutMeMobile extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-              const SizedBox(height: 50,),
+              const SizedBox(
+                height: 50,
+              ),
               ConstrainedBox(
                 constraints: const BoxConstraints(
                   minWidth: 150,
@@ -656,17 +740,17 @@ class AboutMeMobile extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ElevatedButton(
-                          onPressed: goToResume,
+                          onPressed: goToBackendResume,
                           style: ButtonStyle(
                             padding: WidgetStateProperty.all(
                                 const EdgeInsets.all(15.0)),
                             backgroundColor: WidgetStateProperty.resolveWith(
-                                  (state) {
+                              (state) {
                                 if (state.contains(WidgetState.hovered)) {
-                                  return Colors.transparent;
+                                  return orange; //
                                 }
 
-                                return orange;
+                                return Colors.transparent;
                               },
                             ),
                             shape: WidgetStateProperty.all(
@@ -675,22 +759,105 @@ class AboutMeMobile extends StatelessWidget {
                               ),
                             ),
                             side: WidgetStateProperty.resolveWith(
-                                  (state) {
+                              (state) {
                                 if (state.contains(WidgetState.hovered)) {
-                                  return BorderSide(color: orange, width: 1.0);
+                                  return const BorderSide(
+                                    color: Colors.white,
+                                    width: 1.0,
+                                  );
                                 }
 
-                                return null;
+                                return BorderSide(
+                                  color: orange,
+                                  width: 1.0,
+                                );
                               },
                             ),
                           ),
-                          child: Text(
-                            "View my resume",
-                            style: GoogleFonts.inter(
-                              fontSize: 20,
-                              color: Colors.white,
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const Icon(
+                                Icons.code,
+                                color: Colors.green,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  "Backend Resume",
+                                  style: GoogleFonts.inter(
+                                    fontSize: 20,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ElevatedButton(
+                          onPressed: goToFlutterResume,
+                          style: ButtonStyle(
+                            padding: WidgetStateProperty.all(
+                              const EdgeInsets.all(15.0),
                             ),
-                            textAlign: TextAlign.center,
+                            backgroundColor: WidgetStateProperty.resolveWith(
+                              (state) {
+                                if (state.contains(WidgetState.hovered)) {
+                                  return orange; //
+                                }
+
+                                return Colors.transparent;
+                              },
+                            ),
+                            shape: WidgetStateProperty.all(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(7.0),
+                              ),
+                            ),
+                            side: WidgetStateProperty.resolveWith(
+                              (state) {
+                                if (state.contains(WidgetState.hovered)) {
+                                  return const BorderSide(
+                                    color: Colors.white,
+                                    width: 1.0,
+                                  );
+                                }
+
+                                return BorderSide(
+                                  color: orange,
+                                  width: 1.0,
+                                );
+                              },
+                            ),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const Icon(
+                                Icons.phone_android_outlined,
+                                color: Colors.blue,
+                              ),
+                              const Icon(
+                                Icons.desktop_mac_outlined,
+                                color: Colors.blue,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  "Flutter Resume",
+                                  style: GoogleFonts.inter(
+                                    fontSize: 20,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ),

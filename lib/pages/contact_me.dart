@@ -27,8 +27,28 @@ class ContactMePage extends StatelessWidget {
             ),
           ),
           ElevatedButton.icon(
-            style: const ButtonStyle(
-              backgroundColor: WidgetStatePropertyAll(Colors.black)
+            style: ButtonStyle(
+              fixedSize: const WidgetStatePropertyAll(Size(300, 60)),
+              padding: WidgetStateProperty.all(
+                  const EdgeInsets.all(15.0)),
+              backgroundColor: WidgetStateProperty.all(
+                Colors.transparent,
+              ),
+              side: WidgetStateProperty.resolveWith(
+                    (state) {
+                  if (state.contains(WidgetState.hovered)) {
+                    return BorderSide(
+                      color: orange,
+                      width: 1.0,
+                    );
+                  }
+
+                  return const BorderSide(
+                    color: Colors.white,
+                    width: 1.0,
+                  );
+                },
+              ),
             ),
             label: const Text("Send me an email"),
             onPressed: () {
@@ -82,7 +102,7 @@ class ContactMePage extends StatelessWidget {
                 ),
               );
             },
-            icon: const Icon(Icons.email_outlined),
+            icon: const Icon(Icons.email_outlined, size: 25,),
           ),
         ],
       ),

@@ -6,14 +6,13 @@ import 'package:hexcolor/hexcolor.dart';
 
 const mobileSizeBorder = 1000;
 
-const String resumeFileUri = "https://firebasestorage.googleapis.com/v0/b/bruce-omukoko.appspot.com/o/bruce_omukoko_resume.pdf?alt=media";
-const String resumeUri = "https://www.figma.com/file/c8UgYsEh6lNs0b2Lfp6f3P/CV-%26-Cover-Letter?type=design&node-id=603%3A2&mode=dev&t=1lQ1Yp2hwWXIKazM-1";
+const String backendResume = "https://github.com/bruc3balo/bruc3balo.github.io/releases/download/backend/BruceOmukokoBackendResume.pdf";
+const String flutterResume = "https://github.com/bruc3balo/bruc3balo.github.io/releases/download/flutter/BruceOmukokoFlutterDeveloper.pdf";
 
-
-Technologies springTechnology = Technologies(
+final Technologies springTechnology = Technologies(
   name: 'Spring Framework',
   brief:
-  'Spring is a powerful and versatile backend framework for Java development, renowned for its maturity, extensive community support, and focus on security. With its comprehensive suite of features and modules, Spring empowers developers to build scalable, reliable, and secure applications for a wide range of use cases, from simple microservices to complex enterprise systems.',
+  'Spring is a comprehensive Java framework used to develop high-performance, secure, and scalable backend applications. It simplifies backend development, making it ideal for creating microservices, APIs, and enterprise systems.',
   url: 'https://spring.io/projects/spring-framework',
   startDate: DateTime(2021, DateTime.august),
   cover: SvgPicture.asset(
@@ -25,58 +24,45 @@ Technologies springTechnology = Technologies(
     const Ability(
       name: 'USSD Applications',
       brief:
-      "Proficient in developing USSD applications with expertise in designing dynamic menus and implementing session tracking functionalities",
+      "Designed dynamic USSD menus with advanced session tracking, enabling interactive mobile services accessible without internet.",
     ),
     const Ability(
       name: 'Spring Data',
       brief:
-      'Experienced in data modeling with Spring Boot and JPA, proficient in versatile data filtering and efficient query management. Skilled in Hibernate for easy database schema generation and abstract query handling across different platforms.',
+      'Proficient in efficient database operations using Spring Data and Hibernate, optimizing data access layers for seamless performance.',
       points: [
-        "Data modeling with Spring Boot, specializing in entity creation and management.",
-        "Proficient in JPA for versatile data filtering using specifications.",
-        "Skilled in implementing paging to efficiently limit and offset database queries.",
-        "Experienced in utilizing JPQL for object-centric database queries.",
-        "Proficient in leveraging JPA for automatic SQL rule generation (e.g., keys, constraints, indexes).",
-        "Proficient in utilizing Hibernate to generate and manage database schemas effortlessly.",
-        "Experienced in using Hibernate ORM to abstract queries for different database platforms.",
+        "Designed data models and implemented entities for database interaction.",
+        "Developed versatile queries using JPA Specifications and JPQL.",
+        "Optimized database performance with paging, indexing, and constraints.",
+        "Streamlined schema management with Hibernate ORM.",
       ],
     ),
     const Ability(
       name: 'Spring Security',
       brief:
-      'Expertise in securing Spring applications through filters, aspects, and JWT implementation, enabling endpoint security, method execution control, multi-tenancy, and token-based authentication with refresh functionality for enhanced user experience and security.',
+      'Secured applications using advanced authentication and authorization mechanisms, enhancing user experience and data protection.',
       points: [
-        "Utilize filters to intercept requests, ensuring authentication and authorization.",
-        "Enable endpoint security, authentication, and authorization control.",
-        "Support multi-tenancy based on various parameters like authentication method.",
-        "Offer multiple authentication methods and support Multi-factor Authentication (MFA).",
-        "Control method execution by verifying authorization before or after execution.",
-        "Filter data to restrict access for unauthorized users.",
-        "Issue JWT access tokens to authenticated users, containing limited non-confidential details and signed for security.",
-        "Employ short-lived access tokens with refresh tokens to balance security and user experience, allowing token refresh without re-login.",
+        "Implemented JWT-based authentication and multi-factor authorization.",
+        "Controlled endpoint and method-level access for sensitive data.",
+        "Enabled secure multi-tenant systems based on user roles.",
       ],
     ),
     const Ability(
       name: 'Microservices',
       brief:
-      'Proficient in microservices architecture, utilizing messaging queues for asynchronous communication, API gateways for secure user-service interaction with measures like rate limiting and fraud detection, employing multi-module development to ensure code integrity and reusability, externalizing configurations for flexibility using configuration servers like Vault or Git, and implementing batch processing for scheduled and optimized high-volume tasks with database tracking capabilities.',
+      'Built resilient microservices using Spring Boot, messaging queues, and API gateways to ensure seamless inter-service communication.',
       points: [
-        "Utilize message queues for asynchronous communication between services.",
-        "Implement API gateways to abstract service communication, manage user requests, and enforce measures like rate limiting and fraud detection, with authentication for server-to-server communication.",
-        "Develop microservices within a project structure ensuring that code breaking prevents project compilation, and facilitate early error detection.",
-        "Reuse code through reusable dependencies, packaged into services for modularity.",
-        "Externalize configurations to avoid code changes for property adjustments, utilizing a configuration server with storage in Vault or Git.",
-        "Enable application restarts upon configuration changes using the actuator endpoint.",
-        "Schedule and monitor jobs using a database for execution tracking and step recording.",
-        "Optimize energy usage by batching high-volume tasks for efficiency."
+        "Integrated microservices using messaging systems for asynchronous operations.",
+        "Externalized configurations for dynamic and flexible deployments.",
+        "Designed batch processing systems for high-volume tasks.",
       ],
     ),
   ],
 );
-Technologies dockerTechnology = Technologies(
+final Technologies dockerTechnology = Technologies(
   name: 'Docker',
   brief:
-  "Docker simplifies application deployment by packaging them with their dependencies into portable containers, enabling consistent and efficient deployment across various environments.",
+  "Docker revolutionizes application deployment by packaging software and dependencies into portable containers for consistent environments.",
   url: 'https://www.docker.com',
   startDate: DateTime(2022, DateTime.august),
   cover: SvgPicture.asset(
@@ -85,42 +71,41 @@ Technologies dockerTechnology = Technologies(
   ),
   abilities: [
     const Ability(
-      name: 'Application Dockerfile authoring',
+      name: 'Dockerfile Authoring',
       brief:
-      "Dockerfile authoring involves creating configuration files for existing applications, enabling containerization for seamless deployment across different environments.",
+      "Authored Dockerfiles for seamless containerization, enabling consistent application deployment across environments.",
       points: [
-        "Externalize configurations to separate them from the application code.",
-        "Define the build steps in a Dockerfile to automate the image creation process.",
-        "Utilize multistage builds to ensure images are small by including only necessary dependencies.",
-        "Opt for slim or Alpine images to further minimize the image size while still meeting application requirements.",
+        "Created lightweight images using multistage builds and slim base images.",
+        "Externalized configurations for flexibility and maintainability.",
       ],
     ),
     const Ability(
-      name: 'Creating a private image registry',
+      name: 'Private Registry Management',
       brief:
-      'Using a private container registry involves securely storing Docker images, controlling access, ensuring compliance, enhancing performance, and enabling collaboration within a controlled environment.',
+      'Set up private Docker registries to secure container images and control access for team collaboration.',
       url:
       'https://www.digitalocean.com/community/tutorials/how-to-set-up-a-private-docker-registry-on-ubuntu-22-04',
       points: [
-        "Set up basic authentication to authorize selected users to the registry"
+        "Configured basic authentication for registry security.",
+        "Managed private images with controlled access for internal use.",
       ],
     ),
     const Ability(
-      name: 'Testing with docker compose',
+      name: 'Testing with Docker Compose',
       brief:
-      "Utilizing Docker Compose simplifies the setup of testing environments by orchestrating dependencies and services through an easy-to-use command.",
+      "Streamlined testing environments using Docker Compose for multi-service orchestration.",
       url: 'https://docs.docker.com/compose',
       points: [
-        "Organize individual compose files for separate services to manage them independently.",
-        "Simplify service deployment by extending other compose files and leveraging dependencies."
+        "Created modular Compose files for isolated service testing.",
+        "Extended and reused Compose configurations for efficient testing setups.",
       ],
     ),
   ],
 );
-Technologies kubernetesTechnology = Technologies(
+final Technologies kubernetesTechnology = Technologies(
   name: 'Kubernetes',
   brief:
-  "It's used for automating deployment, scaling, and management of containerized applications, providing a robust and scalable solution for container orchestration. Having dealt with flavours such as Minikube and Microk8s",
+  "Kubernetes automates deployment, scaling, and management of containerized applications, ensuring optimal resource utilization.",
   url: 'https://kubernetes.io',
   startDate: DateTime(2024, DateTime.february),
   cover: SvgPicture.asset(
@@ -131,86 +116,44 @@ Technologies kubernetesTechnology = Technologies(
     Ability(
       name: 'Deployment and Scaling',
       brief:
-      "Efficiently orchestrate cluster deployments with optimal replica configurations on datacenter or node infrastructure to ensure adequate resource provisioning for application functionality.",
+      "Orchestrated deployments with auto-scaling for dynamic workloads.",
       points: [
-        "Provisioning pods through deployments and scaling via replica sets",
-        "Auto-scaling with auto-callers based on metrics like CPU core usage, memory usage, and number of  HTTP requests",
+        "Implemented replica sets for scaling.",
+        "Enabled auto-scaling based on CPU, memory, and request metrics.",
       ],
     ),
     Ability(
-      name: "Networking and Traffic Management",
+      name: 'Networking and Traffic Management',
       brief:
-      "Enable seamless pod-to-node communication while efficiently managing traffic distribution across the network.",
+      "Managed seamless network communication and traffic routing within Kubernetes clusters.",
       points: [
-        "Exposing pod networks within the cluster using internal services.",
-        "Enabling external communication with Kubernetes pods through external services and endpoints.",
-        "Managing traffic routing to pods by utilizing Nginx Ingress with domain-based routing.",
-        "Provisioning load balancers for efficient distribution of requests across nodes.",
+        "Exposed services internally and externally with Nginx ingress.",
+        "Provisioned load balancers for distributed traffic handling.",
       ],
     ),
     Ability(
-      name: "Configuration and Secrets Management",
+      name: 'Configuration and Secrets Management',
       brief:
-      "Enhance application security by centrally managing secrets within the cluster, ensuring secure access for all applications requiring them, and safeguarding configurations in the namespace with kubelet authentication.",
+      "Centralized management of application secrets and configurations for enhanced security.",
       points: [
-        "Managing pod configurations through config maps",
-        "Safely managing pod and application secrets stored securely and encoded in Git repositories with enhanced Git security.",
+        "Utilized ConfigMaps for dynamic application settings.",
+        "Stored sensitive data securely in encrypted Git repositories.",
       ],
     ),
     Ability(
-      name: "Storage Management",
+      name: 'Monitoring and Health Checks',
       brief:
-      "Ensure pod volume storage integrity and consistency by provisioning claimed volumes through kubelet-managed mechanisms.",
+      "Ensured application availability with readiness and liveness probes.",
       points: [
-        "Dynamically provisioning volumes in response to persistent volume claim requests using storage classes."
-      ],
-    ),
-    Ability(
-      name: "Resource Allocation and Optimization:",
-      brief:
-      "Optimize resource allocation by assessing application needs and preparing environments accordingly, leveraging horizontal scaling to dynamically adjust resource allocation for optimal efficiency.",
-      points: [
-        "Allocating pods to environments with required resources using resource requests to prevent resource starvation.",
-        "Applying resource quotas to regulate total resource usage."
-      ],
-    ),
-    Ability(
-      name: "Namespace Management",
-      brief:
-      "Maximize server resource utilization by sharing available resources while segmenting Kubernetes resources to only grant visibility to applications that require them.",
-      points: [
-        "Creating namespaces to effectively segment applications and resources for improved organization.",
-      ],
-    ),
-    Ability(
-      name: "Deployment Strategies and Upgrade Handling",
-      brief:
-      "Ensure continuous application uptime by seamlessly creating upgraded pods and resources to replace the previous ones during deployments.",
-      points: [
-        "Upgrading pods seamlessly with zero downtime using rolling updates and node pools.",
-      ],
-    ),
-    Ability(
-      name: "Monitoring and Health Checks",
-      brief:
-      "Ensure consistent pod availability and traffic flow by conducting continuous health checks, directing traffic only to pods that are up and ready to receive it, and probing when pods are prepared to handle requests.",
-      points: [
-        "Implementing probes such as readiness, liveness, and health checks using TCP, HTTP, and Command methods, and configuring delays, timeouts, and thresholds.",
-      ],
-    ),
-    Ability(
-      name: "Pod Termination",
-      brief:
-      "Safely manage application termination signals within Kubernetes to gracefully conclude transactions, preventing data corruption and ensuring secure shutdown procedures.",
-      points: [
-        "Safely terminating pods by responding to signals like preStopHook, sigterm, and sigkill."
+        "Configured HTTP and TCP probes to monitor pod health and traffic readiness.",
       ],
     ),
   ],
 );
-Technologies gitTechnology = Technologies(
+final Technologies gitTechnology = Technologies(
   name: 'Git',
-  brief: 'brief',
+  brief:
+  "Git is a version control system that enables collaborative development, efficient tracking of changes, and robust branching workflows for codebases.",
   startDate: DateTime(2017, DateTime.august),
   url: 'https://github.com',
   cover: SvgPicture.asset(
@@ -219,39 +162,40 @@ Technologies gitTechnology = Technologies(
   ),
   abilities: const [
     Ability(
-        name: 'Manage repositories',
-        brief: 'CRUD oprations on repositories',
-        points: [
-          "Create repositories",
-          "Clone repositories",
-          "Update local and remote repositories",
-        ]),
-    Ability(
-      name: 'Manage branch repositories',
-      brief: 'operations on branches',
+      name: 'Repository Management',
+      brief:
+      "Expertise in managing Git repositories to ensure clean and structured version control.",
       points: [
-        "Merge branch repositories",
-        "Rebase branch repositores",
-        "Checkout branch repositories",
-        "Recover branch repositories",
-        "Fast Forward branch repositories",
+        "Created and cloned repositories for efficient collaboration.",
+        "Managed updates to both local and remote repositories seamlessly.",
       ],
     ),
     Ability(
-      name: 'Manage commits on branches',
-      brief: 'operations for commits',
+      name: 'Branch Management',
+      brief:
+      "Proficient in handling branches for parallel development and streamlined code integration.",
       points: [
-        "Checkout on commits in branches",
-        "Cherry pich commits in branches",
-        "Create new branches from commits",
+        "Merged branches for integrating features and bug fixes.",
+        "Performed rebasing to maintain a linear history.",
+        "Recovered and fast-forwarded branches for consistent updates.",
+      ],
+    ),
+    Ability(
+      name: 'Commit Management',
+      brief:
+      "Skillful in commit handling to maintain a reliable and traceable project history.",
+      points: [
+        "Checked out specific commits to debug or review changes.",
+        "Cherry-picked commits for selective integration.",
+        "Created new branches from existing commits for feature isolation.",
       ],
     ),
   ],
 );
-Technologies nativeAndroidTechnology = Technologies(
+final Technologies nativeAndroidTechnology = Technologies(
   name: 'Native Android',
   brief:
-  'I am a seasoned Android developer with over 5 years of industry experience, proficient in Java and XML layout. My primary focus lies in implementing robust and scalable mobile applications using the MVVM (Model-View-ViewModel) architecture pattern. By leveraging MVVM, I ensure clean separation of concerns, maintainability, and testability of codebases. I possess a deep understanding of Android lifecycle, UI/UX design principles, and performance optimization techniques. With a proven track record of delivering high-quality apps, I am committed to staying updated with the latest advancements in Android development to create cutting-edge solutions that meet the evolving needs of users.',
+  "With over 5 years of experience, I specialize in creating robust Android applications using Java, XML layouts, and the MVVM architecture, ensuring scalability, maintainability, and user satisfaction.",
   url: 'https://developer.android.com',
   startDate: DateTime(2020, DateTime.may),
   cover: SvgPicture.asset(
@@ -264,81 +208,74 @@ Technologies nativeAndroidTechnology = Technologies(
     Ability(
       name: 'Android SDK',
       brief:
-      "Native Android tools for building sophisticated mobile applications, including lifecycle management, UI components, permissions handling, data persistence, reactive programming, ViewModel architecture, and modularization.",
+      "Comprehensive knowledge of Android SDK components, enabling efficient app development and lifecycle management.",
       points: [
-        "Proficient in managing Android app lifecycles, ensuring efficient resource utilization and seamless user experiences through lifecycle-aware components.",
-        "Expertise in designing and implementing activities and fragments to create interactive user interfaces, facilitating smooth navigation and modular UI development",
-        "Adept at managing necessary permissions in Android applications, ensuring compliance with security and privacy standards while providing seamless access to device resources",
-        "Skilled in integrating Room Persistence Library to provide robust local data storage solutions, enabling efficient data access and management for offline functionality",
-        "Proficient in utilizing LiveData observables to facilitate reactive UI updates, enabling real-time data synchronization and seamless interaction with user inputs.",
-        "Experienced in implementing ViewModels to manage UI-related data in a lifecycle-conscious manner, promoting separation of concerns and facilitating UI state persistence",
-        "Expertise in modularizing Android applications to enhance maintainability, scalability, and collaboration, facilitating code reuse and promoting a clean architecture design",
+        "Designed interactive user interfaces using activities and fragments.",
+        "Integrated Room database for robust local storage.",
+        "Utilized LiveData and ViewModel for reactive programming.",
       ],
     ),
     Ability(
-        name: 'Java Logic Programming',
-        brief: 'Logic programming with java 8 and java 11',
-        url: 'https://www.java.com/en/download/help/whatis_java.html',
-        points: [
-          "Proficiency in utilizing Java's threading capabilities to implement asynchronous tasks and prevent UI blocking, ensuring smooth user experience",
-          "Skill in designing and structuring data models tailored for mobile environments, facilitating efficient data management within the application",
-          "Ability to implement background processing mechanisms in mobile applications to execute long-running tasks without disrupting the user interface",
-          "Proficiency in implementing robust error handling mechanisms to identify, handle, and gracefully recover from errors encountered during application execution, enhancing application reliability and stability",
-        ]),
+      name: 'Java Logic Programming',
+      brief:
+      "Developed clean and efficient backend logic using Java 8/11 features.",
+      points: [
+        "Implemented background processing for smooth user experiences.",
+        "Designed robust error-handling mechanisms for high reliability.",
+      ],
+    ),
     Ability(
       name: 'XML Layouts',
-      brief: 'Creating layouts with xml',
-      url:
-      'https://developer.android.com/develop/ui/views/layout/declaring-layout',
+      brief:
+      "Designed visually appealing UI components following Material Design principles.",
       points: [
-        "Use databinding to seamlessly connect user interface components with data sources, improving code readability and reducing boilerplate code in Android development.",
-        "Create bespoke UI components tailored to specific application requirements, enhancing user experience and interface design flexibility.",
-        "Modularize UI components and enhance code reusability by dividing the user interface into independent, reusable sections in Android apps",
-        "Design visually appealing and intuitive user interfaces following Google's Material Design guidelines, enhancing usability and consistency across Android apps."
+        "Modularized layouts for reusable components.",
+        "Leveraged DataBinding to reduce boilerplate code and enhance readability.",
       ],
     ),
   ],
 );
-Technologies flutterTechnology = Technologies(
-  name: 'Flutter Development',
-  startDate: DateTime(2022, DateTime.january),
+final Technologies flutterTechnology = Technologies(
+  name: 'Flutter',
+  brief:
+  "Flutter is a modern cross-platform framework that enables rapid development of high-performance, visually stunning mobile applications.",
+  url: 'https://flutter.dev',
+  startDate: DateTime(2021, DateTime.january),
   cover: SvgPicture.asset(
     "assets/flutter.svg",
-    height: 300,
-    width: 300,
+    fit: BoxFit.contain,
   ),
-  brief:
-  "I am a seasoned Flutter developer with a solid 3-year track record in the field. My expertise lies in leveraging Flutter's capabilities to ensure code reusability and deliver cross-platform functionality. By adhering to best practices and architectural patterns, I prioritize the development of maintainable and scalable applications. Additionally, I am dedicated to maintaining consistent frames per second (fps) across various devices, ensuring optimal performance and user experience. With a keen eye for detail and a passion for crafting high-quality software, I strive to push the boundaries of Flutter development and create polished, user-centric applications.",
-  url: 'https://flutter.dev',
   abilities: const [
     Ability(
-      name: 'Library Creation',
+      name: 'Cross-Platform Development',
       brief:
-      'Proficient in developing reusable code libraries in Flutter, promoting code efficiency and maintainability through modularization',
-    ),
-    Ability(
-      name: 'Modularization',
-      brief:
-      'Expertise in modularizing Flutter applications to separate concerns, enhancing productivity and scalability by isolating and managing distinct app components',
+      "Build mobile applications for iOS and Android from a single codebase using Flutter and Dart.",
+      points: [
+        "Developed responsive UIs with Flutter's flexible widgets.",
+        "Integrated RESTful APIs for real-time data synchronization.",
+      ],
     ),
     Ability(
       name: 'State Management',
       brief:
-      'Skilled in implementing effective state management solutions in Flutter applications, employing appropriate tools and patterns to maintain clean and efficient codebases.',
+      "Efficiently manage app state using providers, Riverpod, and Bloc architectures.",
+      points: [
+        "Implemented complex navigation flows with dynamic state handling.",
+        "Optimized performance by reducing unnecessary widget rebuilds.",
+      ],
     ),
     Ability(
-      name: 'Background Tasks',
+      name: 'Firebase Integration',
       brief:
-      'Adept at executing background tasks in different isolates within Flutter apps, ensuring smooth performance and responsiveness while handling concurrent operations',
-    ),
-    Ability(
-      name: 'Multi-platform Development',
-      brief:
-      'Experienced in building versatile applications across desktop, mobile, and web platforms using Flutter, incorporating essential functionality to meet diverse user needs and device capabilities',
+      "Seamlessly integrated Firebase services to enhance app functionality.",
+      points: [
+        "Implemented Firebase Authentication for secure login flows.",
+        "Utilized Firestore for real-time data storage and retrieval.",
+      ],
     ),
   ],
 );
-Technologies riveTechnology = Technologies(
+final Technologies riveTechnology = Technologies(
   name: 'Rive',
   brief:
   "Rive is a powerful design and animation tool used for creating interactive vector animations and illustrations for various digital platforms.",
@@ -363,7 +300,7 @@ Technologies riveTechnology = Technologies(
     ),
   ],
 );
-Technologies adobeIllustratorTechnology = Technologies(
+final Technologies adobeIllustratorTechnology = Technologies(
   name: 'Adobe illustrator',
   brief:
   "Adobe Illustrator is a versatile vector graphics editor used for creating scalable illustrations, logos, icons, and other graphical elements for print, web, and multimedia projects.",
@@ -375,66 +312,107 @@ Technologies adobeIllustratorTechnology = Technologies(
       name: 'Character modelling',
       brief:
       "Proficient in character drawing using Adobe Illustrator, leveraging its powerful vector-based tools to create detailed and expressive characters for various digital media and design projects.",
+      points: [
+        "Utilized vector paths for precision in character creation.",
+        "Incorporated layers and grouping for complex designs.",
+        "Adapted designs for both print and digital platforms.",
+      ],
     ),
   ],
 );
-Technologies postgreSqlTechnology = Technologies(
+final Technologies postgresTechnology = Technologies(
   name: 'PostgreSQL',
   brief:
-  "PostgreSQL is a powerful open-source relational database management system known for its robustness, extensibility, and adherence to SQL standards, offering advanced features for data storage, retrieval, and management in various applications.",
-  startDate: DateTime(2021, DateTime.august),
-  cover: SvgPicture.asset("assets/postgresql.svg"),
+  "PostgreSQL is a powerful, open-source relational database known for its extensibility, reliability, and performance.",
   url: 'https://www.postgresql.org',
+  startDate: DateTime(2020, DateTime.july),
+  cover: SvgPicture.asset(
+    "assets/postgresql.svg",
+    fit: BoxFit.contain,
+  ),
   abilities: const [
     Ability(
-      name: 'Roles and User Management',
+      name: 'Database Design',
       brief:
-      "Proficient in PostgreSQL's role-based access control system, managing users, groups, and permissions to ensure secure data access and manipulation.",
+      "Proficient in designing normalized database schemas for scalable and efficient data storage.",
+      points: [
+        "Created relational schemas with primary and foreign keys for data integrity.",
+        "Optimized table indexing for faster query performance.",
+      ],
     ),
     Ability(
-      name: 'Extension Integration',
+      name: 'Advanced Querying',
       brief:
-      "Expertise in extending PostgreSQL functionality by integrating and configuring extensions, such as hashing functions, to enhance database capabilities.",
+      "Developed advanced SQL queries to meet complex application needs.",
+      points: [
+        "Implemented complex joins and subqueries for data retrieval.",
+        "Utilized aggregate functions and window functions for analytics.",
+      ],
     ),
     Ability(
-      name: 'Replication Setup',
+      name: 'Performance Optimization',
       brief:
-      "Skilled in setting up and configuring replication in PostgreSQL, enabling data redundancy and high availability for mission-critical applications.",
+      "Ensured optimal database performance through tuning and monitoring.",
+      points: [
+        "Analyzed and optimized slow queries using EXPLAIN plans.",
+        "Managed connection pools for high-concurrency scenarios.",
+      ],
     ),
     Ability(
-      name: 'Indexing',
+      name: 'Data Security',
       brief:
-      'Adept at implementing indexing strategies in PostgreSQL to optimize query performance and accelerate data retrieval operations',
-    ),
-    Ability(
-      name: 'Constraints Implementation',
-      brief:
-      'Experienced in enforcing data integrity through the implementation of constraints in PostgreSQL, ensuring that data adheres to specified rules and requirements',
-    ),
-    Ability(
-      name: 'Check Constraints',
-      brief:
-      'Proficient in utilizing check constraints in PostgreSQL to enforce specific conditions on data values, ensuring data consistency and validity within the database',
-    ),
-    Ability(
-      name: 'Sharding',
-      brief:
-      'Skilled in configuring and managing data sharing mechanisms within PostgreSQL databases, facilitating collaboration and data accessibility across teams or applications.',
+      "Implemented robust security measures for sensitive data protection.",
+      points: [
+        "Set up roles and permissions for controlled data access.",
+        "Utilized SSL encryption to secure database connections.",
+      ],
     ),
   ],
 );
-Technologies mySqlTechnology = Technologies(
+final Technologies mysqlTechnology = Technologies(
   name: 'MySQL',
   brief:
-  "MySQL is a widely-used open-source relational database management system known for its reliability, performance, and ease of use, offering robust features for data storage, retrieval, and management in various applications.",
-  startDate: DateTime(2018, DateTime.may),
-  cover: SvgPicture.asset("assets/mysql.svg"),
+  "MySQL is a widely-used relational database known for its simplicity, speed, and reliability in managing structured data.",
   url: 'https://www.mysql.com',
+  startDate: DateTime(2020, DateTime.june),
+  cover: SvgPicture.asset(
+    "assets/mysql.svg",
+    fit: BoxFit.contain,
+  ),
+  abilities: const [
+    Ability(
+      name: 'Database Design',
+      brief:
+      "Proficient in designing normalized schemas for structured data storage.",
+      points: [
+        "Created efficient table structures to enforce data integrity.",
+        "Optimized database relations with foreign keys and indexing.",
+      ],
+    ),
+    Ability(
+      name: 'Query Optimization',
+      brief:
+      "Improved application performance by optimizing database queries.",
+      points: [
+        "Analyzed slow queries using EXPLAIN for optimization.",
+        "Implemented indexing to boost query execution speed.",
+      ],
+    ),
+    Ability(
+      name: 'Data Backup and Recovery',
+      brief:
+      "Ensured data durability with robust backup and recovery mechanisms.",
+      points: [
+        "Automated database backups for regular snapshots.",
+        "Restored critical data efficiently during outages or failures.",
+      ],
+    ),
+  ],
 );
-Technologies mongoDbTechnology = Technologies(
+final Technologies mongoDbTechnology = Technologies(
   name: 'MongoDB',
   brief:
-  "MongoDB is a popular NoSQL database solution known for its flexibility, scalability, and high performance, offering document-oriented storage and flexible data models suitable for modern application development.",
+  "MongoDB is a high-performance NoSQL database designed for flexible, scalable, and document-oriented storage, catering to modern, data-intensive applications.",
   startDate: DateTime(2021, DateTime.august),
   cover: SvgPicture.asset(
     "assets/mongo.svg",
@@ -442,36 +420,66 @@ Technologies mongoDbTechnology = Technologies(
     width: 300,
   ),
   url: 'https://www.mongodb.com',
+  abilities: const [
+    Ability(
+      name: 'Data Modeling',
+      brief:
+      "Expertise in designing and implementing flexible document-based schemas that align with application requirements.",
+      points: [
+        "Created dynamic schemas for rapid development.",
+        "Designed indexes to optimize query performance.",
+        "Managed relationships using embedded documents and references.",
+      ],
+    ),
+    Ability(
+      name: 'Scalability and Performance',
+      brief:
+      "Proficient in scaling MongoDB clusters and optimizing performance for high-throughput operations.",
+      points: [
+        "Configured sharding for large-scale data distribution.",
+        "Tuned performance using profiling and monitoring tools.",
+      ],
+    ),
+  ],
 );
-Technologies visualParadigmTechnology = Technologies(
+final Technologies visualParadigmTechnology = Technologies(
   name: 'Visual Paradigm',
   brief:
-  "Visual Paradigm is a comprehensive modeling tool used for visualizing, designing, and documenting software systems and business processes, offering a wide range of UML diagrams, agile tools, and collaboration features.",
-  startDate: DateTime(
-    2020,
-    DateTime.january,
-  ),
+  "Visual Paradigm is a robust tool for software and business process modeling, offering UML diagrams, agile tools, and collaboration capabilities to enhance system design and documentation.",
+  startDate: DateTime(2020, DateTime.january),
   cover: Image.asset("assets/visual-paradigm.png"),
   url: 'https://www.visual-paradigm.com',
   abilities: const [
     Ability(
       name: 'Activity Diagrams',
       brief:
-      "Proficient in activity diagrams, a type of UML diagram used to model workflows and business processes, facilitating clear visualization and analysis of system behaviors and interactions.",
+      "Proficient in creating activity diagrams to model workflows, enabling clear visualization of system processes and interactions.",
+      points: [
+        "Modeled complex workflows for software systems.",
+        "Analyzed and optimized processes using clear diagrams.",
+      ],
       url:
       'https://www.visual-paradigm.com/tutorials/how-to-draw-activity-diagram-in-uml',
     ),
     Ability(
-      name: 'Data Flow Diagram',
+      name: 'Data Flow Diagrams (DFD)',
       brief:
-      "Skilled in data flow diagrams (DFDs), a visual representation technique used to illustrate the flow of data within a system, aiding in the analysis, design, and understanding of information processes and relationships.",
+      "Skilled in illustrating system data flows with DFDs, providing clarity in data processing and system analysis.",
+      points: [
+        "Visualized data movement between processes and entities.",
+        "Used DFDs to facilitate efficient communication with stakeholders.",
+      ],
       url:
       'https://www.visual-paradigm.com/tutorials/data-flow-diagram-dfd.jsp',
     ),
     Ability(
-      name: 'Entity Relationship Diagram',
+      name: 'Entity-Relationship Diagrams (ERD)',
       brief:
-      "Proficient in Entity-Relationship Diagrams (ERDs), a modeling technique used to visually represent the structure of a database, depicting entities, their attributes, and relationships, facilitating database design and analysis.",
+      "Experienced in crafting ERDs for database design, highlighting entity relationships, attributes, and structural organization.",
+      points: [
+        "Designed comprehensive ERDs to streamline database implementation.",
+        "Simplified data relationships for enhanced database normalization.",
+      ],
       url:
       'https://www.visual-paradigm.com/tutorials/databasedesign.jsp',
     ),
@@ -525,8 +533,8 @@ List<SkillBoard> get skills => [
     brief:
     "Proficient in database administration, encompassing tasks such as database installation, configuration, performance tuning, backup and recovery, security management, and troubleshooting, ensuring optimal functionality, reliability, and security of database systems.",
     technologies: [
-      postgreSqlTechnology,
-      mySqlTechnology,
+      postgresTechnology,
+      mysqlTechnology,
       mongoDbTechnology,
     ],
   ),
@@ -628,4 +636,3 @@ enum PubPackage {
   spinnerDatePicker,
   lruMemoryCache;
 }
-
