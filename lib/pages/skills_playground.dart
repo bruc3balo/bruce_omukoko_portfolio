@@ -15,7 +15,7 @@ void showTechnologyInfo({
   showDialog(
     context: context,
     builder: (_) {
-      var theme = Theme.of(context);
+      final ThemeData theme = Theme.of(context);
       return Dialog(
         insetAnimationCurve: Curves.easeIn,
         insetAnimationDuration: const Duration(seconds: 3),
@@ -24,7 +24,7 @@ void showTechnologyInfo({
         ),
         backgroundColor: orange,
         child: Card(
-          color: Colors.black,
+          color: darkBackground,
           child: Flex(
             direction: Axis.vertical,
             children: <Widget>[
