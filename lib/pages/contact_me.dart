@@ -29,13 +29,12 @@ class ContactMePage extends StatelessWidget {
           ElevatedButton.icon(
             style: ButtonStyle(
               fixedSize: const WidgetStatePropertyAll(Size(300, 60)),
-              padding: WidgetStateProperty.all(
-                  const EdgeInsets.all(15.0)),
+              padding: WidgetStateProperty.all(const EdgeInsets.all(15.0)),
               backgroundColor: WidgetStateProperty.all(
                 Colors.transparent,
               ),
               side: WidgetStateProperty.resolveWith(
-                    (state) {
+                (state) {
                   if (state.contains(WidgetState.hovered)) {
                     return BorderSide(
                       color: orange,
@@ -57,7 +56,7 @@ class ContactMePage extends StatelessWidget {
                 builder: (c) => Dialog(
                   backgroundColor: Colors.transparent,
                   child: Card(
-                    color: Colors.black,
+                    color: darkBackground,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
@@ -65,7 +64,7 @@ class ContactMePage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisSize: MainAxisSize.min,
                         children: [
-
+                          const Text("What would you like to discuss about ?"),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
@@ -77,23 +76,28 @@ class ContactMePage extends StatelessWidget {
                               ),
                             ),
                           ),
-
-
                           DropDownMenuButton<ContactSubject>(
                             options: ContactSubject.values,
                             isEquals: (a, b) => a == b,
                             onSelect: (a) async {
                               bool success = await sendEmail(
                                 subject: a.value,
-                                brief: 'Brief',
+                                brief: 'Bruce,${'\n' * 5}Regards',
                                 email: 'bruceaomukoko@gmail.com',
                               );
 
-                              if(success && c.mounted) {
+                              if (success && c.mounted) {
                                 Navigator.of(c).pop();
                               }
                             },
                             label: (a) => a.value,
+                          ),
+                          ElevatedButton(
+                            onPressed: Navigator.of(context).pop,
+                            style: const ButtonStyle(
+                              backgroundColor: WidgetStatePropertyAll(Colors.red),
+                            ),
+                            child: const Text("Never mind"),
                           ),
                         ],
                       ),
@@ -102,7 +106,10 @@ class ContactMePage extends StatelessWidget {
                 ),
               );
             },
-            icon: const Icon(Icons.email_outlined, size: 25,),
+            icon: const Icon(
+              Icons.email_outlined,
+              size: 25,
+            ),
           ),
         ],
       ),

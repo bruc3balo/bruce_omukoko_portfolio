@@ -92,21 +92,12 @@ class PublicationsPage extends StatelessWidget {
             PublicationType p = publicationTypeList[i];
             return Padding(
               padding: const EdgeInsets.all(20.0),
-              child: ListTile(
-                title: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    p.value,
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-                subtitle: Padding(
-                  padding: const EdgeInsets.only(top: 30.0),
-                  child: switch (p) {
-                    PublicationType.pubDev => const PubDevPublications(),
-                    PublicationType.rive => const RivePublications(),
-                  },
-                ),
+              child: Padding(
+                padding: const EdgeInsets.only(top: 30.0),
+                child: switch (p) {
+                  PublicationType.pubDev => const PubDevPublications(),
+                  PublicationType.rive => const RivePublications(),
+                },
               ),
             );
           },
