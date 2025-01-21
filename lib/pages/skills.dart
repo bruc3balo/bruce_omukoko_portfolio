@@ -178,7 +178,7 @@ class _SkillsPageState extends State<SkillsPage> {
                                                       child: t.cover,
                                                     ),
                                                     SvgPicture.asset(
-                                                      "assets/skills_hover.svg",
+                                                      "bruc3balo/assets/skills_hover.svg",
                                                       width: 250,
                                                       height: 250,
                                                     ),
@@ -242,7 +242,7 @@ class PsstPressHere extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           SvgPicture.asset(
-            "assets/skills_arrow.svg",
+            "bruc3balo/assets/skills_arrow.svg",
           ),
         ],
       );

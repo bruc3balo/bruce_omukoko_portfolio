@@ -2,9 +2,9 @@ dev_dependencies:
   flutter_launcher_icons: "^0.13.1"
 
 flutter_launcher_icons:
-  image_path: "assets/bruce.png"
+  image_path: "bruc3balo/assets/bruce.png"
   web:
     generate: true
-    image_path: "assets/bruce.png"
+    image_path: "bruc3balo/assets/bruce.png"
     background_color: "#111111"
     theme_color: "#f5f5f5"

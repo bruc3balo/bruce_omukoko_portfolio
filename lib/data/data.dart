@@ -16,7 +16,7 @@ final Technologies springTechnology = Technologies(
   url: 'https://spring.io/projects/spring-framework',
   startDate: DateTime(2021, DateTime.august),
   cover: SvgPicture.asset(
-    "assets/spring.svg",
+    "bruc3balo/assets/spring.svg",
     fit: BoxFit.contain,
     color: HexColor("#77bc1f"),
   ),
@@ -66,7 +66,7 @@ final Technologies dockerTechnology = Technologies(
   url: 'https://www.docker.com',
   startDate: DateTime(2022, DateTime.august),
   cover: SvgPicture.asset(
-    "assets/docker.svg",
+    "bruc3balo/assets/docker.svg",
     fit: BoxFit.contain,
   ),
   abilities: [
@@ -109,7 +109,7 @@ final Technologies kubernetesTechnology = Technologies(
   url: 'https://kubernetes.io',
   startDate: DateTime(2024, DateTime.february),
   cover: SvgPicture.asset(
-    "assets/kubernets.svg",
+    "bruc3balo/assets/kubernets.svg",
     fit: BoxFit.contain,
   ),
   abilities: const [
@@ -157,7 +157,7 @@ final Technologies gitTechnology = Technologies(
   startDate: DateTime(2017, DateTime.august),
   url: 'https://github.com',
   cover: SvgPicture.asset(
-    "assets/git.svg",
+    "bruc3balo/assets/git.svg",
     fit: BoxFit.contain,
   ),
   abilities: const [
@@ -199,7 +199,7 @@ final Technologies nativeAndroidTechnology = Technologies(
   url: 'https://developer.android.com',
   startDate: DateTime(2020, DateTime.may),
   cover: SvgPicture.asset(
-    "assets/android.svg",
+    "bruc3balo/assets/android.svg",
     height: 300,
     width: 300,
     color: Colors.green,
@@ -242,7 +242,7 @@ final Technologies flutterTechnology = Technologies(
   url: 'https://flutter.dev',
   startDate: DateTime(2021, DateTime.january),
   cover: SvgPicture.asset(
-    "assets/flutter.svg",
+    "bruc3balo/assets/flutter.svg",
     fit: BoxFit.contain,
   ),
   abilities: const [
@@ -281,7 +281,7 @@ final Technologies riveTechnology = Technologies(
   "Rive is a powerful design and animation tool used for creating interactive vector animations and illustrations for various digital platforms.",
   startDate: DateTime(2022, DateTime.march),
   cover: Image.asset(
-    "assets/rive.png",
+    "bruc3balo/assets/rive.png",
     fit: BoxFit.contain,
     width: 300,
     height: 300,
@@ -305,7 +305,7 @@ final Technologies adobeIllustratorTechnology = Technologies(
   brief:
   "Adobe Illustrator is a versatile vector graphics editor used for creating scalable illustrations, logos, icons, and other graphical elements for print, web, and multimedia projects.",
   startDate: DateTime(2022, DateTime.march),
-  cover: SvgPicture.asset("assets/adobe-illustrator.svg"),
+  cover: SvgPicture.asset("bruc3balo/assets/adobe-illustrator.svg"),
   url: 'https://www.adobe.com/products/illustrator.html',
   abilities: const [
     Ability(
@@ -327,7 +327,7 @@ final Technologies postgresTechnology = Technologies(
   url: 'https://www.postgresql.org',
   startDate: DateTime(2020, DateTime.july),
   cover: SvgPicture.asset(
-    "assets/postgresql.svg",
+    "bruc3balo/assets/postgresql.svg",
     fit: BoxFit.contain,
   ),
   abilities: const [
@@ -376,7 +376,7 @@ final Technologies mysqlTechnology = Technologies(
   url: 'https://www.mysql.com',
   startDate: DateTime(2020, DateTime.june),
   cover: SvgPicture.asset(
-    "assets/mysql.svg",
+    "bruc3balo/assets/mysql.svg",
     fit: BoxFit.contain,
   ),
   abilities: const [
@@ -415,7 +415,7 @@ final Technologies mongoDbTechnology = Technologies(
   "MongoDB is a high-performance NoSQL database designed for flexible, scalable, and document-oriented storage, catering to modern, data-intensive applications.",
   startDate: DateTime(2021, DateTime.august),
   cover: SvgPicture.asset(
-    "assets/mongo.svg",
+    "bruc3balo/assets/mongo.svg",
     height: 300,
     width: 300,
   ),
@@ -447,7 +447,7 @@ final Technologies visualParadigmTechnology = Technologies(
   brief:
   "Visual Paradigm is a robust tool for software and business process modeling, offering UML diagrams, agile tools, and collaboration capabilities to enhance system design and documentation.",
   startDate: DateTime(2020, DateTime.january),
-  cover: Image.asset("assets/visual-paradigm.png"),
+  cover: Image.asset("bruc3balo/assets/visual-paradigm.png"),
   url: 'https://www.visual-paradigm.com',
   abilities: const [
     Ability(

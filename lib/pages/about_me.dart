@@ -76,7 +76,7 @@ class AboutMeDesktop extends StatelessWidget {
                   children: [
                     Align(
                       alignment: Alignment.centerLeft,
-                      child: SvgPicture.asset("assets/flash.svg"),
+                      child: SvgPicture.asset("bruc3balo/assets/flash.svg"),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 40.0),
@@ -114,7 +114,7 @@ class AboutMeDesktop extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 30.0),
                       child: Align(
                         alignment: Alignment.center,
-                        child: SvgPicture.asset("assets/sign.svg"),
+                        child: SvgPicture.asset("bruc3balo/assets/sign.svg"),
                       ),
                     ),
                     Padding(
@@ -131,7 +131,7 @@ class AboutMeDesktop extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 30.0),
                       child: Align(
                         alignment: Alignment.center,
-                        child: SvgPicture.asset("assets/smile.svg"),
+                        child: SvgPicture.asset("bruc3balo/assets/smile.svg"),
                       ),
                     ),
                     Padding(
@@ -249,7 +249,7 @@ class AboutMeDesktop extends StatelessWidget {
                                     Padding(
                                       padding: const EdgeInsets.all(10.0),
                                       child: SvgPicture.asset(
-                                        "assets/mouse.svg",
+                                        "bruc3balo/assets/mouse.svg",
                                         color: hovering ? orange : Colors.white,
                                       ),
                                     ),
@@ -276,7 +276,7 @@ class AboutMeDesktop extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Image.asset(
-                  "assets/brucy.png",
+                  "bruc3balo/assets/brucy.png",
                 ),
               ),
             ),
@@ -492,7 +492,7 @@ class AboutMeMobile extends StatelessWidget {
             children: [
               Align(
                 alignment: Alignment.centerLeft,
-                child: SvgPicture.asset("assets/flash.svg"),
+                child: SvgPicture.asset("bruc3balo/assets/flash.svg"),
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 40.0),
@@ -530,7 +530,7 @@ class AboutMeMobile extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 30.0),
                 child: Align(
                   alignment: Alignment.center,
-                  child: SvgPicture.asset("assets/sign.svg"),
+                  child: SvgPicture.asset("bruc3balo/assets/sign.svg"),
                 ),
               ),
               Padding(
@@ -547,13 +547,13 @@ class AboutMeMobile extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 30.0),
                 child: Align(
                   alignment: Alignment.center,
-                  child: SvgPicture.asset("assets/smile.svg"),
+                  child: SvgPicture.asset("bruc3balo/assets/smile.svg"),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Image.asset(
-                  "assets/brucy.png",
+                  "bruc3balo/assets/brucy.png",
                 ),
               ),
               Padding(
@@ -674,7 +674,7 @@ class AboutMeMobile extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.all(10.0),
                                 child: SvgPicture.asset(
-                                  "assets/mouse.svg",
+                                  "bruc3balo/assets/mouse.svg",
                                   color: hovering ? orange : Colors.white,
                                 ),
                               ),
@@ -898,7 +898,7 @@ class BruceRugbyPhoto extends StatelessWidget {
                 image: DecorationImage(
                   fit: BoxFit.contain,
                   image: AssetImage(
-                    'assets/bruce_rugby.jpg',
+                    'bruc3balo/assets/bruce_rugby.jpg',
                   ),
                 ),
                 borderRadius: BorderRadius.all(Radius.circular(8.0)),
@@ -934,7 +934,7 @@ class ThatsMeLol extends StatelessWidget {
               child: Align(
                 alignment: Alignment.topRight,
                 child: SvgPicture.asset(
-                  "assets/rugby_arrow.svg",
+                  "bruc3balo/assets/rugby_arrow.svg",
                 ),
               ),
             ),
