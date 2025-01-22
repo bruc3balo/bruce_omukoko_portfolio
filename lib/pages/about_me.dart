@@ -308,7 +308,7 @@ class AboutMeDesktop extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                     Text(
-                      "When I’m not deep in thought, you can find me gaming , getting rough and tumble on the  rugby field, or just hanging out with friends. Life’s too short not to enjoy a good game and some great company. So yeah, that’s me - always looking for the next challenge and bringing creative flair to everything I do.",
+                      "When I’m not deep in thought, you can find me gaming , getting rough and tumble on the  rugby field, or just hanging out with friends. Life’s too short not to enjoy a good game and some great company. So yeah, that’s me, always looking for the next challenge and bringing creative flair to everything I do.",
                       style: GoogleFonts.inter(
                         fontSize: 24,
                         color: Colors.white,
@@ -338,7 +338,7 @@ class AboutMeDesktop extends StatelessWidget {
                                       WidgetStateProperty.resolveWith(
                                     (state) {
                                       if (state.contains(WidgetState.hovered)) {
-                                        return orange; //
+                                        return Colors.green; //
                                       }
 
                                       return Colors.transparent;
@@ -358,8 +358,8 @@ class AboutMeDesktop extends StatelessWidget {
                                         );
                                       }
 
-                                      return BorderSide(
-                                        color: orange,
+                                      return const BorderSide(
+                                        color: Colors.green,
                                         width: 1.0,
                                       );
                                     },
@@ -368,7 +368,7 @@ class AboutMeDesktop extends StatelessWidget {
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    const Icon(Icons.code, color: Colors.green,),
+                                    const Icon(Icons.code),
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Text(
@@ -389,12 +389,13 @@ class AboutMeDesktop extends StatelessWidget {
                                 onPressed: goToFlutterResume,
                                 style: ButtonStyle(
                                   padding: WidgetStateProperty.all(
-                                      const EdgeInsets.all(15.0)),
+                                    const EdgeInsets.all(15.0),
+                                  ),
                                   backgroundColor:
                                       WidgetStateProperty.resolveWith(
                                     (state) {
                                       if (state.contains(WidgetState.hovered)) {
-                                        return orange; //
+                                        return Colors.blue;
                                       }
 
                                       return Colors.transparent;
@@ -414,8 +415,8 @@ class AboutMeDesktop extends StatelessWidget {
                                         );
                                       }
 
-                                      return BorderSide(
-                                        color: orange,
+                                      return const BorderSide(
+                                        color: Colors.blue,
                                         width: 1.0,
                                       );
                                     },
@@ -426,10 +427,10 @@ class AboutMeDesktop extends StatelessWidget {
                                   children: [
                                     const Icon(
                                       Icons.phone_android_outlined,
-                                      color: Colors.blue,
                                     ),
-                                    const Icon(Icons.desktop_mac_outlined,
-                                        color: Colors.blue),
+                                    const Icon(
+                                      Icons.desktop_mac_outlined,
+                                    ),
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Text(
@@ -713,7 +714,7 @@ class AboutMeMobile extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               Text(
-                "When I’m not deep in thought, you can find me gaming , getting rough and tumble on the  rugby field, or just hanging out with friends. Life’s too short not to enjoy a good game and some great company. So yeah, that’s me - always looking for the next challenge and bringing creative flair to everything I do.",
+                "When I’m not deep in thought, you can find me gaming , getting rough and tumble on the  rugby field, or just hanging out with friends. Life’s too short not to enjoy a good game and some great company. So yeah, that’s me, always looking for the next challenge and bringing creative flair to everything I do.",
                 style: GoogleFonts.inter(
                   fontSize: 24,
                   color: Colors.white,
@@ -735,6 +736,8 @@ class AboutMeMobile extends StatelessWidget {
                       alignment: Alignment.centerLeft,
                       child: SvgPicture.asset("flash.svg"),
                     ),
+
+
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Padding(
@@ -744,10 +747,11 @@ class AboutMeMobile extends StatelessWidget {
                           style: ButtonStyle(
                             padding: WidgetStateProperty.all(
                                 const EdgeInsets.all(15.0)),
-                            backgroundColor: WidgetStateProperty.resolveWith(
-                              (state) {
+                            backgroundColor:
+                            WidgetStateProperty.resolveWith(
+                                  (state) {
                                 if (state.contains(WidgetState.hovered)) {
-                                  return orange; //
+                                  return Colors.green; //
                                 }
 
                                 return Colors.transparent;
@@ -759,7 +763,7 @@ class AboutMeMobile extends StatelessWidget {
                               ),
                             ),
                             side: WidgetStateProperty.resolveWith(
-                              (state) {
+                                  (state) {
                                 if (state.contains(WidgetState.hovered)) {
                                   return const BorderSide(
                                     color: Colors.white,
@@ -767,8 +771,8 @@ class AboutMeMobile extends StatelessWidget {
                                   );
                                 }
 
-                                return BorderSide(
-                                  color: orange,
+                                return const BorderSide(
+                                  color: Colors.green,
                                   width: 1.0,
                                 );
                               },
@@ -777,10 +781,7 @@ class AboutMeMobile extends StatelessWidget {
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              const Icon(
-                                Icons.code,
-                                color: Colors.green,
-                              ),
+                              const Icon(Icons.code),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
@@ -806,10 +807,11 @@ class AboutMeMobile extends StatelessWidget {
                             padding: WidgetStateProperty.all(
                               const EdgeInsets.all(15.0),
                             ),
-                            backgroundColor: WidgetStateProperty.resolveWith(
-                              (state) {
+                            backgroundColor:
+                            WidgetStateProperty.resolveWith(
+                                  (state) {
                                 if (state.contains(WidgetState.hovered)) {
-                                  return orange; //
+                                  return Colors.blue;
                                 }
 
                                 return Colors.transparent;
@@ -821,7 +823,7 @@ class AboutMeMobile extends StatelessWidget {
                               ),
                             ),
                             side: WidgetStateProperty.resolveWith(
-                              (state) {
+                                  (state) {
                                 if (state.contains(WidgetState.hovered)) {
                                   return const BorderSide(
                                     color: Colors.white,
@@ -829,8 +831,8 @@ class AboutMeMobile extends StatelessWidget {
                                   );
                                 }
 
-                                return BorderSide(
-                                  color: orange,
+                                return const BorderSide(
+                                  color: Colors.blue,
                                   width: 1.0,
                                 );
                               },
@@ -841,11 +843,9 @@ class AboutMeMobile extends StatelessWidget {
                             children: [
                               const Icon(
                                 Icons.phone_android_outlined,
-                                color: Colors.blue,
                               ),
                               const Icon(
                                 Icons.desktop_mac_outlined,
-                                color: Colors.blue,
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
