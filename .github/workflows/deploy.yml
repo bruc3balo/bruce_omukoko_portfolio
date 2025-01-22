@@ -32,7 +32,7 @@ jobs:
           cp -r bruc3balo/assets/* build/web/assets/
 
       - name: Build
-        run: flutter build web --wasm --base-href "/bruc3balo.github.io/" --release
+        run: flutter build web --wasm --base-href "/"
 
       - name: Configure 404
         run: |
